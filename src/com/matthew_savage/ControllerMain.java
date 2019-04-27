@@ -165,6 +165,7 @@ public class ControllerMain {
     @FXML
     private Button sidebarPaneSizeIncrease;
 
+    private UpdateCollectedMangas update = new UpdateCollectedMangas();
     private Database database = new Database();
     private ArrayList<ImageView> imageViews = new ArrayList<>();
     private ArrayList<ImageView> favoriteOverlayViews = new ArrayList<>();
@@ -185,6 +186,7 @@ public class ControllerMain {
     private int currentPageNumber;
     private static Executor modifyThread = Executors.newSingleThreadExecutor();
     static ScheduledExecutorService downloadThread = Executors.newScheduledThreadPool(1);
+    private static ScheduledExecutorService checkIfUpdated = Executors.newScheduledThreadPool(1);
     private IndexMangaChapters indexMangaChapters = new IndexMangaChapters();
     private DownloadMangaPages downloadMangaPages = new DownloadMangaPages(this);
     private int thumbNumber;
@@ -194,7 +196,7 @@ public class ControllerMain {
     public void initialize() {
         GenreMap.createGenreString();
         noInternet.setSmooth(true);
-        noInternet.setImage(new Image("com/matthew_savage/assets/no_internet.png"));
+        noInternet.setImage(new Image("assets/no_internet.png"));
 
         for (int i = 0; i < 39; i++) {
             genreStrings.add(i, "");
@@ -252,9 +254,13 @@ public class ControllerMain {
         if (InternetConnection.checkIfConnected()) {
             noInternet.setVisible(false);
             //checkforupdates will launch download
-            downloadThread.scheduleWithFixedDelay(downloadManga, 3, 10, TimeUnit.SECONDS);
+            checkIfUpdated.scheduleWithFixedDelay(updateShit, 0, 30, TimeUnit.MINUTES);
+            downloadThread.scheduleWithFixedDelay(downloadManga, 120, 10, TimeUnit.SECONDS);
+
         }
     }
+
+    private Runnable updateShit = UpdateCollectedMangas::seeIfUpdated;
 
     public void appClose() {
         downloadThread.shutdownNow();
@@ -902,10 +908,10 @@ public class ControllerMain {
                 thumbImage.setSmooth(true);
                 thumbImage.setImage(new Image(new FileInputStream(thumbsPath + File.separator + view.getMangaNumber() + ".jpg")));
                 if (view.isFavorite()) {
-                    favoriteOverlay.setImage(new Image("com/matthew_savage/assets/favorite_overlay.png"));
+                    favoriteOverlay.setImage(new Image("assets/favorite_overlay.png"));
                 }
                 if (view.isNewChapters()) {
-                    newChaptersOverlay.setImage(new Image("com/matthew_savage/assets/new_chapter_multiple.png"));
+                    newChaptersOverlay.setImage(new Image("assets/new_chapter_multiple.png"));
                 }
                 thumbImage.setVisible(true);
                 favoriteOverlay.setVisible(true);

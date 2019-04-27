@@ -147,7 +147,7 @@ public class ControllerLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.getIcons().add(new Image("com/matthew_savage/assets/ico.png"));
+        primaryStage.getIcons().add(new Image("assets/ico.png"));
         primaryStage.setTitle("Cupcaked Manga Reader");
         primaryStage.setScene(new Scene(root, 1920, 1034, Color.TRANSPARENT));  //1026
         primaryStage.setX(0);

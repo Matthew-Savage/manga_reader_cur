@@ -26,26 +26,22 @@ class DownloadMangaPages {
 
 
     void getChapterPages(int startingChapterNumber, String webAddress, int mangaId, boolean firstDownload) throws Exception{
+        System.out.println("Methd getchapterpages has been called, mangaid is " + mangaId + " and startingchapnum is " + startingChapterNumber);
         int originalStartingChapter = startingChapterNumber;
         ArrayList<String> chapterLinks = IndexMangaChapters.getChapterAddresses(webAddress);
         int totalChapters = chapterLinks.size();
-
+        System.out.println("chapterlinks size is " + totalChapters);
         updateTotalChapters(mangaId, totalChapters);
         int loopCount = totalChapters - startingChapterNumber;
+        System.out.println("current loopcount is " + loopCount);
 
 
         if (checkSiteHtml(chapterLinks)) {
             ControllerMain.downloadThread.shutdown();
             controllerMain.error();
         } else {
+            System.out.println("else block running, first step in download");
             processChapterList(loopCount, chapterLinks, mangaId, startingChapterNumber, originalStartingChapter, firstDownload);
-        }
-
-
-        if (loopCount == 0 && firstDownload) {
-            insertIntoReading(mangaId, true, true, false, true);
-        } else if (loopCount == 0 && !firstDownload) {
-            insertIntoReading(mangaId, true, true, true, false);
         }
     }
 
@@ -84,6 +80,7 @@ class DownloadMangaPages {
     }
 
     private void processChapterList(int loopCount, ArrayList<String> chapterList, int mangaId, int startingChapterNumber, int originalStartingChapter, boolean firstDownload) throws Exception{
+        System.out.println("proccesschapterlist method is now running, chapterlist has " + chapterList.size() + " items and loopcount is " + loopCount);
         int image = 0;
 
         while (loopCount > 0) {
@@ -94,10 +91,22 @@ class DownloadMangaPages {
             updateLastChapDownloaded(mangaId, startingChapterNumber);
 
             if (startingChapterNumber == (originalStartingChapter + 1) && firstDownload) {
+                System.out.println("insert into reading is happening!");
                 insertIntoReading(mangaId, true, false, false, false);
             }
         }
+        downloadCompleted(firstDownload, mangaId);
+    }
 
+    private void downloadCompleted(boolean firstDownload, int mangaId) {
+        System.out.println("download complete");
+        if (firstDownload) {
+            System.out.println("if block has been executed!!");
+            insertIntoReading(mangaId, true, true, false, true);
+        } else {
+            System.out.println("elseif block has been executed");
+            insertIntoReading(mangaId, true, true, true, false);
+        }
     }
 
     private boolean checkSiteHtml(ArrayList<String> chapterList) throws Exception {
@@ -107,6 +116,7 @@ class DownloadMangaPages {
     }
 
     private void fetchChapterPages(String chapterUrl, int mangaId, int startingChapterNumber, int image) throws Exception {
+        System.out.println("method fetchchapterpages is now downloading " + chapterUrl);
         Connection.Response response = Jsoup.connect("https://manganelo.com/change_content_s" + fetchVerificationUrl(chapterUrl)).method(Connection.Method.GET).execute();
 
         Document chapter = Jsoup.connect(chapterUrl).cookies(response.cookies()).get();

@@ -3,7 +3,7 @@
 }
 
 #testPane {
-    -fx-background-image: url("assets/preload.png");
+    -fx-background-image: url("../../assets/preload.png");
 }
 
 #textSize12 {
