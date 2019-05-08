@@ -35,22 +35,6 @@ public class Database {
 
     }
 
-//    public void modifyManga(String tableName, int mangaID, String columnToModify, int newColumnValue) {
-//        try(Statement sqlStatement = dbConnect.createStatement()) {
-//            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = " + newColumnValue + " WHERE title_id = '" + mangaID + "'");
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage() + "   db message");
-//        }
-//    }
-//
-//    public void modifyMangaValueString(String tableName, int mangaID, String columnToModify, String newColumnValue) {
-//        try(Statement sqlStatement = dbConnect.createStatement()) {
-//            sqlStatement.execute("UPDATE " + tableName + " SET " + columnToModify + " = " + newColumnValue + " WHERE title_id = '" + mangaID + "'");
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage() + "   db message");
-//        }
-//    }
-
     void downloadQueueAdd(String tableName, int titleId, String webAddress, int startingChapter, int lastChapterDownloaded) {
         try (Statement sqlStatement = dbConnect.createStatement()) {
             sqlStatement.execute("INSERT INTO " + tableName + " (title_id, web_address, starting_chapter, last_chapter_downloaded) VALUES ('" + titleId + "', '" + webAddress + "', '" + startingChapter + "', '" + lastChapterDownloaded + "')");
@@ -173,6 +157,33 @@ public class Database {
             sqlStatement.execute("INSERT OR REPLACE INTO " + tableName + " (settingName, settingValue) VALUES ('" + settingName + "', '" + settingValue + "')");
         } catch (Exception e) {
         }
+    }
+
+    void createHistoryTable() {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("CREATE TABLE IF NOT EXISTS history (entry_number INTEGER, title_id INTEGER, title TEXT, summary TEXT)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void storeHistoryEntries(int entry_number, int mangaId, String title, String summary) {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("INSERT INTO history (entry_number, title_id, title, summary) VALUES ('" + entry_number + "', '" + mangaId + "', '" + title + "', '" + summary + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    ResultSet retrieveHistoryEntries() {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            return sqlStatement.executeQuery("SELECT * FROM history ORDER BY entry_number DESC LIMIT 10");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } return null;
     }
 
     public String retrieveSettings(String tableName, String settingName) {

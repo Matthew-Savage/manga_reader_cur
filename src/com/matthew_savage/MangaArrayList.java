@@ -2,6 +2,7 @@ package com.matthew_savage;
 
 public class MangaArrayList {
 
+    private int entryNumber;
     private int titleId;
     private String title;
     private String authors;
@@ -15,6 +16,14 @@ public class MangaArrayList {
     private int lastChapterDownloaded;
     private boolean newChapters;
     private boolean favorite;
+
+    public int getEntryNumber() {
+        return entryNumber;
+    }
+
+    public void setEntryNumber(int entryNumber) {
+        this.entryNumber = entryNumber;
+    }
 
     public int getTitleId() {
         return titleId;
@@ -118,6 +127,13 @@ public class MangaArrayList {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public MangaArrayList(int entryNumber, int titleId, String title, String summary) {
+        this.entryNumber = entryNumber;
+        this.titleId = titleId;
+        this.title = title;
+        this.summary = summary;
     }
 
     public MangaArrayList(int titleId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, boolean newChapters, boolean favorite) {

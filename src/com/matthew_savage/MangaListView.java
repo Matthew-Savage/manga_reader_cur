@@ -1,11 +1,11 @@
 package com.matthew_savage;
 
 public class MangaListView {
-    private String mangaNumber;
+    private int mangaNumber;
     private boolean newChapters;
     private boolean favorite;
 
-    public String getMangaNumber() {
+    public int getMangaNumber() {
         return mangaNumber;
     }
 
@@ -25,7 +25,7 @@ public class MangaListView {
         this.favorite = favorite;
     }
 
-    public MangaListView(String mangaNumber, boolean newChapters, boolean favorite) {
+    public MangaListView(int mangaNumber, boolean newChapters, boolean favorite) {
         this.mangaNumber = mangaNumber;
         this.newChapters = newChapters;
         this.favorite = favorite;

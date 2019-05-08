@@ -34,7 +34,7 @@ public class ControllerLoader {
 
         if (InternetConnection.checkIfConnected()) {
             preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
-            executor.execute(this::fetchNewTitles);
+//            executor.execute(this::fetchNewTitles);
 //            executor.execute(this::checkForUpdates);
         }
         executor.execute(this::launchMainApp);
