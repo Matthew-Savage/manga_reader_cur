@@ -162,16 +162,16 @@ public class Database {
     void createHistoryTable() {
         try {
             Statement sqlStatement = dbConnect.createStatement();
-            sqlStatement.execute("CREATE TABLE IF NOT EXISTS history (entry_number INTEGER, title_id INTEGER, title TEXT, summary TEXT)");
+            sqlStatement.execute("CREATE TABLE IF NOT EXISTS history (entry_number INTEGER PRIMARY KEY, title_id INTEGER, title TEXT, summary TEXT)");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    void storeHistoryEntries(int entry_number, int mangaId, String title, String summary) {
+    void storeHistoryEntries(int mangaId, String title, String summary) {
         try {
             Statement sqlStatement = dbConnect.createStatement();
-            sqlStatement.execute("INSERT INTO history (entry_number, title_id, title, summary) VALUES ('" + entry_number + "', '" + mangaId + "', '" + title + "', '" + summary + "')");
+            sqlStatement.execute("INSERT INTO history (title_id, title, summary) VALUES ('" + mangaId + "', '" + title + "', '" + summary + "')");
         } catch (Exception e) {
             e.printStackTrace();
         }

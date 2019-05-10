@@ -11,6 +11,19 @@ public class HistoryPane {
         return readFromDatabase();
     }
 
+    static void storeHistory() {
+        database.openDb("main.db");
+        database.createHistoryTable();
+        database.storeHistoryEntries(5, "test", "summ");
+        database.storeHistoryEntries(8, "test", "summ");
+        database.storeHistoryEntries(3, "test", "summ");
+        database.storeHistoryEntries(1, "test", "summ");
+        database.storeHistoryEntries(4, "test", "summ");
+        database.storeHistoryEntries(2, "test", "summ");
+        database.storeHistoryEntries(7, "test", "summ");
+        database.closeDb();
+    }
+
     private static ArrayList<MangaArrayList> resultSetToArray(ResultSet resultSet) throws Exception{
         ArrayList<MangaArrayList> historyList = new ArrayList<>();
 
@@ -43,9 +56,9 @@ public class HistoryPane {
         return resultSet.getInt("entry_number");
     }
 
-    private void writeToDatabase(int entryNumber, int mangaId, String title, String summary) {
+    private void writeToDatabase(int mangaId, String title, String summary) {
         database.openDb("main.db");
-        database.storeHistoryEntries(entryNumber, mangaId, title, summary);
+        database.storeHistoryEntries(mangaId, title, summary);
         database.closeDb();
     }
 

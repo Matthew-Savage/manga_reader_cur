@@ -27,6 +27,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
@@ -182,6 +183,7 @@ public class ControllerMain {
 
 
     private Database database = new Database();
+//    private Changes changes = new Changes();
     private ArrayList<ImageView> imageViews = new ArrayList<>();
     private ArrayList<ImageView> historyThumbViews = new ArrayList<>();
     private ArrayList<TextField> historyTitleFields = new ArrayList<>();
@@ -211,7 +213,6 @@ public class ControllerMain {
     private int scrollSpeed = 5;
 
     public void initialize() {
-
         database.openDb("main.db");
         database.createHistoryTable();
         database.closeDb();
@@ -420,6 +421,7 @@ public class ControllerMain {
         database.openDb(Values.DB_NAME_MANGA.getValue());
         database.createBookmark("resume_last_manga", selectedManga, totalChaptersNumber, lastChapterReadNumber, currentPageNumber);
         database.closeDb();
+//        HistoryPane.storeHistory();
         readMangaBook();
     }
 
@@ -1399,3 +1401,20 @@ public class ControllerMain {
 
 
 }
+
+//class Changes implements ChangeListener<Number> {
+//
+//    @Override
+//    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//
+//        for (Field fields : observable.getClass().)) {
+//            System.out.println(fields.getName());
+//        }
+//
+////        if (observable.getClass().getCanonicalName().length() == 64) {
+////            System.out.println("double");
+////        } else {
+////            System.out.println("int");
+////        }
+//    }
+//}
