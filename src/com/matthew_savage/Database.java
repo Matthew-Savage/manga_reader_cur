@@ -139,7 +139,7 @@ public class Database {
         }
     }
 
-    public ResultSet retrieveBookmark(String tableName) {
+    public ResultSet fetchTableData(String tableName) {
         try {
             Statement sqlStatement = dbConnect.createStatement();
             return sqlStatement.executeQuery("SELECT * FROM " + tableName);
@@ -159,10 +159,67 @@ public class Database {
         }
     }
 
+    void deleteTable(String tableName) {
+        try {
+            Statement sqlStatemenet = dbConnect.createStatement();
+            sqlStatemenet.execute("DROP TABLE IF EXISTS " + tableName );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     void createHistoryTable() {
         try {
             Statement sqlStatement = dbConnect.createStatement();
             sqlStatement.execute("CREATE TABLE IF NOT EXISTS history (entry_number INTEGER PRIMARY KEY, title_id INTEGER, title TEXT, summary TEXT)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void createBookmarkTable() {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("CREATE TABLE IF NOT EXISTS bookmark (title_id INTEGER, title TEXT, authors TEXT, status TEXT, summary TEXT, web_address TEXT, genre_tags TEXT, total_chapters INTEGER, current_page INTEGER, last_chapter_read INTEGER, last_chapter_downloaded INTEGER, new_chapters INTEGER, favorite INTEGER)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void createUserTable() {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("CREATE TABLE IF NOT EXISTS version_number (version INTEGER)");
+            sqlStatement.execute("CREATE TABLE IF NOT EXISTS stats" +
+                    " (titles_total INTEGER," +
+                    " reading_total INTEGER," +
+                    " finished_reading INTEGER," +
+                    " pages_read INTEGER," +
+                    " favorites INTEGER," +
+                    " blacklisted INTEGER," +
+                    " pages_daily INTEGER," +
+                    " first_genre TEXT," +
+                    " second_genre TEXT," +
+                    " third_genre TEXT)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void storeVersionEntry(String tableName, int value) {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("INSERT INTO " + tableName + " (version) VALUES ('" + value + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void storeStatEntries(String tableName, int titlesTotal, int readingTotal, int finishedReading, int pagesRead, int favorites, int blacklisted, int pagesDaily, String firstGenre, String secondGenre, String thirdGenre) {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("INSERT INTO " + tableName + " (titles_total, reading_total, finished_reading, pages_read, favorites, blacklisted, pages_daily, first_genre, second_genre, third_genre) " +
+                    "VALUES ('" + titlesTotal + "', '" + readingTotal + "', '" + finishedReading + "', '" + pagesRead + "', '" + favorites + "', '" + blacklisted + "', '" + pagesDaily + "', '" + firstGenre + "', '" + secondGenre + "', '" + thirdGenre + "')");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,6 +259,7 @@ public class Database {
 
 
     public void closeDb() {
+        System.out.println("datbaase closed");
         try {
             if (dbConnect != null) {
                 dbConnect.close();

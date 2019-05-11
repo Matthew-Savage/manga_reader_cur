@@ -172,7 +172,7 @@
                         <TextField id="textSize18" fx:id="enterPageNumber" alignment="CENTER" layoutY="4.0" maxHeight="30.0" maxWidth="132.0" minHeight="30.0" minWidth="132.0" onAction="#gotoSpecificPage" prefHeight="30.0" prefWidth="132.0" />
                     </children></Pane>
                 <Button id="historyToggle" fx:id="historyToggle" layoutX="17.0" layoutY="959.0" maxHeight="54.0" maxWidth="45.0" minHeight="54.0" minWidth="45.0" mnemonicParsing="false" onAction="#historyShow" prefHeight="54.0" prefWidth="45.0" />
-                <Button id="statsToggle" fx:id="statsToggle" layoutX="78.0" layoutY="968.0" maxHeight="44.0" maxWidth="43.0" minHeight="44.0" minWidth="43.0" mnemonicParsing="false" onAction="#showStats" prefHeight="44.0" prefWidth="43.0" />
+                <Button id="statsToggle" fx:id="statsToggle" layoutX="78.0" layoutY="968.0" maxHeight="44.0" maxWidth="43.0" minHeight="44.0" minWidth="43.0" mnemonicParsing="false" onAction="#statsShow" prefHeight="44.0" prefWidth="43.0" />
                 <Button id="pageNext" fx:id="pageNext" layoutX="1045.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#turnIndexPage" prefHeight="35.0" prefWidth="67.0" />
                 <Button id="pageLast" fx:id="pageLast" layoutX="1129.0" layoutY="968.0" maxHeight="35.0" maxWidth="67.0" minHeight="35.0" minWidth="67.0" mnemonicParsing="false" onAction="#turnIndexPage" prefHeight="35.0" prefWidth="67.0" />
                 <Button id="resetButton" layoutX="1737.0" layoutY="104.0" maxHeight="35.0" maxWidth="120.0" minHeight="35.0" minWidth="120.0" mnemonicParsing="false" onAction="#genreReset" prefHeight="35.0" prefWidth="120.0" />
@@ -229,7 +229,7 @@
                 </Pane>
                 <Pane id="statsPane" fx:id="statsPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
                     <children>
-                        <Button id="statClose" fx:id="statClose" layoutX="1066.0" layoutY="101.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#closeStatsPane" prefHeight="32.0" prefWidth="32.0" />
+                        <Button id="statClose" fx:id="statClose" layoutX="1066.0" layoutY="101.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#statsHide" prefHeight="32.0" prefWidth="32.0" />
                         <TextField id="textSize12" fx:id="statTitlesTotal" alignment="CENTER" editable="false" layoutX="825.0" layoutY="148.0" maxHeight="28.0" maxWidth="268.0" minHeight="28.0" minWidth="268.0" prefHeight="28.0" prefWidth="268.0" />
                         <TextField id="textSize12" fx:id="statTitlesReading" alignment="CENTER" editable="false" layoutX="825.0" layoutY="187.0" maxHeight="28.0" maxWidth="268.0" minHeight="28.0" minWidth="268.0" prefHeight="28.0" prefWidth="268.0" />
                         <TextField id="textSize12" fx:id="statTitlesFinished" alignment="CENTER" editable="false" layoutX="825.0" layoutY="226.0" maxHeight="28.0" maxWidth="268.0" minHeight="28.0" minWidth="268.0" prefHeight="28.0" prefWidth="268.0" />
@@ -322,7 +322,7 @@
             </children></Pane>
         <Pane id="errorPane" fx:id="error" layoutX="766.0" layoutY="404.0" maxHeight="222.0" maxWidth="391.0" minHeight="222.0" minWidth="391.0" prefHeight="222.0" prefWidth="391.0" visible="false">
             <children>
-                <Button id="errorButton" fx:id="errorButton" layoutX="17.0" layoutY="170.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#closeError" prefHeight="35.0" prefWidth="357.0" />
+                <Button id="errorButton" fx:id="errorButton" layoutX="17.0" layoutY="170.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#errorHide" prefHeight="35.0" prefWidth="357.0" />
             </children></Pane>
     </children>
 </AnchorPane>

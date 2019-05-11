@@ -27,7 +27,6 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.File;
 import java.io.FileInputStream;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
@@ -184,6 +183,17 @@ public class ControllerMain {
 
     private Database database = new Database();
 //    private Changes changes = new Changes();
+
+    //--------------------------
+    private static ArrayList<MangaArrayList> available = new ArrayList<>();
+    private static ArrayList<MangaArrayList> completed = new ArrayList<>();
+    private static ArrayList<MangaArrayList> reading = new ArrayList<>();
+    private static ArrayList<MangaArrayList> history = new ArrayList<>();
+    private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
+    private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
+
+    //--------------------------
+
     private ArrayList<ImageView> imageViews = new ArrayList<>();
     private ArrayList<ImageView> historyThumbViews = new ArrayList<>();
     private ArrayList<TextField> historyTitleFields = new ArrayList<>();
@@ -195,7 +205,6 @@ public class ControllerMain {
     private ArrayList<String> genreStrings = new ArrayList<>();
     private ArrayList<MangaListView> mangaId = new ArrayList<>();
     private ArrayList<File> mangaPages = new ArrayList<>();
-    private ArrayList<MangaArrayList> historyList = new ArrayList<>();
     private File thumbsPath = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue());
     private StringJoiner joiner = new StringJoiner(" AND ");
     private int startingChapter;
@@ -213,11 +222,23 @@ public class ControllerMain {
     private int scrollSpeed = 5;
 
     public void initialize() {
-        database.openDb("main.db");
-        database.createHistoryTable();
-        database.closeDb();
         GenreMap.createGenreString();
-        historyList = HistoryPane.retrieveStoredHistory();
+
+        available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
+        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
+        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
+        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
+        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
+        history = HistoryPane.retrieveStoredHistory();
+
+        currentActivity.setItems(FXCollections.observableArrayList("Available Manga", "My Library", "Finished Reading", "Not Interested"));
+
+        try {
+            checkForHistory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         noInternet.setSmooth(true);
         noInternet.setImage(new Image("assets/no_internet.png"));
 
@@ -248,8 +269,6 @@ public class ControllerMain {
         for (Node historyTitles : historyPaneContent.getChildren().filtered(TextField.class::isInstance)) {
             historyTitleFields.add((TextField) historyTitles);
         }
-
-        currentActivity.setItems(FXCollections.observableArrayList("Available Manga", "My Library", "Finished Reading", "Not Interested"));
 
         lastChapterRead.lengthProperty().addListener(new ChangeListener<>() {
             @Override
@@ -293,6 +312,13 @@ public class ControllerMain {
 //            checkIfUpdated.scheduleWithFixedDelay(updateShit, 0, 30, TimeUnit.MINUTES);
 //            downloadThread.scheduleWithFixedDelay(downloadManga, 120, 10, TimeUnit.SECONDS);
 
+            System.out.println("available: " + available.size());
+            System.out.println("completed: " + completed.size());
+            System.out.println("reading: " + reading.size());
+            System.out.println("bookmark: " + bookmark.size());
+            System.out.println("downloading: " + downloading.size());
+            System.out.println("history: " + history.size());
+
         }
 
         statTitlesTotal.setText("My reader has 20,487 total manga titles loltest.");
@@ -305,16 +331,13 @@ public class ControllerMain {
         statGenreOne.setText("My reader has 20,487 total manga titles.");
         statGenreTwo.setText("My reader has 20,487 total manga titles.");
         statGenreThree.setText("My reader has 20,487 total manga titles.");
-
-        try {
-            populateHistorylol();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     private Runnable updateShit = UpdateCollectedMangas::seeIfUpdated;
+
+    private static ArrayList<MangaArrayList> initializeArray(String fileName, String tableName) {
+        return Startup.buildArray(fileName, tableName);
+    }
 
     public void appClose() {
         downloadThread.shutdownNow();
@@ -327,11 +350,9 @@ public class ControllerMain {
         stage.setIconified(true);
     }
 
-    private void populateHistorylol() {
+    private void checkForHistory() {
 
-        System.out.println(historyList.isEmpty());
-
-        if (historyList.size() > 0) {
+        if (history.size() > 0) {
             try {
                 populateHistory();
             } catch (Exception e) {
@@ -342,24 +363,24 @@ public class ControllerMain {
 
     private void populateHistory() throws Exception {
 
-        for (int i = 0; i < historyList.size(); i++) {
+        for (int i = 0; i < history.size(); i++) {
             ImageView historyThumb = historyThumbViews.get(i);
             TextField historyTitle = historyTitleFields.get(i);
             Button historyButton = historyReadButtons.get(i);
             TextArea historySummary = historySummaryFields.get(i);
             historyThumb.setSmooth(true);
-            historyThumb.setImage(new Image(new FileInputStream(thumbsPath + File.separator + historyList.get(i).getTitleId() + ".jpg")));
-            historyTitle.setText(historyList.get(i).getTitle());
+            historyThumb.setImage(new Image(new FileInputStream(thumbsPath + File.separator + history.get(i).getTitleId() + ".jpg")));
+            historyTitle.setText(history.get(i).getTitle());
             historyButton.setVisible(true);
-            historySummary.setText(historyList.get(i).getSummary());
+            historySummary.setText(history.get(i).getSummary());
         }
     }
 
     public void readFromHistory(ActionEvent event) {
         historyPaneVisibility(false);
         Button button = (Button) event.getSource();
-        System.out.println(historyList.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
-        System.out.println(historyList.get(Integer.parseInt(button.getId().substring(11))).getTitle());
+        System.out.println(history.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
+        System.out.println(history.get(Integer.parseInt(button.getId().substring(11))).getTitle());
     }
 
     public void historyShow() {
@@ -370,25 +391,25 @@ public class ControllerMain {
         historyPaneVisibility(false);
     }
 
-    public void showStats() {
+    public void statsShow() {
         statsPane.setVisible(true);
     }
 
-    void error() {
+    public void statsHide() {
+        statsPane.setVisible(false);
+    }
+
+    void errorShow() {
         error.setVisible(true);
     }
 
-    public void closeError() {
+    public void errorHide() {
         error.setVisible(false);
     }
 
     private void historyPaneVisibility(boolean visible) {
         historyPaneContent.setVisible(visible);
         historyClosePane.setVisible(visible);
-    }
-
-    public void closeStatsPane() {
-        statsPane.setVisible(false);
     }
 
     public void mangaProblem() {
@@ -421,8 +442,8 @@ public class ControllerMain {
         database.openDb(Values.DB_NAME_MANGA.getValue());
         database.createBookmark("resume_last_manga", selectedManga, totalChaptersNumber, lastChapterReadNumber, currentPageNumber);
         database.closeDb();
-//        HistoryPane.storeHistory();
         readMangaBook();
+        history = HistoryPane.storeHistory(history, selectedManga);
     }
 
     public void changeCompletedToReading() {
@@ -597,7 +618,7 @@ public class ControllerMain {
         database.openDb(Values.DB_NAME_MANGA.getValue());
         database.moveManga(Values.DB_TABLE_READING.getValue(), Values.DB_TABLE_COMPLETED.getValue(), selectedManga);
         database.deleteManga(Values.DB_TABLE_READING.getValue(), selectedManga);
-        database.createBookmark(Values.DB_TABLE_RESUME_READING.getValue(), -1, -1, -1, -1);
+        database.createBookmark(Values.DB_TABLE_BOOKMARK.getValue(), -1, -1, -1, -1);
         database.closeDb();
         imageView.setImage(null);
         readMangaPane.setVisible(false);
@@ -727,7 +748,7 @@ public class ControllerMain {
     public void goToLastMangaBookPageViewed() {
         currentActivity.setValue("My Library");
         database.openDb(Values.DB_NAME_MANGA.getValue());
-        ResultSet resultSet = database.retrieveBookmark("resume_last_manga");
+        ResultSet resultSet = database.fetchTableData("resume_last_manga");
 
         try {
             if (resultSet.next()) {
@@ -1219,7 +1240,7 @@ public class ControllerMain {
                 downloadMangaPages.getChapterPages(downloadingStartingChapter, downloadingWebAddress, downloadingTitleId, firstDownload);
             }
         } catch (Exception e) {
-            System.out.println("error with runnable downloadManga " + e);
+            System.out.println("errorShow with runnable downloadManga " + e);
         }
     };
 

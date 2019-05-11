@@ -42,7 +42,7 @@ public class PopulateMangaCatalog {
         boolean matchFound = false;
 
         database.openDb(Values.DB_NAME_MANGA.getValue());
-        ResultSet resultSet = database.retrieveBookmark("newest_manga");
+        ResultSet resultSet = database.fetchTableData("newest_manga");
         try {
             if (resultSet.next()) {
                 highestMangaId = resultSet.getInt("title_id");
@@ -185,7 +185,7 @@ public class PopulateMangaCatalog {
 //        int startingPage = 1;
 //        boolean matchFound = false;
 //        database.openDb(Values.DB_NAME_MANGA.getValue());
-//        ResultSet resultSet = database.retrieveBookmark("newest_manga");
+//        ResultSet resultSet = database.fetchTableData("newest_manga");
 //        try {
 //            highestMangaId = resultSet.getInt("title_id");
 //            highestMangaTitle = resultSet.getString("title");

@@ -31,13 +31,7 @@ public class ControllerLoader {
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public void initialize() {
-
-        if (InternetConnection.checkIfConnected()) {
-            preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
-//            executor.execute(this::fetchNewTitles);
-//            executor.execute(this::checkForUpdates);
-        }
-        executor.execute(this::launchMainApp);
+        boot();
     }
 
 
@@ -56,9 +50,25 @@ public class ControllerLoader {
         });
     }
 
+    private void boot() {
+        preloadProgressCenter.setText("Starting...");
+        if (InternetConnection.checkIfConnected()) {
+            preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
+            executor.execute(this::fetchNewTitles);
+//            executor.execute(this::checkForUpdates);
+        }
+//        executor.execute(this::launchMainApp);
+    }
+
     private void fetchNewTitles() {
         preloadProgressCenter.setText("Checking For New Manga");
-        populate.findStartingPage();
+        Startup.implemenetDatabaseChanges();
+//        populate.findStartingPage();
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void clearProgressText() {

@@ -85,9 +85,9 @@ public enum Values {
     DB_TABLE_AVAILABLE ("available_manga"),
     DB_TABLE_COMPLETED ("completed"),
     DB_TABLE_READING ("currently_reading"),
-    DB_TABLE_DOWNLOAD_PENDIND ("download_pending"),
+    DB_TABLE_DOWNLOAD ("downloading"),
     DB_TABLE_NOT_INTERESTED ("not_interested"),
-    DB_TABLE_RESUME_READING ("resume_last_manga"),
+    DB_TABLE_BOOKMARK ("bookmark"),
     DB_TABLE_NEW_CHAPTERS ("new_chapters"),
     DB_TABLE_FAVORITE ("favorite"),
     DB_ATTACHED_PREFIX ("main."),
@@ -95,7 +95,7 @@ public enum Values {
     DB_ATTACHED_READING ("main.currently_reading"),
     DB_ATTACHED_DOWNLOADING ("downloadDb.downloading"),
     //    DIR_ROOT (GetApplicationPath.getPath()),  //live dir
-    DIR_ROOT  ("C:\\Users\\Apple\\Cupcaked Manga Reader"),  //development dir
+    DIR_ROOT  ("C:\\Users\\Apple Laptop\\Documents\\reader"),  //development dir
     DIR_MANGA ("manga"),
     DIR_DB  ("data"),
     DIR_THUMBS ("thumbs"),

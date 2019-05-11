@@ -38,7 +38,7 @@ class DownloadMangaPages {
 
         if (checkSiteHtml(chapterLinks)) {
             ControllerMain.downloadThread.shutdown();
-            controllerMain.error();
+            controllerMain.errorShow();
         } else {
             System.out.println("else block running, first step in download");
             processChapterList(loopCount, chapterLinks, mangaId, startingChapterNumber, originalStartingChapter, firstDownload);
