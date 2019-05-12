@@ -25,7 +25,9 @@ public class HistoryPane {
 
         while (resultSet.next()) {
             historyList.add(new MangaArrayList(resultSet.getInt("title_id"), resultSet.getString("title"), resultSet.getString("summary")));
-        } return historyList;
+        }
+        resultSet.close();
+        return historyList;
     }
 
     private static ArrayList<MangaArrayList> addTitleToHisotry(int mangaId, String title, String summary, ArrayList<MangaArrayList> list) {
@@ -38,7 +40,7 @@ public class HistoryPane {
     }
 
     private static ArrayList<MangaArrayList> readFromDatabase() {
-        database.openDb("main.db");
+        database.openDb(Values.DB_NAME_MANGA.getValue());
         try {
             return resultSetToArray(database.retrieveHistoryEntries());
         } catch (Exception e) {

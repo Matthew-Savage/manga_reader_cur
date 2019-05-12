@@ -28,10 +28,11 @@ public class ControllerLoader {
 
     private Database database = new Database();
     private PopulateMangaCatalog populate = new PopulateMangaCatalog(this);
-    private Executor executor = Executors.newSingleThreadExecutor();
+    private Executor executor = Executors.newFixedThreadPool(5, Executors.defaultThreadFactory());
 
     public void initialize() {
-        boot();
+        executor.execute(this::boot);
+
     }
 
 
@@ -53,22 +54,17 @@ public class ControllerLoader {
     private void boot() {
         preloadProgressCenter.setText("Starting...");
         if (InternetConnection.checkIfConnected()) {
-            preloadProgressCenter.setText(Values.DIR_ROOT.getValue());
-            executor.execute(this::fetchNewTitles);
-//            executor.execute(this::checkForUpdates);
+            fetchNewTitles();
+//           executor.execute(this::checkForUpdates);
         }
 //        executor.execute(this::launchMainApp);
+        launchMainApp();
     }
 
     private void fetchNewTitles() {
         preloadProgressCenter.setText("Checking For New Manga");
         Startup.implemenetDatabaseChanges();
 //        populate.findStartingPage();
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void clearProgressText() {

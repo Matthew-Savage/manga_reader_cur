@@ -35,6 +35,7 @@ import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.function.Predicate;
 
 
 public class ControllerMain {
@@ -191,6 +192,7 @@ public class ControllerMain {
     private static ArrayList<MangaArrayList> history = new ArrayList<>();
     private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
     private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
+    private static ArrayList<StatsArrayList> stats = new ArrayList<>();
 
     //--------------------------
 
@@ -213,6 +215,7 @@ public class ControllerMain {
     private int lastChapterReadNumber;
     private int totalChaptersNumber;
     private int currentPageNumber;
+    private static Executor executor = Executors.newFixedThreadPool(10);
     private static Executor modifyThread = Executors.newSingleThreadExecutor();
     static ScheduledExecutorService downloadThread = Executors.newScheduledThreadPool(1);
     private static ScheduledExecutorService checkIfUpdated = Executors.newScheduledThreadPool(1);
@@ -224,6 +227,7 @@ public class ControllerMain {
     public void initialize() {
         GenreMap.createGenreString();
 
+        //own thread, semaphore
         available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
         completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
         reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
@@ -233,15 +237,11 @@ public class ControllerMain {
 
         currentActivity.setItems(FXCollections.observableArrayList("Available Manga", "My Library", "Finished Reading", "Not Interested"));
 
-        try {
-            checkForHistory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         noInternet.setSmooth(true);
         noInternet.setImage(new Image("assets/no_internet.png"));
 
+        //we can get rid of genrestrings I.. think? lol
+        //the rest of these arraybuilders need to move to a method and run in thier own thread minus the ones that will display instantly I guess huh?
         for (int i = 0; i < 39; i++) {
             genreStrings.add(i, "");
         }
@@ -269,6 +269,14 @@ public class ControllerMain {
         for (Node historyTitles : historyPaneContent.getChildren().filtered(TextField.class::isInstance)) {
             historyTitleFields.add((TextField) historyTitles);
         }
+
+        try {
+            checkForHistory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        executor.execute(this::fetchStats);
 
         lastChapterRead.lengthProperty().addListener(new ChangeListener<>() {
             @Override
@@ -312,25 +320,8 @@ public class ControllerMain {
 //            checkIfUpdated.scheduleWithFixedDelay(updateShit, 0, 30, TimeUnit.MINUTES);
 //            downloadThread.scheduleWithFixedDelay(downloadManga, 120, 10, TimeUnit.SECONDS);
 
-            System.out.println("available: " + available.size());
-            System.out.println("completed: " + completed.size());
-            System.out.println("reading: " + reading.size());
-            System.out.println("bookmark: " + bookmark.size());
-            System.out.println("downloading: " + downloading.size());
-            System.out.println("history: " + history.size());
 
         }
-
-        statTitlesTotal.setText("My reader has 20,487 total manga titles loltest.");
-        statTitlesReading.setText("My reader has 20,487 total manga titles.");
-        statTitlesFinished.setText("My reader has 20,487 total manga titles.");
-        statPagesRead.setText("My reader has 20,487 total manga titles.");
-        statTitlesFavorite.setText("My reader has 20,487 total manga titles.");
-        statTitlesIgnore.setText("My reader has 20,487 total manga titles.");
-        statPagesDaily.setText("My reader has 20,487 total manga titles.");
-        statGenreOne.setText("My reader has 20,487 total manga titles.");
-        statGenreTwo.setText("My reader has 20,487 total manga titles.");
-        statGenreThree.setText("My reader has 20,487 total manga titles.");
     }
 
     private Runnable updateShit = UpdateCollectedMangas::seeIfUpdated;
@@ -351,6 +342,10 @@ public class ControllerMain {
     }
 
     private void checkForHistory() {
+
+        System.out.println("is history empty? " + history.isEmpty());
+        System.out.println("history size is " + history.size());
+
 
         if (history.size() > 0) {
             try {
@@ -374,6 +369,24 @@ public class ControllerMain {
             historyButton.setVisible(true);
             historySummary.setText(history.get(i).getSummary());
         }
+    }
+
+    private void fetchStats() {
+        stats = StatsPane.retrieveStoredStats();
+        populateStats();
+    }
+
+    private void populateStats() {
+        statTitlesTotal.setText(Values.STAT_PRE_TITLE_TOT.getValue() + stats.get(0).getTitlesTotal() + Values.STAT_SUF_TITLE_TOT.getValue());
+        statTitlesReading.setText(Values.STAT_PRE_READING_TOT.getValue() + stats.get(0).getTitlesReading() + Values.STAT_SUF_READING_TOT.getValue());
+        statTitlesFinished.setText(Values.STAT_PRE_FIN_TOT.getValue() + stats.get(0).getTitlesFinished() + Values.STAT_SUF_FIN_TOT.getValue());
+        statPagesRead.setText(Values.STAT_PRE_PAGES_TOT.getValue() + stats.get(0).getPagesRead() + Values.STAT_SUF_PAGES_TOT.getValue());
+        statTitlesFavorite.setText(Values.STAT_PRE_FAVE_TOT.getValue() + stats.get(0).getFavorites() + Values.STAT_SUF_FAVE_TOT.getValue());
+        statTitlesIgnore.setText(Values.STAT_PRE_BL_TOT.getValue() + stats.get(0).getBlasklisted() + Values.STAT_SUF_BL_TOT.getValue());
+        statPagesDaily.setText(Values.STAT_PRE_PAGES_DAY.getValue() + stats.get(0).getDailyPages() + Values.STAT_SUF_PAGES_DAY.getValue());
+        statGenreOne.setText(Values.STAT_PRE_GEN_ONE.getValue() + stats.get(0).getGenreOne() + ".");
+        statGenreTwo.setText(Values.STAT_PRE_GEN_TWO.getValue() + stats.get(0).getGenreTwo() + ".");
+        statGenreThree.setText(Values.STAT_PRE_GEN_THREE.getValue() + stats.get(0).getGenreThree() + ".");
     }
 
     public void readFromHistory(ActionEvent event) {
@@ -1439,3 +1452,46 @@ public class ControllerMain {
 ////        }
 //    }
 //}
+
+
+
+
+//    public void genreIncludeExclude(ActionEvent event) {
+//        joiner = new StringJoiner(" && ");
+//        CheckBox checkBox = (CheckBox) event.getSource();
+//        int indexNumber = (Integer.parseInt(checkBox.getId().substring(5)));
+////        StringJoiner joiner = new StringJoiner(" AND ");
+////        GenreMap genreMap = new GenreMap();
+////        Map<String, String> genres = genreMap.getGenreMap();
+//
+//        popupClose();
+//        pageNumber = 0;
+//
+//        if (checkBox.isSelected()) {
+//            genreStrings.set(indexNumber, "genre" + indexNumber + ".include");
+//        } else if (!checkBox.isSelected() && !checkBox.isIndeterminate()) {
+//            genreStrings.set(indexNumber, "genre" + indexNumber + ".exclude");
+//        } else if (checkBox.isIndeterminate()) {
+//            genreStrings.set(indexNumber, "");
+//        }
+//        searchStringBuilder();
+//        mangaId.clear();
+//
+////        Predicate<MangaListView> predicate = m -> joiner;
+////        populateDisplay();
+//    }
+//
+//    private void searchStringBuilder() {
+//        Map<String, Predicate<MangaListView>> genres = GenreMap.getGenreMap();
+//        List<Predicate<MangaListView>> predicateList = new ArrayList();
+//
+//        for (int i = 0; i < 39; i++) {
+//            if (genreStrings.get(i).length() > 0) {
+//                System.out.println(genreStrings.get(i));
+////                joiner.add(genres.get(genreStrings.get(i)));
+//                predicateList.add(genres.get(genreStrings.get(i)));
+//
+//
+//            }
+//
+//            Predicate<MangaListView> compositePredicate = predicateList.stream().reduce(w -> true, Predicate::and);
