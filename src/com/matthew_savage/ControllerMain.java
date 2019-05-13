@@ -1,5 +1,6 @@
 package com.matthew_savage;
 
+import com.matthew_savage.GUI.MangaZoomInOut;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -257,6 +258,9 @@ public class ControllerMain {
         executor.execute(this::displayInternetStatus);
         executor.execute(this::createGenrestringArray);
 
+
+        //maybe we can class this with TextField textField, maybe a public static textField that I set and then call via a getter
+
         lastChapterRead.lengthProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -297,6 +301,24 @@ public class ControllerMain {
         currentActivity.setValue("My Library");
     }
 
+
+    //========================================================
+
+    public void toggleZoomControls() {
+        if (imageView.getFitWidth() == 1720) {
+            sidebarPaneSizeIncrease.setVisible(true);
+        } else if (imageView.getFitWidth() == 920) {
+            sidebarPaneSizeDecrease.setVisible(false);
+        }
+    }
+
+    public void mangaBookPageZoomInOrOut(ActionEvent event) {
+        imageView.setFitWidth(MangaZoomInOut.widthValue((Button) event.getSource(), imageView.getFitWidth()));
+        toggleZoomControls();
+    }
+
+    //========================================================
+
     private Runnable updateShit = UpdateCollectedMangas::seeIfUpdated;
 
     public static void fetchArray(ArrayList<MangaArrayList> arrayList) {
@@ -314,8 +336,10 @@ public class ControllerMain {
     }
 
     public void appMinimize() {
-        Stage stage = (Stage) appMinimize.getScene().getWindow();
-        stage.setIconified(true);
+//        Stage stage = (Stage) appMinimize.getScene().getWindow();
+//        stage.setIconified(true);
+//        clearThumbs();
+        clearBeta();
     }
 
     private void displayInternetStatus() {
@@ -469,6 +493,10 @@ public class ControllerMain {
         popupClose();
         lastChapterReadNumber = 0;
         currentPageNumber = 0;
+        //NEW LIKELY NEED -1!!! OR NEED TO MAKE SELECTED MANGA ARRAY - 1
+        reading.add(available.get(selectedManga));
+        available.remove(selectedManga);
+        //NEW END
         readMangaBook();
     }
 
@@ -486,6 +514,8 @@ public class ControllerMain {
     private void setNewChaptersFlagFalse() {
         database.openDb(Values.DB_NAME_MANGA.getValue());
         database.modifyManga(Values.DB_TABLE_READING.getValue(), selectedManga, Values.DB_TABLE_NEW_CHAPTERS.getValue(), 0);
+        //NEW
+        reading.get(selectedManga).setNewChapters(false);
     }
 
     private void fetchManga(String pathToManga) {
@@ -626,6 +656,8 @@ public class ControllerMain {
         database.modifyManga("currently_reading", selectedManga, "current_page", currentPageNumber);
         database.createBookmark("resume_last_manga", selectedManga, totalChaptersNumber, lastChapterReadNumber, currentPageNumber);
         database.closeDb();
+        //NEW
+        bookmark.set(0, reading.get(selectedManga));
     }
 
     private void finishedReading() {
@@ -640,6 +672,9 @@ public class ControllerMain {
         sidebarPane.setVisible(false);
         currentActivity.setValue("My Library");
         databaseInit();
+        //NEW
+        bookmark.set(0, new MangaArrayList(-1, null, null, null, null, null, null, -1, -1, -1, 0, false, false));
+
     }
 
     public void sidebarVisible() {
@@ -659,52 +694,6 @@ public class ControllerMain {
         database.modifyManga("currently_reading", selectedManga, "favorite", 1);
         database.closeDb();
         // modify the manga list itself to change favorite value from 0 to 1 and then run populate display. allows us to add a favorite without querying the database
-    }
-
-    public void mangaBookPageZoomInOrOut(ActionEvent event) {
-        Button button = (Button) event.getSource();
-
-        if (button.getId().equals("sidebarPane_size_decrease")) {
-            switch (String.valueOf(imageView.getFitWidth())) {
-                case "1920.0":
-                    imageView.setFitWidth(1720);
-                    sidebarPaneSizeIncrease.setVisible(true);
-                    break;
-                case "1720.0":
-                    imageView.setFitWidth(1520);
-                    break;
-                case "1520.0":
-                    imageView.setFitWidth(1320);
-                    break;
-                case "1320.0":
-                    imageView.setFitWidth(1120);
-                    break;
-                case "1120.0":
-                    imageView.setFitWidth(920);
-                    sidebarPaneSizeDecrease.setVisible(false);
-                    break;
-            }
-        } else if (button.getId().equals("sidebarPane_size_increase")) {
-            switch (String.valueOf(imageView.getFitWidth())) {
-                case "920.0":
-                    imageView.setFitWidth(1120);
-                    sidebarPaneSizeDecrease.setVisible(true);
-                    break;
-                case "1120.0":
-                    imageView.setFitWidth(1320);
-                    break;
-                case "1320.0":
-                    imageView.setFitWidth(1520);
-                    break;
-                case "1520.0":
-                    imageView.setFitWidth(1720);
-                    break;
-                case "1720.0":
-                    imageView.setFitWidth(1920);
-                    sidebarPaneSizeIncrease.setVisible(false);
-                    break;
-            }
-        }
     }
 
     public void sidebarGoBack() {
@@ -1314,6 +1303,7 @@ public class ControllerMain {
             pageNext.setVisible(true);
             pageLast.setVisible(true);
         } else if (pageNumber != 0 && pageNumber == (currentContent.size() - currentContent.size() % 30) - 30 && currentContent.size() % 30 == 0 || pageNumber != 0 && pageNumber == (currentContent.size() - currentContent.size() % 30)) {
+            // if pagenumber does NOT equal 0 but DOES equal the highest available page. much easier than this shitshow.
             pageFirst.setVisible(true);
             pagePrevious.setVisible(true);
             pageNext.setVisible(false);
@@ -1333,6 +1323,10 @@ public class ControllerMain {
 
         if (currentContent.size() % 30 > 0) {
             totalPagesNumber++;
+        }
+
+        if (totalPagesNumber == 0) {
+            currentPageNumber = 0;
         }
 
         if (currentPageNumber < 10) {
@@ -1357,6 +1351,7 @@ public class ControllerMain {
     }
 
     private void clearThumbs() {
+        //replace with imageviews.clear? derp? same below?
         for (int i = 0; i < 30; i++) {
             thumbImage = imageViews.get(i);
             favoriteOverlay = favoriteOverlayViews.get(i);
@@ -1365,6 +1360,17 @@ public class ControllerMain {
             favoriteOverlay.setImage(null);
             newChaptersOverlay.setImage(null);
         }
+    }
+
+    private void clearBeta() {
+
+        // make this into a new method and pass the image array
+
+        for (ImageView image : imageViews) {
+            image.setImage(null);
+        }
+
+
     }
 
     private void hideThumbs() {
