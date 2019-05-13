@@ -2,7 +2,6 @@ package com.matthew_savage;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class UpdateCollectedMangas {
 

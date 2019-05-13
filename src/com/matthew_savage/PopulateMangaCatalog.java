@@ -118,10 +118,10 @@ public class PopulateMangaCatalog {
     private void updateMangaCatalog(int firstNewTitle) {
         totalNewTitles = secondPass.size() - firstNewTitle;
         if (totalNewTitles == 1) {
-            controller.clearProgressText();
+
             controller.preloadProgressCenter.setText(totalNewTitles + " New Manga Found");
         } else {
-            controller.clearProgressText();
+
             controller.preloadProgressCenter.setText(totalNewTitles + " New Manga Found!");
         }
         System.out.println(totalNewTitles + " new mangas to read!");
@@ -157,7 +157,7 @@ public class PopulateMangaCatalog {
 
                 database.addNewManga("available_manga", highestMangaId, title, authors, status, summary, webAddress, genres, 0, 0, 0, 0, 0, 0);
                 database.updateNewestManga("newest_manga", highestMangaId, title);
-                controller.clearProgressText();
+
                 controller.preloadProgressCenter.setText(currentDownload + " of " + totalNewTitles + " Added");
             }
             database.closeDb();

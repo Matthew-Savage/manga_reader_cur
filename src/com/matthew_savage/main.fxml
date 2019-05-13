@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="main" maxHeight="1026.0" maxWidth="1920.0" minHeight="1026.0" minWidth="1920.0" prefHeight="1026.0" prefWidth="1920.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.matthew_savage.ControllerMain">
     <children>
-        <Pane id="catalogPane" fx:id="catalogPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
+        <Pane id="catalogPane" fx:id="catalogPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="true">
             <children>
                 <ImageView id="noInternet" fx:id="noInternet" fitHeight="51.0" fitWidth="50.0" layoutX="1840.0" layoutY="960.0" pickOnBounds="true" preserveRatio="true" />
                 <!--<Pane id="thumb0Pane" layoutX="33.0" layoutY="150.0" prefHeight="254.0" prefWidth="171.0"></Pane>-->
@@ -284,7 +284,7 @@
                     </children>
                 </Pane>
             </children></Pane>
-        <Pane id="launchPane" fx:id="launchPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="true">
+        <Pane id="launchPane" fx:id="launchPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
             <children>
                 <Button id="availableTitles" layoutX="1101.0" layoutY="425.0" maxHeight="224.0" maxWidth="271.0" minHeight="224.0" minWidth="271.0" mnemonicParsing="false" onAction="#showAvailableMangaBooksPane" prefHeight="224.0" prefWidth="271.0" />
                 <Button id="gotoLast" layoutX="865.0" layoutY="437.0" maxHeight="237.0" maxWidth="198.0" minHeight="237.0" minWidth="198.0" mnemonicParsing="false" onAction="#goToLastMangaBookPageViewed" prefHeight="237.0" prefWidth="198.0" />

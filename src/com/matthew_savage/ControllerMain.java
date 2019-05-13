@@ -1,6 +1,5 @@
 package com.matthew_savage;
 
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -36,7 +35,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Predicate;
-
 
 public class ControllerMain {
 
@@ -193,6 +191,8 @@ public class ControllerMain {
     private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
     private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
     private static ArrayList<StatsArrayList> stats = new ArrayList<>();
+    private static ArrayList<MangaArrayList> currentContent = new ArrayList<>();
+    private static List<Predicate<MangaArrayList>> predicateList = new ArrayList();
 
     //--------------------------
 
@@ -226,25 +226,19 @@ public class ControllerMain {
 
     public void initialize() {
         GenreMap.createGenreString();
-
-        //own thread, semaphore
-        available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
-        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
-        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
-        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
-        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
-        history = HistoryPane.retrieveStoredHistory();
+        available = ControllerLoader.getAvailable();
+        completed = ControllerLoader.getCompleted();
+        reading = ControllerLoader.getReading();
+        history = ControllerLoader.getHistory();
+        bookmark = ControllerLoader.getBookmark();
+        downloading = ControllerLoader.getDownloading();
+        stats = ControllerLoader.getStats();
 
         currentActivity.setItems(FXCollections.observableArrayList("Available Manga", "My Library", "Finished Reading", "Not Interested"));
 
-        noInternet.setSmooth(true);
-        noInternet.setImage(new Image("assets/no_internet.png"));
-
         //we can get rid of genrestrings I.. think? lol
         //the rest of these arraybuilders need to move to a method and run in thier own thread minus the ones that will display instantly I guess huh?
-        for (int i = 0; i < 39; i++) {
-            genreStrings.add(i, "");
-        }
+
         for (Node thumbs : thumbPane.getChildren()) {
             imageViews.add((ImageView) thumbs);
         }
@@ -257,26 +251,11 @@ public class ControllerMain {
         for (Node genres : genrePane.getChildren()) {
             checkBoxes.add((CheckBox) genres);
         }
-        for (Node historySummaries : historyPaneContent.getChildren().filtered(TextArea.class::isInstance)) {
-            historySummaryFields.add((TextArea) historySummaries);
-        }
-        for (Node historyThumbs : historyPaneContent.getChildren().filtered(ImageView.class::isInstance)) {
-            historyThumbViews.add((ImageView) historyThumbs);
-        }
-        for (Node historyButtons : historyPaneContent.getChildren().filtered(Button.class::isInstance)) {
-            historyReadButtons.add((Button) historyButtons);
-        }
-        for (Node historyTitles : historyPaneContent.getChildren().filtered(TextField.class::isInstance)) {
-            historyTitleFields.add((TextField) historyTitles);
-        }
 
-        try {
-            checkForHistory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        executor.execute(this::fetchStats);
+        executor.execute(this::checkForHistory);
+        executor.execute(this::populateStats);
+        executor.execute(this::displayInternetStatus);
+        executor.execute(this::createGenrestringArray);
 
         lastChapterRead.lengthProperty().addListener(new ChangeListener<>() {
             @Override
@@ -314,17 +293,15 @@ public class ControllerMain {
             }
         });
 
-        if (InternetConnection.checkIfConnected()) {
-            noInternet.setVisible(false);
-            //checkforupdates will launch download
-//            checkIfUpdated.scheduleWithFixedDelay(updateShit, 0, 30, TimeUnit.MINUTES);
-//            downloadThread.scheduleWithFixedDelay(downloadManga, 120, 10, TimeUnit.SECONDS);
-
-
-        }
+        filter(setArray());
+        currentActivity.setValue("My Library");
     }
 
     private Runnable updateShit = UpdateCollectedMangas::seeIfUpdated;
+
+    public static void fetchArray(ArrayList<MangaArrayList> arrayList) {
+        available = arrayList;
+    }
 
     private static ArrayList<MangaArrayList> initializeArray(String fileName, String tableName) {
         return Startup.buildArray(fileName, tableName);
@@ -341,11 +318,20 @@ public class ControllerMain {
         stage.setIconified(true);
     }
 
+    private void displayInternetStatus() {
+        noInternet.setSmooth(true);
+        noInternet.setImage(new Image("assets/no_internet.png"));
+
+        if (ControllerLoader.isOnline()) {
+            noInternet.setVisible(false);
+            //checkforupdates will launch download
+//            checkIfUpdated.scheduleWithFixedDelay(updateShit, 0, 30, TimeUnit.MINUTES);
+//            downloadThread.scheduleWithFixedDelay(downloadManga, 120, 10, TimeUnit.SECONDS);
+        }
+    }
+
     private void checkForHistory() {
-
-        System.out.println("is history empty? " + history.isEmpty());
-        System.out.println("history size is " + history.size());
-
+        mapHistoryPane();
 
         if (history.size() > 0) {
             try {
@@ -353,6 +339,21 @@ public class ControllerMain {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void mapHistoryPane() {
+        for (Node historySummaries : historyPaneContent.getChildren().filtered(TextArea.class::isInstance)) {
+            historySummaryFields.add((TextArea) historySummaries);
+        }
+        for (Node historyThumbs : historyPaneContent.getChildren().filtered(ImageView.class::isInstance)) {
+            historyThumbViews.add((ImageView) historyThumbs);
+        }
+        for (Node historyButtons : historyPaneContent.getChildren().filtered(Button.class::isInstance)) {
+            historyReadButtons.add((Button) historyButtons);
+        }
+        for (Node historyTitles : historyPaneContent.getChildren().filtered(TextField.class::isInstance)) {
+            historyTitleFields.add((TextField) historyTitles);
         }
     }
 
@@ -371,10 +372,10 @@ public class ControllerMain {
         }
     }
 
-    private void fetchStats() {
-        stats = StatsPane.retrieveStoredStats();
-        populateStats();
-    }
+//    private void fetchStats() {
+//        stats = StatsPane.retrieveStoredStats();
+//        populateStats();
+//    }
 
     private void populateStats() {
         statTitlesTotal.setText(Values.STAT_PRE_TITLE_TOT.getValue() + stats.get(0).getTitlesTotal() + Values.STAT_SUF_TITLE_TOT.getValue());
@@ -579,7 +580,7 @@ public class ControllerMain {
 //            e.printStackTrace();
 //        }
 
-        if (event.getCode() == KeyCode.D && currentPageNumber < mangaPages.size() || event.getCode() == KeyCode.RIGHT && currentPageNumber < mangaPages.size()) {
+        if (event.getCode() == KeyCode.D && currentPageNumber < currentContent.size() || event.getCode() == KeyCode.RIGHT && currentPageNumber < currentContent.size()) {
             currentPageNumber++;
             displayNextOrPreviousMangaBookPage(currentPageNumber);
             scrollImagePane.setVvalue(0.0);
@@ -607,7 +608,7 @@ public class ControllerMain {
     }
 
     private void calculateChapterNumber() {
-        int totalPages = mangaPages.size();
+        int totalPages = currentContent.size();
         if (currentPageNumber == totalPages) {
             lastChapterReadNumber++;
             currentPageNumber = 0;
@@ -651,14 +652,7 @@ public class ControllerMain {
     }
 
     public void sidebarFavorite() {
-        if (currentActivity.getValue() != null) {
-            MangaListView view = mangaId.get(thumbNumber);
-            view.setFavorite(true);
-            populateDisplay();
-        }
-
-        MangaListView view = mangaId.get(thumbNumber);
-        view.setFavorite(true);
+        currentContent.get(thumbNumber).setFavorite(true);
         populateDisplay();
 
         database.openDb(Values.DB_NAME_MANGA.getValue());
@@ -813,12 +807,10 @@ public class ControllerMain {
     }
 
     public void genreIncludeExclude(ActionEvent event) {
-        joiner = new StringJoiner(" AND ");
+        currentContent.clear();
+        joiner = new StringJoiner(" && ");
         CheckBox checkBox = (CheckBox) event.getSource();
         int indexNumber = (Integer.parseInt(checkBox.getId().substring(5)));
-//        StringJoiner joiner = new StringJoiner(" AND ");
-//        GenreMap genreMap = new GenreMap();
-//        Map<String, String> genres = genreMap.getGenreMap();
 
         popupClose();
         pageNumber = 0;
@@ -830,18 +822,48 @@ public class ControllerMain {
         } else if (checkBox.isIndeterminate()) {
             genreStrings.set(indexNumber, "");
         }
-        searchStringBuilder();
-        databaseInit();
+
+        filter(setArray());
     }
 
-    private void searchStringBuilder() {
-        Map<String, String> genres = GenreMap.getGenreMap();
+    private ArrayList<MangaArrayList> setArray() {
+
+        return reading;
+    }
+
+    private void filter(ArrayList<MangaArrayList> arrayList) {
+        predicateList.clear();
+        arrayList.stream()
+                .filter(searchStringBuilder())
+                .forEach(a -> currentContent.add(new MangaArrayList(
+                        a.getTitleId(),
+                        a.getTitle(),
+                        a.getAuthors(),
+                        a.getStatus(),
+                        a.getSummary(),
+                        a.getWebAddress(),
+                        a.getGenreTags(),
+                        a.getTotalChapters(),
+                        a.getCurrentPage(),
+                        a.getLastChapterRead(),
+                        a.getLastChapterDownloaded(),
+                        a.isNewChapters(),
+                        a.isFavorite())));
+        populateDisplay();
+    }
+
+    private Predicate<MangaArrayList> searchStringBuilder() {
+        Map<String, Predicate<MangaArrayList>> genres = GenreMap.getGenreMap();
 
         for (int i = 0; i < 39; i++) {
             if (genreStrings.get(i).length() > 0) {
-                joiner.add(genres.get(genreStrings.get(i)));
+//                joiner.add(genres.get(genreStrings.get(i)));
+                System.out.println(genreStrings.get(i));
+                predicateList.add(genres.get(genreStrings.get(i)));
             }
         }
+        System.out.println("--------");
+        return predicateList.stream().reduce(w -> true, Predicate::and);
     }
 
     public void ignoreManga() {
@@ -867,17 +889,35 @@ public class ControllerMain {
         databaseInit();
     }
 
+//    public void genreReset() {
+//        popupClose();
+//
+//        for (int i = 0; i < 39; i++) {
+//            CheckBox genres = checkBoxes.get(i);
+//            genres.setSelected(false);
+//            genres.setIndeterminate(true);
+//            genreStrings.add(i, "");
+//        }
+//        joiner = new StringJoiner(" AND ");
+//        databaseInit();
+//    }
+
     public void genreReset() {
         popupClose();
-
-        for (int i = 0; i < 39; i++) {
-            CheckBox genres = checkBoxes.get(i);
-            genres.setSelected(false);
+        for (CheckBox genres : checkBoxes) {
             genres.setIndeterminate(true);
-            genreStrings.add(i, "");
+            genres.setSelected(false);
+            genreStrings.clear();
         }
-        joiner = new StringJoiner(" AND ");
-        databaseInit();
+        createGenrestringArray();
+        filter(setArray());
+    }
+
+    private void createGenrestringArray() {
+        for (int i = 0; i < 39; i++) {
+            genreStrings.add(i, "");
+//            predicateList.add(i, m -> m.getTitle().isEmpty());
+        }
     }
 
     private String currentDatabase() {
@@ -981,23 +1021,22 @@ public class ControllerMain {
         hideThumbs();
         int numberOfLoops = 30;
 
-        if (mangaId.size() - pageNumber < 30) {
-            numberOfLoops = mangaId.size() - pageNumber;
+        if (currentContent.size() - pageNumber < 30) {
+            numberOfLoops = currentContent.size() - pageNumber;
         }
 
 
         try {
             for (int i = 0; i < numberOfLoops; i++) {
-                MangaListView view = mangaId.get(i + pageNumber); // totally unnecessary new arraylist being created... with a single item in it. stupid
                 thumbImage = imageViews.get(i);
                 favoriteOverlay = favoriteOverlayViews.get(i);
                 newChaptersOverlay = newChaptersOverlayViews.get(i);
                 thumbImage.setSmooth(true);
-                thumbImage.setImage(new Image(new FileInputStream(thumbsPath + File.separator + mangaId.get(i + pageNumber).getMangaNumber() + ".jpg")));
-                if (view.isFavorite()) {
+                thumbImage.setImage(new Image(new FileInputStream(thumbsPath + File.separator + currentContent.get(i + pageNumber).getTitleId() + ".jpg")));
+                if (currentContent.get(i + pageNumber).isFavorite()) {
                     favoriteOverlay.setImage(new Image("assets/favorite_overlay.png"));
                 }
-                if (view.isNewChapters()) {
+                if (currentContent.get(i + pageNumber).isNewChapters()) {
                     newChaptersOverlay.setImage(new Image("assets/new_chapter_multiple.png"));
                 }
                 thumbImage.setVisible(true);
@@ -1013,7 +1052,7 @@ public class ControllerMain {
     public void turnIndexPage(ActionEvent event) {
         Button button = (Button) event.getSource();
         popupClose();
-        int arraySize = mangaId.size();
+        int arraySize = currentContent.size();
 //        int remainder = 30 - (((mangaId.size() / 30) * 30) - (mangaId.size() % 30));
         int remainder = 30 * (arraySize / 30);
 
@@ -1022,7 +1061,7 @@ public class ControllerMain {
         }
 
         System.out.println(remainder);
-        System.out.println(mangaId.size());
+        System.out.println(currentContent.size());
 
         switch (button.getId()) {
             case "pageFirst":
@@ -1089,9 +1128,9 @@ public class ControllerMain {
 
         database.openDb(Values.DB_NAME_MANGA.getValue());
 //        ResultSet results = database.filterManga(currentDatabase(), "title_id", mangaId.get(thumbNumber + pageNumber));
-        MangaListView view = mangaId.get(thumbNumber + pageNumber);
+//        MangaListView view = currentContent.get(thumbNumber + pageNumber);
         //redundant arraylist, this resultset needs to be utalized in a separate method
-        ResultSet results = database.filterManga(currentDatabase(), "title_id", Integer.toString(mangaId.get(thumbNumber + pageNumber).getMangaNumber()));
+        ResultSet results = database.filterManga(currentDatabase(), "title_id", Integer.toString(currentContent.get(thumbNumber + pageNumber).getTitleId()));
 
         if (results.getString("title").length() > 63) {
             String finalTitle = results.getString("title").substring(0, 63) + " ...";
@@ -1099,7 +1138,7 @@ public class ControllerMain {
         } else {
             mangaTitle.setText(results.getString("title"));
         }
-        mangaThumb.setImage(new Image(new FileInputStream(thumbsPath + File.separator + view.getMangaNumber() + ".jpg")));
+        mangaThumb.setImage(new Image(new FileInputStream(thumbsPath + File.separator + currentContent.get(thumbNumber + pageNumber).getTitleId() + ".jpg")));
         mangaSummary.setText(results.getString("summary"));
         mangaGenres.setText(results.getString("genre_tags").substring(0, results.getString("genre_tags").length() - 1));
         mangaAuthors.setText(results.getString("authors").substring(0, results.getString("authors").length() - 1));
@@ -1111,7 +1150,7 @@ public class ControllerMain {
 
         database.closeDb();
         results.close();
-        selectedManga = mangaId.get(thumbNumber + pageNumber).getMangaNumber();
+        selectedManga = currentContent.get(thumbNumber + pageNumber).getTitleId();
     }
 
     private void populateDatabase(String columnName, int mangaId, boolean isHistory) {
@@ -1258,23 +1297,23 @@ public class ControllerMain {
     };
 
     private void navButtonVisibility() {
-        if (mangaId.size() > 30) {
+        if (currentContent.size() > 30) {
             pageNumTextPane.setVisible(true);
         } else {
             pageNumTextPane.setVisible(false);
         }
 
-        if (pageNumber == 0 && mangaId.size() > 30) {
+        if (pageNumber == 0 && currentContent.size() > 30) {
             pageFirst.setVisible(false);
             pagePrevious.setVisible(false);
             pageNext.setVisible(true);
             pageLast.setVisible(true);
-        } else if (pageNumber >= 30 && pageNumber < mangaId.size() - 30) {
+        } else if (pageNumber >= 30 && pageNumber < currentContent.size() - 30) {
             pageFirst.setVisible(true);
             pagePrevious.setVisible(true);
             pageNext.setVisible(true);
             pageLast.setVisible(true);
-        } else if (pageNumber != 0 && pageNumber == (mangaId.size() - mangaId.size() % 30) - 30 && mangaId.size() % 30 == 0 || pageNumber != 0 && pageNumber == (mangaId.size() - mangaId.size() % 30)) {
+        } else if (pageNumber != 0 && pageNumber == (currentContent.size() - currentContent.size() % 30) - 30 && currentContent.size() % 30 == 0 || pageNumber != 0 && pageNumber == (currentContent.size() - currentContent.size() % 30)) {
             pageFirst.setVisible(true);
             pagePrevious.setVisible(true);
             pageNext.setVisible(false);
@@ -1290,9 +1329,9 @@ public class ControllerMain {
 
     private void pageNumberDisplay() {
         int currentPageNumber = (pageNumber / 30) + 1;
-        int totalPagesNumber = mangaId.size() / 30;
+        int totalPagesNumber = currentContent.size() / 30;
 
-        if (mangaId.size() % 30 > 0) {
+        if (currentContent.size() % 30 > 0) {
             totalPagesNumber++;
         }
 

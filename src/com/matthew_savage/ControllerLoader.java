@@ -10,15 +10,15 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class ControllerLoader {
 
     @FXML
-    private AnchorPane testPane;
+    private AnchorPane loadingPane;
     @FXML
     TextField preloadProgressTop;
     @FXML
@@ -26,56 +26,94 @@ public class ControllerLoader {
     @FXML
     TextField preloadProgressBottom;
 
-    private Database database = new Database();
-    private PopulateMangaCatalog populate = new PopulateMangaCatalog(this);
-    private Executor executor = Executors.newFixedThreadPool(5, Executors.defaultThreadFactory());
+    private Executor executor = Executors.newFixedThreadPool(1, Executors.defaultThreadFactory());
+    private static ArrayList<MangaArrayList> available = new ArrayList<>();
+    private static ArrayList<MangaArrayList> completed = new ArrayList<>();
+    private static ArrayList<MangaArrayList> reading = new ArrayList<>();
+    private static ArrayList<MangaArrayList> history = new ArrayList<>();
+    private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
+    private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
+    private static ArrayList<StatsArrayList> stats = new ArrayList<>();
+    private static boolean online = false;
 
-    public void initialize() {
-        executor.execute(this::boot);
-
+    public static ArrayList<MangaArrayList> getAvailable() {
+        return available;
     }
 
+    public static ArrayList<MangaArrayList> getCompleted() {
+        return completed;
+    }
 
-//    private Runnable prelaunchTasks = () -> {
-//        fetchNewTitles();
-//        checkForUpdates();
-//        switchStage();
-//    };
+    public static ArrayList<MangaArrayList> getReading() {
+        return reading;
+    }
+
+    public static ArrayList<MangaArrayList> getHistory() {
+        return history;
+    }
+
+    public static ArrayList<MangaArrayList> getBookmark() {
+        return bookmark;
+    }
+
+    public static ArrayList<MangaArrayList> getDownloading() {
+        return downloading;
+    }
+
+    public static ArrayList<StatsArrayList> getStats() {
+        return stats;
+    }
+
+    public static boolean isOnline() {
+        return online;
+    }
+
+    public void initialize() {
+        executor.execute(this::preload);
+    }
+
+    private void preload() {
+        Startup.implemenetDatabaseChanges();
+        if (InternetConnection.checkIfConnected()) {
+            online = true;
+            fetchNewTitles();
+        }
+        initializeArrays();
+        boot();
+    }
+
+    private void initializeArrays() {
+//        preloadProgressCenter.setText("Populating Manga Data...");
+        available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
+        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
+        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
+        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
+        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
+        history = HistoryPane.retrieveStoredHistory();
+        stats = StatsPane.retrieveStoredStats();
+    }
+
+    private static ArrayList<MangaArrayList> initializeArray(String fileName, String tableName) {
+        return Startup.buildArray(fileName, tableName);
+    }
 
     public void launchMainApp() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                switchStage();
-            }
-        });
+        Platform.runLater(this::switchStage);
     }
 
     private void boot() {
-        preloadProgressCenter.setText("Starting...");
-        if (InternetConnection.checkIfConnected()) {
-            fetchNewTitles();
-//           executor.execute(this::checkForUpdates);
-        }
-//        executor.execute(this::launchMainApp);
+//        preloadProgressCenter.setText("Starting...");
         launchMainApp();
     }
 
     private void fetchNewTitles() {
-        preloadProgressCenter.setText("Checking For New Manga");
-        Startup.implemenetDatabaseChanges();
+//        preloadProgressCenter.setText("Checking For New Manga");
 //        populate.findStartingPage();
     }
 
-    public void clearProgressText() {
-        preloadProgressTop.clear();
-        preloadProgressCenter.clear();
-        preloadProgressBottom.clear();
-    }
 
-
-    public void switchStage() {
-        Stage primaryStage = (Stage) testPane.getScene().getWindow();
+    private void switchStage() {
+        Stage primaryStage = (Stage) loadingPane.getScene().getWindow();
         primaryStage.hide();
         Parent root = null;
         try {
