@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -28,6 +29,7 @@ public class ControllerLoader {
 
     private Executor executor = Executors.newFixedThreadPool(1, Executors.defaultThreadFactory());
     private static ArrayList<MangaArrayList> available = new ArrayList<>();
+    private static ArrayList<MangaArrayList> blacklist = new ArrayList<>();
     private static ArrayList<MangaArrayList> completed = new ArrayList<>();
     private static ArrayList<MangaArrayList> reading = new ArrayList<>();
     private static ArrayList<MangaArrayList> history = new ArrayList<>();
@@ -38,6 +40,10 @@ public class ControllerLoader {
 
     public static ArrayList<MangaArrayList> getAvailable() {
         return available;
+    }
+
+    public static ArrayList<MangaArrayList> getBlacklist() {
+        return blacklist;
     }
 
     public static ArrayList<MangaArrayList> getCompleted() {
@@ -85,6 +91,7 @@ public class ControllerLoader {
     private void initializeArrays() {
 //        preloadProgressCenter.setText("Populating Manga Data...");
         available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
+        blacklist = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue());
         completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
         reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
         bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());

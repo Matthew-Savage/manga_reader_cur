@@ -2,8 +2,6 @@ package com.matthew_savage;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class HistoryPane {
 
@@ -13,11 +11,8 @@ public class HistoryPane {
         return readFromDatabase();
     }
 
-    static ArrayList<MangaArrayList> storeHistory(ArrayList<MangaArrayList> list, int mangaId) {
-        if (checkIfExists(list, mangaId)) {
-            return addTitleToHisotry(mangaId, "title", "summary", list);
-        }
-        return list;
+    static boolean storeHistory(ArrayList<MangaArrayList> list, int mangaId) {
+        return checkIfExists(list, mangaId);
     }
 
     private static ArrayList<MangaArrayList> resultSetToArray(ResultSet resultSet) throws Exception{
@@ -28,11 +23,6 @@ public class HistoryPane {
         }
         resultSet.close();
         return historyList;
-    }
-
-    private static ArrayList<MangaArrayList> addTitleToHisotry(int mangaId, String title, String summary, ArrayList<MangaArrayList> list) {
-        list.add(0, new MangaArrayList(mangaId, title, summary));
-        return list;
     }
 
     private static boolean checkIfExists(ArrayList<MangaArrayList> list, int mangaId) {

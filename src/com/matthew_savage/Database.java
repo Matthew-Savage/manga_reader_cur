@@ -259,7 +259,6 @@ public class Database {
 
 
     public void closeDb() {
-        System.out.println("datbaase closed");
         try {
             if (dbConnect != null) {
                 dbConnect.close();

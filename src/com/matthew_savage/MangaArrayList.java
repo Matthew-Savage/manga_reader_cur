@@ -120,6 +120,8 @@ public class MangaArrayList {
         this.favorite = favorite;
     }
 
+
+
     public MangaArrayList(int titleId, String title, String summary) {
         this.titleId = titleId;
         this.title = title;
