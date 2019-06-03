@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -1034,6 +1035,16 @@ public class ControllerMain {
                 break;
         }
         populateDisplay();
+    }
+
+    public void getMangaIdFromButtonPressed(ActionEvent buttonPressed) {
+        Button button = (Button) buttonPressed.getSource();
+        button.getId().substring(11)
+
+    }
+
+    public void getMangaIdFromImageClicked(MouseEvent imageClicked) {
+        ImageView image = (ImageView) imageClicked.getSource();
     }
 
     public void popupOpen(MouseEvent event) throws Exception {
