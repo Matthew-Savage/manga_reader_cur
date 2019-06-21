@@ -436,9 +436,6 @@ public class ControllerMain {
 
     // END OF APP FLOW
 
-    // DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING
-    // DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING
-
     public void ascendDescend() {
         Collections.reverse(currentContent);
         setThumbsPaneDynamicNavElements();
@@ -503,9 +500,6 @@ public class ControllerMain {
     private void adjustImageViewWidth(double newWidth) {
         imageView.setFitWidth(newWidth);
     }
-
-    // END END END DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING
-    // END END END DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING DONE REFACTORING
 
     //========================================================
 
@@ -1299,16 +1293,6 @@ public class ControllerMain {
                 break;
         }
         populateCurrentCategoryPaneThumbs();
-    }
-
-    public void getMangaIdFromButtonPressed(ActionEvent buttonPressed) {
-        Button button = (Button) buttonPressed.getSource();
-        button.getId().substring(11)
-
-    }
-
-    public void getMangaIdFromImageClicked(MouseEvent imageClicked) {
-        ImageView image = (ImageView) imageClicked.getSource();
     }
 
     public void popupOpen(MouseEvent event) throws Exception {
