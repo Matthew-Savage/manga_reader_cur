@@ -6,6 +6,7 @@ import java.sql.*;
 public class Database {
 
     private Connection dbConnect;
+    private static Connection dbConnection;
 
     public void openDb(String databaseFilename) {
         try {
@@ -14,6 +15,40 @@ public class Database {
             System.out.println("Opening DB connect failed");
         }
     }
+    //-----------------------------------------------------
+    //all this shit needs to run using its own thread, probably make a global executor service
+    public static void accessDb(String dbFileName) {
+        try {
+            dbConnection = DriverManager.getConnection("jdbc:sqlite:" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + dbFileName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addManga(ResultSet resultSet) {
+
+        terminateDbAccess();
+    }
+
+    public static void removeManga(int mangaIdentNumber) {
+
+        terminateDbAccess();
+    }
+
+    public static <T> void modifyManga(int mangaIdentNumber, String valueColumnName, T newValue) {
+
+        terminateDbAccess();
+    }
+
+    private static void terminateDbAccess() {
+        try {
+            dbConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //-----------------------------------------------------
 
     public void addNewManga(String tableName, int mangaId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChaptersBoolean, int favoriteBoolean) {
 

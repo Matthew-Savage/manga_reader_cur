@@ -5,14 +5,18 @@ import java.util.ArrayList;
 
 public class HistoryPane {
 
-    private static Database database = new Database();
+//    private static Database database = new Database();
+//
+//    static ArrayList<MangaArrayList> retrieveStoredHistory() {
+//        return readFromDatabase();
+//    }
+//
+//    static boolean storeHistory(ArrayList<MangaArrayList> list, int mangaId) {
+//        return checkIfTitlePresent(list, mangaId);
+//    }
 
-    static ArrayList<MangaArrayList> retrieveStoredHistory() {
-        return readFromDatabase();
-    }
-
-    static boolean storeHistory(ArrayList<MangaArrayList> list, int mangaId) {
-        return checkIfExists(list, mangaId);
+    public static void storeHistory() {
+        checkIfTitlePresent();
     }
 
     private static ArrayList<MangaArrayList> resultSetToArray(ResultSet resultSet) throws Exception{
@@ -25,9 +29,16 @@ public class HistoryPane {
         return historyList;
     }
 
-    private static boolean checkIfExists(ArrayList<MangaArrayList> list, int mangaId) {
-        return list.stream().anyMatch(v -> v.getTitleId() == mangaId);
+//    private static boolean checkIfTitlePresent(ArrayList<MangaArrayList> list, int mangaIdent) {
+//        return list.stream().anyMatch(v -> v.getTitleId() == mangaIdent);
+//    }
+
+    private static void checkIfTitlePresent() {
+        if (CategoryMangaLists.history.stream().noneMatch(v -> v.getTitleId() == CategoryMangaLists.selectedMangaIdentNumber)) {
+
+        }
     }
+
 
     private static ArrayList<MangaArrayList> readFromDatabase() {
         database.openDb(Values.DB_NAME_MANGA.getValue());

@@ -1,13 +1,29 @@
 package com.matthew_savage.GUI;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ToggleNavButtons {
 
-    public ArrayList<Integer> navButtonVisibility(int pageNmber, int secondThingWhoKnows) {
-        ArrayList<Integer> values = new ArrayList<>();
+    public static List<Boolean> navButtonVisibility(int currentPageNumber, int totalPagesNumber) {
 
-        return values;
+        if (totalPagesNumber == 1) {
+            return Stream.of(false, false, false, false, false).collect(Collectors.toList());
+        } else{
+            return multiPageToggle(currentPageNumber, totalPagesNumber);
+        }
     }
 
+    private static List<Boolean> multiPageToggle(int currentPageNumber, int totalPagesNumber) {
+
+        if (currentPageNumber == 1) {
+            return Stream.of(false, false, true, true, true).collect(Collectors.toList());
+        } else if (currentPageNumber > 1 && currentPageNumber < totalPagesNumber) {
+            return Stream.of(true, true, true, true, true).collect(Collectors.toList());
+        } else {
+            return Stream.of(true, true, true, false, false).collect(Collectors.toList());
+        }
+    }
 }

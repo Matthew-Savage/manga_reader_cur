@@ -12,7 +12,7 @@ public class Startup {
         return resultSetToArrayList(fileName, tableName);
     }
 
-    public static void implemenetDatabaseChanges() {
+    public static void implementDatabaseChanges() {
         File userFile = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + "usr.db");
 
         if (!userFile.exists()) {

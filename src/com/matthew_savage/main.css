@@ -447,6 +447,11 @@
     -fx-background-image: url("../../assets/stats_button.png");
 }
 
+#openBookmark {
+    -fx-border-color: black;
+    -fx-background-color: pink;
+}
+
 #statsToggle:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;

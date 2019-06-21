@@ -1,5 +1,9 @@
 package com.matthew_savage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class MangaArrayList {
 
     private int titleId;

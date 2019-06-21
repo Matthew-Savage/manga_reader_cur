@@ -27,16 +27,16 @@ public class StatsPane {
         ArrayList<StatsArrayList> statsList = new ArrayList<>();
 
         while (resultSet.next()) {
-            statsList.add(new StatsArrayList(resultSet.getInt(Values.DB_COL_TITLE_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_READING_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_FIN_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_PAGES_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_FAVE_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_BL_TOT.getValue()),
-                    resultSet.getInt(Values.DB_COL_PAGES_DAY.getValue()),
-                    resultSet.getString(Values.DB_COL_GEN_ONE.getValue()),
-                    resultSet.getString(Values.DB_COL_GEN_TWO.getValue()),
-                    resultSet.getString(Values.DB_COL_GEN_THREE.getValue())));
+            statsList.add(new StatsArrayList(resultSet.getInt(Values.DB_STATS_COL_TITLE_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_READING_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_FIN_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_PAGES_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_FAVE_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_BL_TOT.getValue()),
+                    resultSet.getInt(Values.DB_STATS_COL_PAGES_DAY.getValue()),
+                    resultSet.getString(Values.DB_STATS_COL_GEN_ONE.getValue()),
+                    resultSet.getString(Values.DB_STATS_COL_GEN_TWO.getValue()),
+                    resultSet.getString(Values.DB_STATS_COL_GEN_THREE.getValue())));
         }
         resultSet.close();
         return statsList;

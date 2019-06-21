@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -28,47 +27,47 @@ public class ControllerLoader {
     TextField preloadProgressBottom;
 
     private Executor executor = Executors.newFixedThreadPool(1, Executors.defaultThreadFactory());
-    private static ArrayList<MangaArrayList> available = new ArrayList<>();
-    private static ArrayList<MangaArrayList> blacklist = new ArrayList<>();
-    private static ArrayList<MangaArrayList> completed = new ArrayList<>();
-    private static ArrayList<MangaArrayList> reading = new ArrayList<>();
-    private static ArrayList<MangaArrayList> history = new ArrayList<>();
-    private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
-    private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
-    private static ArrayList<StatsArrayList> stats = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> available = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> blacklist = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> completed = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> reading = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> history = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
+//    private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
+//    private static ArrayList<StatsArrayList> stats = new ArrayList<>();
     private static boolean online = false;
-
-    public static ArrayList<MangaArrayList> getAvailable() {
-        return available;
-    }
-
-    public static ArrayList<MangaArrayList> getBlacklist() {
-        return blacklist;
-    }
-
-    public static ArrayList<MangaArrayList> getCompleted() {
-        return completed;
-    }
-
-    public static ArrayList<MangaArrayList> getReading() {
-        return reading;
-    }
-
-    public static ArrayList<MangaArrayList> getHistory() {
-        return history;
-    }
-
-    public static ArrayList<MangaArrayList> getBookmark() {
-        return bookmark;
-    }
-
-    public static ArrayList<MangaArrayList> getDownloading() {
-        return downloading;
-    }
-
-    public static ArrayList<StatsArrayList> getStats() {
-        return stats;
-    }
+//
+//    public static ArrayList<MangaArrayList> getAvailable() {
+//        return available;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getBlacklist() {
+//        return blacklist;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getCompleted() {
+//        return completed;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getReading() {
+//        return reading;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getHistory() {
+//        return history;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getBookmark() {
+//        return bookmark;
+//    }
+//
+//    public static ArrayList<MangaArrayList> getDownloading() {
+//        return downloading;
+//    }
+//
+//    public static ArrayList<StatsArrayList> getStats() {
+//        return stats;
+//    }
 
     public static boolean isOnline() {
         return online;
@@ -79,7 +78,7 @@ public class ControllerLoader {
     }
 
     private void preload() {
-        Startup.implemenetDatabaseChanges();
+        Startup.implementDatabaseChanges();
         if (InternetConnection.checkIfConnected()) {
             online = true;
             fetchNewTitles();
@@ -90,14 +89,29 @@ public class ControllerLoader {
 
     private void initializeArrays() {
 //        preloadProgressCenter.setText("Populating Manga Data...");
-        available = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue());
-        blacklist = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue());
-        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
-        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
-        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
-        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
-        history = HistoryPane.retrieveStoredHistory();
-        stats = StatsPane.retrieveStoredStats();
+        CategoryMangaLists.notCollectedMangaList.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue()));
+        CategoryMangaLists.rejectedMangaList.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue()));
+        CategoryMangaLists.completedMangaList.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue()));
+        CategoryMangaLists.collectedMangaList.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue()));
+        CategoryMangaLists.bookmark.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue()));
+        CategoryMangaLists.downloading.addAll(
+                initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue()));
+        CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
+        CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
+
+//
+//        blacklist = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue());
+//        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
+//        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
+//        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
+//        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
+//        history = HistoryPane.retrieveStoredHistory();
+//        stats = StatsPane.retrieveStoredStats();
     }
 
     private static ArrayList<MangaArrayList> initializeArray(String fileName, String tableName) {
