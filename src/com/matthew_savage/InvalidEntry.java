@@ -6,7 +6,7 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class AddressCheckAndCorrect {
+class InvalidEntry {
 
     private static String databaseMangaName;
     private static Database db = new Database();
@@ -20,6 +20,10 @@ class AddressCheckAndCorrect {
             return checkResultAddresses(getResultAddresses(getSearchResults(mangaNameFormatted)));
         }
         return webAddress;
+    }
+
+    public static void deleteInvalidEntry(int mangaIdentNum) {
+        // this needs to be logged to a physical FILE!!
     }
 
     private static boolean isAddressInvalid(String webAddress) {

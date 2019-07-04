@@ -125,6 +125,10 @@ public class MangaArrayList {
     }
 
 
+    public MangaArrayList(String title, String webAddress) {
+        this.title = title;
+        this.webAddress = webAddress;
+    }
 
     public MangaArrayList(int titleId, String title, String summary) {
         this.titleId = titleId;

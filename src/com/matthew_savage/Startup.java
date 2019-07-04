@@ -16,6 +16,7 @@ public class Startup {
         File userFile = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + "usr.db");
 
         if (!userFile.exists()) {
+            System.out.println("user file doesn't exist bro! making it.. bro!");
             database.openDb("usr.db");
             database.createUserTable();
             database.storeVersionEntry("version_number", 2);
@@ -34,6 +35,10 @@ public class Startup {
         database.createBookmarkTable();
         fetchCurrentBookmark();
         database.deleteTable("resume_last_manga");
+        database.createIndex(Values.DB_TABLE_COMPLETED.getValue());
+        database.createIndex(Values.DB_TABLE_FIVE_NEWEST.getValue());
+        database.createIndex(Values.DB_TABLE_READING.getValue());
+        database.createIndex(Values.DB_TABLE_NOT_INTERESTED.getValue());
         database.closeDb();
     }
 
@@ -70,28 +75,54 @@ public class Startup {
     private static ArrayList<MangaArrayList> resultSetToArrayList(String fileName, String tableName) {
         ArrayList<MangaArrayList> list = new ArrayList<>();
         ResultSet resultSet = fetchResultSet(fileName, tableName);
-        try {
-            while (resultSet.next()) {
-                list.add(new MangaArrayList(
-                        resultSet.getInt("title_id"),
-                        resultSet.getString("title"),
-                        resultSet.getString("authors"),
-                        resultSet.getString("status"),
-                        resultSet.getString("summary"),
-                        resultSet.getString("web_address"),
-                        resultSet.getString("genre_tags"),
-                        resultSet.getInt("total_chapters"),
-                        resultSet.getInt("current_page"),
-                        resultSet.getInt("last_chapter_read"),
-                        resultSet.getInt("last_chapter_downloaded"),
-                        resultSet.getBoolean("new_chapters"),
-                        resultSet.getBoolean("favorite")));
+        if (tableName.equals(Values.DB_TABLE_FIVE_NEWEST.getValue())) {
+            try {
+                while (resultSet.next()) {
+                    list.add(new MangaArrayList(
+                            resultSet.getInt("title_id"),
+                            resultSet.getString("title"),
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            0,
+                            0,
+                            0,
+                            0,
+                            false,
+                            false));
+                }
+                resultSet.close();
+                database.closeDb();
+                return list;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            resultSet.close();
-            database.closeDb();
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            try {
+                while (resultSet.next()) {
+                    list.add(new MangaArrayList(
+                            resultSet.getInt("title_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("authors"),
+                            resultSet.getString("status"),
+                            resultSet.getString("summary"),
+                            resultSet.getString("web_address"),
+                            resultSet.getString("genre_tags"),
+                            resultSet.getInt("total_chapters"),
+                            resultSet.getInt("current_page"),
+                            resultSet.getInt("last_chapter_read"),
+                            resultSet.getInt("last_chapter_downloaded"),
+                            resultSet.getBoolean("new_chapters"),
+                            resultSet.getBoolean("favorite")));
+                }
+                resultSet.close();
+                database.closeDb();
+                return list;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }

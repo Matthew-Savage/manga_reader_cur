@@ -12,20 +12,20 @@ import static com.matthew_savage.CategoryMangaLists.*;
 
 public class MangaTurnPage {
 
-    private static int lastChapterRead = currentContent.get(currentContentListIndexNumber).getLastChapterRead();
-    private static int totalChapters = currentContent.get(currentContentListIndexNumber).getTotalChapters();
+    private static int lastChapterRead = currentContent.get(currentContentListIndexNumberTEMP).getLastChapterRead();
+    private static int totalChapters = currentContent.get(currentContentListIndexNumberTEMP).getTotalChapters();
 
 
-    public static void turnPagePreviousNext(KeyEvent event, int currentChapterFinalPage) {
-        int currentPageNum = currentContent.get(currentContentListIndexNumber).getCurrentPage();
-
-        if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-            gotoNextPage(currentPageNum, currentChapterFinalPage);
-        }
-        if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-            gotoPreviousPage(currentPageNum, currentChapterFinalPage);
-        }
-    }
+//    public static void turnPagePreviousNext(KeyEvent event, int currentChapterFinalPage) {
+//        int currentPageNum = currentContent.get(currentContentListIndexNumberTEMP).getCurrentPage();
+//
+//        if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
+//            gotoNextPage(currentPageNum, currentChapterFinalPage);
+//        }
+//        if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
+//            gotoPreviousPage(currentPageNum, currentChapterFinalPage);
+//        }
+//    }
 
     public static void scrollPageUpDown(KeyEvent event, ScrollPane scrollPane){
         if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
@@ -36,24 +36,24 @@ public class MangaTurnPage {
         }
     }
 
-    private static void gotoNextPage(int currentPageNum, int currentChapterFinalPage) {
-        if (currentPageNum < currentChapterFinalPage) {
-//            ControllerMain.updateCurrentPageNumber(currentPageNum);
-//            ControllerMain.resetReadingViewToTopOfPage();
-            MangaValues.changeCurrentPageNumber(currentPageNum + 1, Values.DB_NAME_MANGA.getValue());
-        } else {
-            nextChapter();
-        }
-    }
-
-    private static void gotoPreviousPage(int currentPageNum, int currentChapterFinalPage) {
-        if (currentPageNum > 0) {
-//            ControllerMain.updateCurrentPageNumber(currentPageNum - 1);
-            MangaValues.changeCurrentPageNumber(currentPageNum - 1, Values.DB_NAME_MANGA.getValue());
-        } else {
-            previousChapter();
-        }
-    }
+//    private static void gotoNextPage(int currentPageNum, int currentChapterFinalPage) {
+//        if (currentPageNum < currentChapterFinalPage) {
+////            ControllerMain.updateCurrentPageNumber(currentPageNum);
+////            ControllerMain.resetReadingViewToTopOfPage();
+//            MangaValues.changeCurrentPageNumber(currentPageNum + 1, Values.DB_NAME_MANGA.getValue());
+//        } else {
+//            nextChapter();
+//        }
+//    }
+//
+//    private static void gotoPreviousPage(int currentPageNum, int currentChapterFinalPage) {
+//        if (currentPageNum > 0) {
+////            ControllerMain.updateCurrentPageNumber(currentPageNum - 1);
+//            MangaValues.changeCurrentPageNumber(currentPageNum - 1, Values.DB_NAME_MANGA.getValue());
+//        } else {
+//            previousChapter();
+//        }
+//    }
 
     private static void scrollCurrentPageDown(ScrollPane scrollPane) {
         if (scrollPane.getVvalue() < 1.0) {
@@ -90,32 +90,32 @@ public class MangaTurnPage {
         return currentScrollSpeed;
     }
 
-    private static void nextChapter() {
-        if (lastChapterRead > totalChapters) {
-            MangaValues.changeLastChapterRead(lastChapterRead + 1, Values.DB_NAME_MANGA.getValue());
-            //method to load nextg chapter into reader
-        }
-        if (lastChapterRead == totalChapters) {
-            changeMangaStatus();
-        }
-    }
-
-    private static void changeMangaStatus() {
-        MangaValues.changeStatus(true, Values.DB_NAME_MANGA.getValue());
-        //method to close reader
-    }
-
-    private static void previousChapter() {
-        if (lastChapterRead > 0) {
-            MangaValues.changeLastChapterRead(lastChapterRead - 1, Values.DB_NAME_MANGA.getValue());
-            // currently the final page number is calculated AFTER this step, so -1 triggers a future if block
-            // which then sets the correct pagenumber. not sure if thats okay or not yet, we'll see.
-            // honestly pretty sure im going to break it apart and call fetch manga pages here as well as when
-            // user first tries to read the manga. makes sense.
-            MangaValues.changeCurrentPageNumber(-1, Values.DB_NAME_MANGA.getValue());
-            //method to load previous chapter into reader
-        }
-    }
+//    private static void nextChapter() {
+//        if (lastChapterRead > totalChapters) {
+//            MangaValues.changeLastChapterRead(lastChapterRead + 1, Values.DB_NAME_MANGA.getValue());
+//            //method to load nextg chapter into reader
+//        }
+//        if (lastChapterRead == totalChapters) {
+//            changeMangaStatus();
+//        }
+//    }
+//
+//    private static void changeMangaStatus() {
+//        MangaValues.changeStatus(true, Values.DB_NAME_MANGA.getValue());
+//        //method to close reader
+//    }
+//
+//    private static void previousChapter() {
+//        if (lastChapterRead > 0) {
+//            MangaValues.changeLastChapterRead(lastChapterRead - 1, Values.DB_NAME_MANGA.getValue());
+//            // currently the final page number is calculated AFTER this step, so -1 triggers a future if block
+//            // which then sets the correct pagenumber. not sure if thats okay or not yet, we'll see.
+//            // honestly pretty sure im going to break it apart and call fetch manga pages here as well as when
+//            // user first tries to read the manga. makes sense.
+//            MangaValues.changeCurrentPageNumber(-1, Values.DB_NAME_MANGA.getValue());
+//            //method to load previous chapter into reader
+//        }
+//    }
 }
 //why both calc chap method and changing chapreadnumber in this method?
 

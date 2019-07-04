@@ -7,17 +7,26 @@ public class HistoryPane {
 
 //    private static Database database = new Database();
 //
-//    static ArrayList<MangaArrayList> retrieveStoredHistory() {
-//        return readFromDatabase();
-//    }
+//+
 //
 //    static boolean storeHistory(ArrayList<MangaArrayList> list, int mangaId) {
 //        return checkIfTitlePresent(list, mangaId);
 //    }
 
+    static ArrayList<MangaArrayList> retrieveStoredHistory() {
+        return readFromDatabase();
+    }
+
     public static void storeHistory() {
         checkIfTitlePresent();
     }
+
+    private static void checkIfTitlePresent() {
+        if (CategoryMangaLists.history.stream().noneMatch(v -> v.getTitleId() == CategoryMangaLists.selectedMangaIdentNumberTEMP)) {
+            MangaValues.addToHistory(Values.DB_NAME_MANGA.getValue());
+        }
+    }
+
 
     private static ArrayList<MangaArrayList> resultSetToArray(ResultSet resultSet) throws Exception{
         ArrayList<MangaArrayList> historyList = new ArrayList<>();
@@ -33,28 +42,22 @@ public class HistoryPane {
 //        return list.stream().anyMatch(v -> v.getTitleId() == mangaIdent);
 //    }
 
-    private static void checkIfTitlePresent() {
-        if (CategoryMangaLists.history.stream().noneMatch(v -> v.getTitleId() == CategoryMangaLists.selectedMangaIdentNumber)) {
-
-        }
-    }
-
 
     private static ArrayList<MangaArrayList> readFromDatabase() {
-        database.openDb(Values.DB_NAME_MANGA.getValue());
+        Database.accessDb(Values.DB_NAME_MANGA.getValue());
         try {
-            return resultSetToArray(database.retrieveHistoryEntries());
+            return resultSetToArray(Database.retrieveHistoryEntries());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            database.closeDb();
+            Database.terminateDbAccess();
         } return null;
     }
 
-    private void writeToDatabase(int mangaId, String title, String summary) {
-        database.openDb("main.db");
-        database.storeHistoryEntries(mangaId, title, summary);
-        database.closeDb();
-    }
+//    private void writeToDatabase(int mangaId, String title, String summary) {
+//        database.openDb("main.db");
+//        database.storeHistoryEntries(mangaId, title, summary);
+//        database.closeDb();
+//    }
 
 }

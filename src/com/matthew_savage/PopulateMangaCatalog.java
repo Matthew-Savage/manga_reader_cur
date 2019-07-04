@@ -50,7 +50,7 @@ public class PopulateMangaCatalog {
                 database.closeDb();
                 do {
                     try {
-                        Document mangaParent = Jsoup.connect("http://manganelo.com/manga_list?type=" + type + "&category=" + cat + "&state=" + state + "&page=" + startingPage).get();
+                        Document mangaParent = Jsoup.connect("http://manganelo.com/manga_list?type=newest&category=all&state=all&page=" + startingPage).get();
 
                         for (Element list : mangaParent.select(bookBlockParent)) {
                             String title = list.select("h3 a").text().replace("'", "");
@@ -168,6 +168,7 @@ public class PopulateMangaCatalog {
 
     private void downloadThumbnail(String thumbAddress, int titleNumber) {
         // Download image needs to be its own class
+        //lol now more than ever - refactor matt
         try {
             InputStream page = new URL(thumbAddress.replace("http:", "https:")).openStream();
             Path to = Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue());

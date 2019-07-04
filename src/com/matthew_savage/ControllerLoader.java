@@ -79,11 +79,11 @@ public class ControllerLoader {
 
     private void preload() {
         Startup.implementDatabaseChanges();
+        initializeArrays();
         if (InternetConnection.checkIfConnected()) {
             online = true;
             fetchNewTitles();
         }
-        initializeArrays();
         boot();
     }
 
@@ -101,6 +101,8 @@ public class ControllerLoader {
                 initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue()));
         CategoryMangaLists.downloading.addAll(
                 initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue()));
+        CategoryMangaLists.fiveNewestTitles.addAll(
+                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_FIVE_NEWEST.getValue()));
         CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
         CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
 
@@ -130,8 +132,9 @@ public class ControllerLoader {
     private void fetchNewTitles() {
 //        preloadProgressCenter.setText("Checking For New Manga");
 //        populate.findStartingPage();
+        SourceWebsite.indexTitles();
+        System.out.println("the break worked lol?");
     }
-
 
     private void switchStage() {
         Stage primaryStage = (Stage) loadingPane.getScene().getWindow();

@@ -2,18 +2,20 @@ package com.matthew_savage;
 
 import java.io.File;
 import java.sql.*;
+import java.sql.PreparedStatement;
 
 public class Database {
 
     private Connection dbConnect;
-    private static Connection dbConnection;
+    public static Connection dbConnection;
 
-    public void openDb(String databaseFilename) {
+    public Connection openDb(String databaseFilename) {
         try {
-            dbConnect = DriverManager.getConnection("jdbc:sqlite:" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + databaseFilename);
+            return dbConnect = DriverManager.getConnection("jdbc:sqlite:" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + databaseFilename);
         } catch (SQLException e) {
             System.out.println("Opening DB connect failed");
         }
+        return null;
     }
     //-----------------------------------------------------
     //all this shit needs to run using its own thread, probably make a global executor service
@@ -27,20 +29,21 @@ public class Database {
 
     public static void addManga(ResultSet resultSet) {
 
-        terminateDbAccess();
+    }
+
+    public static void testStatement(PreparedStatement preparedStatement) {
+//        PreparedStatement
     }
 
     public static void removeManga(int mangaIdentNumber) {
 
-        terminateDbAccess();
     }
 
     public static <T> void modifyManga(int mangaIdentNumber, String valueColumnName, T newValue) {
 
-        terminateDbAccess();
     }
 
-    private static void terminateDbAccess() {
+    public static void terminateDbAccess() {
         try {
             dbConnection.close();
         } catch (SQLException e) {
@@ -163,10 +166,10 @@ public class Database {
         }
     }
 
-    public void createBookmark(String tableName, int mangaID, int totalChapters, int lastChapterRead, int currentPage) {
+    public static void createBookmark(String tableName, int mangaID, int totalChapters, int lastChapterRead, int currentPage) {
         System.out.println("create bookmark running!  - " + mangaID + " - " + lastChapterRead + " - " + currentPage);
         try {
-            Statement sqlStatement = dbConnect.createStatement();
+            Statement sqlStatement = dbConnection.createStatement();
             sqlStatement.execute("DELETE FROM " + tableName + " WHERE rowid=1");
             sqlStatement.execute("INSERT OR REPLACE INTO " + tableName + " (title_id, total_chapters, last_chapter_read, current_page) VALUES ('" + mangaID + "', '" + totalChapters + "', '" + lastChapterRead + "', '" + currentPage + "')");
         } catch (Exception e) {
@@ -241,6 +244,15 @@ public class Database {
         }
     }
 
+    void createIndex(String tableName) {
+        try {
+            Statement sqlStatement = dbConnect.createStatement();
+            sqlStatement.execute("CREATE UNIQUE INDEX IF NOT EXISTS `" + tableName + "_i` ON `" + tableName + "` ( `title_id` )");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     void storeVersionEntry(String tableName, int value) {
         try {
             Statement sqlStatement = dbConnect.createStatement();
@@ -269,9 +281,9 @@ public class Database {
         }
     }
 
-    ResultSet retrieveHistoryEntries() {
+    public static ResultSet retrieveHistoryEntries() {
         try {
-            Statement sqlStatement = dbConnect.createStatement();
+            Statement sqlStatement = dbConnection.createStatement();
             return sqlStatement.executeQuery("SELECT * FROM history ORDER BY entry_number DESC LIMIT 10");
         } catch (Exception e) {
             e.printStackTrace();

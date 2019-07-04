@@ -6,7 +6,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -24,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.File;
@@ -94,7 +94,7 @@ public class ControllerMain {
     @FXML
     private TextField mangaAuthors;
     @FXML
-    private static TextField sidebarTotalChapNum;
+    private TextField sidebarTotalChapNum;
     @FXML
     private TextField searchBox;
     @FXML
@@ -104,13 +104,13 @@ public class ControllerMain {
     @FXML
     private TextField enterPageNumber;
     @FXML
-    private static TextField sidebarCurChapNum;
+    private TextField sidebarCurChapNum;
     @FXML
-    private static TextField sidebarPageNumber;
+    private TextField sidebarPageNumber;
     @FXML
     private TextField gotoChapter;
     @FXML
-    private static TextField sidebarCurScrollSpeed;
+    private TextField sidebarCurScrollSpeed;
     @FXML
     private TextField statTitlesTotal;
     @FXML
@@ -177,7 +177,7 @@ public class ControllerMain {
     private static int clickedThumbIdent;
     private static int clickedButtonIdent;
     private static int currentListIndex;
-//    private static int selectedMangaIdentNumber;
+    //    private static int selectedMangaIdentNumberTEMP;
     private static String selectedMangaTitle;
     private static String selectedMangaAuthors;
     private static String selectedMangaStatus;
@@ -189,7 +189,6 @@ public class ControllerMain {
     private static int selectedMangaPageCurrentlyReading;
     private static int selectedMangaLastChapterRead;
     private static int selectedMangaLastChapterDownloaded;
-    private static int selectedMangaCurrentChapterFinalPage;
     private static boolean hasNewlyAddedChapters;
     private static boolean hasBeenFavorited;
     private static Robot softwareMouse;
@@ -252,7 +251,7 @@ public class ControllerMain {
             e.printStackTrace();
         }
 
-        executor.execute(this::checkForHistory);
+        executor.execute(this::generateHistoryPane);
         executor.execute(this::populateStats);
         executor.execute(this::createOrResetGenreStringArray);
         executor.execute(this::displayInternetStatus);
@@ -287,10 +286,30 @@ public class ControllerMain {
             }
         });
 
+        for (MangaArrayList list : history) {
+            System.out.println(list.getTitle());
+        }
+
+//        Collections.reverse(history);
+//
+//        System.out.println("--------------");
+//
+//        for (MangaArrayList list : history) {
+//            System.out.println(list.getTitle());
+//        }
+
         populateCurrentContentList(collectedMangaList);
         setThumbsPaneStaticNavElements();
         populateCurrentCategoryPaneThumbs();
     }
+
+
+//    FXMLLoader loader = new FXMLLoader(getClass().getResource("calc.fxml"));
+//    Parent calcRoot = loader.load();
+//    CalcController controller = loader.getController();
+//controller.setVariables(...);
+//    Scene showCalc = new Scene(calcRoot, 500, 1000);
+//// ...
 
     // START OF APP FLOW
 
@@ -342,13 +361,14 @@ public class ControllerMain {
     }
 
     private void populateCurrentCategoryPaneThumbs() {
+        System.out.println(indexIncrementValue);
         clearAndHideThumbImageViews();
         checkIfCategoryCollectedOrCompleted();
         setThumbsPaneDynamicNavElements();
 
         for (int i = 0; i < getTerminationValue(); i++) {
             imageViews.get(i).setSmooth(true);
-            imageViews.get(i).setImage(Objects.requireNonNull(getImageFromFilesystem(i + indexIncrementValue)));
+            imageViews.get(i).setImage(Objects.requireNonNull(getImageFromFilesystem(currentContent.get(i + indexIncrementValue).getTitleId())));
             addFavoriteBannerIfFavorite(i);
             addNewChaptersBannerIfNewChapters(i);
             imageViews.get(i).setVisible(true);
@@ -379,6 +399,7 @@ public class ControllerMain {
     private void prioritizeFavoritesAndUpdates() {
         // test this with the fucking method for setting current content and see if it divides by zero
         // and kills us all
+        // need to sort updates by least to most as well, fun!
         currentContent = currentContent.stream()
                 .sorted(Comparator
                         .comparing(MangaArrayList::isNewChapters)
@@ -401,7 +422,7 @@ public class ControllerMain {
     private Image getImageFromFilesystem(int listIndexNumber) {
         //dont need to pass this value in with new catmangalists class
         try {
-            return new Image(new FileInputStream(thumbsPath + File.separator + currentContent.get(listIndexNumber).getTitleId() + ".jpg"));
+            return new Image(new FileInputStream(thumbsPath + File.separator + listIndexNumber + ".jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -430,13 +451,14 @@ public class ControllerMain {
         //dont need to pass this value in with new catmangalists class
         if (currentContent.get(listIndexNumber + indexIncrementValue).isNewChapters()) {
             newChaptersOverlayViews.get(listIndexNumber).setImage(new Image("assets/new_chapter_multiple.png"));
-            newChaptersOverlayViews.get(listIndexNumber).setVisible(true);
         }
+        newChaptersOverlayViews.get(listIndexNumber).setVisible(true);
     }
 
     // END OF APP FLOW
 
     public void ascendDescend() {
+        popupClose();
         Collections.reverse(currentContent);
         setThumbsPaneDynamicNavElements();
         populateCurrentCategoryPaneThumbs();
@@ -444,6 +466,7 @@ public class ControllerMain {
 
     public void openHistoryPane() {
         populateCurrentContentList(history);
+        populateHistory();
         setHistoryPaneVisibility(true);
     }
 
@@ -501,6 +524,19 @@ public class ControllerMain {
         imageView.setFitWidth(newWidth);
     }
 
+    public void beginReadingAtBookmark() {
+        //need to change this methodname probably cause its not actually launching reader
+        //need something in initialization block to determine if button is active or not.
+        // "you dont have any bookmarks yet you silly bastard" same with historypane
+
+        selectedMangaIdentNumberTEMP = bookmark.get(0).getTitleId();
+        selectedMangaTotalChapNumTEMP = bookmark.get(0).getTotalChapters();
+        selectedMangaLastChapReadNumTEMP = bookmark.get(0).getLastChapterRead();
+        selectedMangaCurrentPageNumTEMP = bookmark.get(0).getCurrentPage();
+        mangaImageFilesToList();
+        launchReader();
+    }
+
     //========================================================
 
     //fix check for last manga added, need to have like 3-5 mangas and if the first one isnt found after x pages
@@ -513,11 +549,24 @@ public class ControllerMain {
 
     //need to sort new chapters by number of new chapters, so make a list of every manga with new chapters
     //and sort from highest to lowest or whatever, then output. ez. remove from reading and add to this new list
-    //no db writes necessary for this i feel like
+    //no db writes necessary for this i feel like / false, so what actually needs to happen is new chapters is no
+    //longer a bool, instead 0 is no new chapters, and when downloading, every chapter downloaded is new chapters++
+    //final number will be number of new chapters, easy. and we cant sort by new chapters amount I dont feel like,
+    //or maybe we can. but if we cant, or maybe regardless, lets set the number of new chapters as a number for
+    //display. cool.
+
+    // need to log deleted entries via invalidentry AND manga urls being changed by the same
+    // thing. need to create a logging class.
+
+    // also make sure to actually write delete entry method because right now its blank kekeke
 
     //add genre tag mouseovers to ui
 
+    //lastfivemangas resultset is going to have a LOT of missing fields, need to set them to null and blabla whatever.
+
     //lol all the stats logic. this app is getting respectable i feel like
+
+    //add tentative section, button, dropdown, database, everything lol.
 
 
     //=========================================================
@@ -540,15 +589,30 @@ public class ControllerMain {
         Button button = (Button) buttonPressed.getSource();
         clickedButtonIdent = Integer.parseInt(button.getId().substring(11));
 //        currentListIndex = indexIncrementValue + clickedButtonIdent;
-        currentContentListIndexNumber = indexIncrementValue + clickedButtonIdent;
+        currentContentListIndexNumberTEMP = indexIncrementValue + clickedButtonIdent;
+        getSelectedMangaValues();
+        preReadingTasks();
     }
 
     public void getMangaIdFromImageClicked(MouseEvent imageClicked) {
+        System.out.println("image clicked!");
         ImageView image = (ImageView) imageClicked.getSource();
         clickedThumbIdent = Integer.parseInt(image.getId().substring(18));
 //        currentListIndex = indexIncrementValue + clickedThumbIdent;
-        currentContentListIndexNumber = indexIncrementValue + clickedThumbIdent;
+        currentContentListIndexNumberTEMP = indexIncrementValue + clickedThumbIdent;
+        getSelectedMangaValues();
         openMangaInfoPane();
+    }
+
+    private void getSelectedMangaValues() {
+        selectedMangaTitleTEMP = currentContent.get(currentContentListIndexNumberTEMP).getTitle();
+        selectedMangaSummaryTEMP = currentContent.get(currentContentListIndexNumberTEMP).getSummary();
+        selectedMangaAuthorsTEMP = currentContent.get(currentContentListIndexNumberTEMP).getAuthors();
+        selectedMangaGenresTEMP = currentContent.get(currentContentListIndexNumberTEMP).getGenreTags();
+        selectedMangaIdentNumberTEMP = currentContent.get(currentContentListIndexNumberTEMP).getTitleId();
+        selectedMangaLastChapReadNumTEMP = currentContent.get(currentContentListIndexNumberTEMP).getLastChapterRead();
+        selectedMangaTotalChapNumTEMP = currentContent.get(currentContentListIndexNumberTEMP).getTotalChapters();
+        selectedMangaCurrentPageNumTEMP = currentContent.get(currentContentListIndexNumberTEMP).getCurrentPage();
     }
 
     public void openMangaInfoPane() {
@@ -558,29 +622,13 @@ public class ControllerMain {
         popupPane.setVisible(true);
     }
 
-    private void setCurrentMangaVariables() {
-        // i dont know about this, either needs to set values in catmangalist class or be pruned extensively
-        selectedMangaIdentNumber = currentContent.get(currentListIndex).getTitleId();
-        selectedMangaTitle = currentContent.get(currentListIndex).getTitle();
-        selectedMangaAuthors = currentContent.get(currentListIndex).getAuthors();
-        selectedMangaStatus = currentContent.get(currentListIndex).getStatus();
-        selectedMangaSummary = currentContent.get(currentListIndex).getSummary();
-        selectedMangaWebAddress = currentContent.get(currentListIndex).getWebAddress();
-        selectedMangaGenreTags = currentContent.get(currentListIndex).getGenreTags();
-        selectedMangaTotalChapters = currentContent.get(currentListIndex).getTitleId();
-        selectedMangaPageCurrentlyReading = currentContent.get(currentListIndex).getTitleId();
-        selectedMangaLastChapterRead = currentContent.get(currentListIndex).getTitleId();
-        selectedMangaLastChapterDownloaded = currentContent.get(currentListIndex).getTitleId();
-        hasNewlyAddedChapters = currentContent.get(currentListIndex).isNewChapters();
-        hasBeenFavorited = currentContent.get(currentListIndex).isFavorite();
-    }
-
     private void populateMangaInfoPane() {
         // i dont know about this either.
-        mangaTitle.setText(abridgeTitle(selectedMangaTitle));
-        mangaThumb.setImage(getImageFromFilesystem(selectedMangaIdentNumber));
-        mangaSummary.setText(selectedMangaSummary);
-        mangaAuthors.setText(selectedMangaAuthors);
+        mangaTitle.setText(abridgeTitle(selectedMangaTitleTEMP));
+        mangaThumb.setImage(getImageFromFilesystem(selectedMangaIdentNumberTEMP));
+        mangaSummary.setText(selectedMangaSummaryTEMP);
+        mangaAuthors.setText(selectedMangaAuthorsTEMP);
+        mangaGenres.setText(selectedMangaGenresTEMP);
     }
 
     public void readSelectedManga() {
@@ -623,16 +671,28 @@ public class ControllerMain {
         }
     }
 
-    private void checkForHistory() {
-
+    private void generateHistoryPane() {
         mapHistoryPane();
+        toggleHistoryButton();
+    }
 
+    private void toggleHistoryButton() {
         if (history.size() > 0) {
-            try {
-                populateHistory();
-            } catch (Exception e) {
-                e.printStackTrace();
+//            toggleHistoryButton(true);
+        }
+    }
+
+    private void populateHistory() {
+        try {
+            for (int i = 0; i < history.size(); i++) {
+                historyThumbViews.get(i).setSmooth(true);
+                historyThumbViews.get(i).setImage(new Image(new FileInputStream(thumbsPath + File.separator + history.get(i).getTitleId() + ".jpg")));
+                historyTitleFields.get(i).setText(history.get(i).getTitle());
+                historySummaryFields.get(i).setText(history.get(i).getSummary());
+                historyReadButtons.get(i).setVisible(true);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -650,11 +710,6 @@ public class ControllerMain {
 
     public void errorHide() {
         error.setVisible(false);
-    }
-
-    private void historyPaneVisibility(boolean visible) {
-        historyPaneContent.setVisible(visible);
-        historyClosePane.setVisible(visible);
     }
 
     private void mapHistoryPane() {
@@ -695,7 +750,7 @@ public class ControllerMain {
         mangaPages.clear();
         File file = new File(pathToManga);
         mangaPages.addAll(Arrays.asList(Objects.requireNonNull(file.listFiles())));
-        selectedMangaCurrentChapterFinalPage = mangaPages.size();
+        selectedMangaCurrentChapLastPageNumTEMP = mangaPages.size();
     }
 
     public static void mangaImageFilesToList() {
@@ -705,51 +760,11 @@ public class ControllerMain {
                 File.separator +
                 Values.DIR_MANGA.getValue() +
                 File.separator +
-                selectedMangaIdentNumber +
+                selectedMangaIdentNumberTEMP +
                 File.separator +
-                selectedMangaLastChapReadNum);
+                selectedMangaLastChapReadNumTEMP);
         mangaPageImageFiles.addAll(Arrays.asList(Objects.requireNonNull(file.listFiles())));
-        selectedMangaCurrentChapterFinalPage = mangaPageImageFiles.size();
-    }
-
-
-
-    private void populateHistory() throws Exception {
-        historyInverted.clear();
-        historyInverted.addAll(history);
-//        Collections.reverse(historyInverted);
-
-        // surly we can just iterate from top to bottom, this seems kind of ghetto.
-
-        for (int i = 0; i < historyInverted.size(); i++) {
-            historyThumbViews.get(i).setSmooth(true);
-            historyThumbViews.get(i).setImage(new Image(new FileInputStream(thumbsPath + File.separator + historyInverted.get(i).getTitleId() + ".jpg")));
-            historyTitleFields.get(i).setText(historyInverted.get(i).getTitle());
-            historySummaryFields.get(i).setText(historyInverted.get(i).getSummary());
-            historyReadButtons.get(i).setVisible(true);
-        }
-    }
-
-    public void openFromHistory(ActionEvent event) {
-//        historyPaneVisibility(false);
-        Button button = (Button) event.getSource();
-
-        // this whole button button shit is a seperate meothod now, so lets use it. or maybe this whole
-        // method is obsolite, who even knows at this point fml
-
-
-        System.out.println(historyInverted.get(0).getTitleId());
-
-        System.out.println(historyInverted.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
-
-        selectionIdentNum = historyInverted.get(Integer.parseInt(button.getId().substring(11))).getTitleId();
-
-        totalChaptersNumber = historyInverted.get(Integer.parseInt(button.getId().substring(11))).getTotalChapters();
-        currentPageNumber = historyInverted.get(Integer.parseInt(button.getId().substring(11))).getCurrentPage();
-        lastChapterReadNumber = historyInverted.get(Integer.parseInt(button.getId().substring(11))).getLastChapterRead();
-        lastChapterDownloaded = historyInverted.get(Integer.parseInt(button.getId().substring(11))).getLastChapterDownloaded();
-        beginReading(historyInverted.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
-        bookmark.set(0, historyInverted.get(Integer.parseInt(button.getId().substring(11))));
+        selectedMangaCurrentChapLastPageNumTEMP = mangaPageImageFiles.size();
     }
 
     public void mangaProblem() {
@@ -790,12 +805,12 @@ public class ControllerMain {
     public void preReadingTasks() {
         //calling titleid more than once, this should be set somewhere.. no?
         //this whole method is shit. shouldnt be setting a bookmark, shoudlnt be setting values, just no.
-        bookmark.set(0, currentContent.get(currentListIndex));
-        if (!HistoryPane.storeHistory(history, currentContent.get(currentListIndex).getTitleId())) {
-            history.add(currentContent.get(currentListIndex));
-        }
+        MangaValues.setBookmark(Values.DB_NAME_MANGA.getValue());
+        HistoryPane.storeHistory();
+        // the below needs to be set earlier
         currentParentListIndex = fetchOriginalIndexNumber();
-        selectedMangaIdentNumber = currentContent.get(currentListIndex).getTitleId();
+//        selectedMangaIdentNumberTEMP = currentContent.get(currentListIndex).getTitleId();
+        // end
         mangaImageFilesToList();
         launchReader();
     }
@@ -812,7 +827,7 @@ public class ControllerMain {
         removeNewChapFlagIfPresent();
     }
 
-    private static void setAllSidebarInfoFields() {
+    private void setAllSidebarInfoFields() {
         setReaderSidebarCurChapNum();
         setReaderSidebarFinalChapNum();
         setReaderSidebarCurScrollSpeed();
@@ -820,28 +835,28 @@ public class ControllerMain {
     }
 
     private void setCurrentPageImageInReader() {
-        imageView.setImage(getImageFromFilesystem(mangaPageImageFiles.get(selectedMangaCurrentPageNum)));
+        imageView.setImage(getImageFromFilesystem(mangaPageImageFiles.get(selectedMangaCurrentPageNumTEMP)));
         setReaderSidebarCurPageNum();
     }
 
-    private static void setReaderSidebarCurChapNum() {
-        sidebarCurChapNum.setText(String.valueOf(selectedMangaLastChapterRead + 1));
+    private void setReaderSidebarCurChapNum() {
+        sidebarCurChapNum.setText(String.valueOf(selectedMangaLastChapReadNumTEMP + 1));
     }
 
-    private static void setReaderSidebarFinalChapNum() {
-        sidebarTotalChapNum.setText(String.valueOf(selectedMangaTotalChapNum));
+    private void setReaderSidebarFinalChapNum() {
+        sidebarTotalChapNum.setText(String.valueOf(selectedMangaTotalChapNumTEMP));
     }
 
-    private static void setReaderSidebarCurScrollSpeed() {
+    private void setReaderSidebarCurScrollSpeed() {
         sidebarCurScrollSpeed.setText(String.valueOf(scrollSpeed));
     }
 
-    private static void setReaderSidebarCurPageNum() {
-        sidebarPageNumber.setText(String.valueOf(selectedMangaCurrentPageNum + 1));
+    private void setReaderSidebarCurPageNum() {
+        sidebarPageNumber.setText(String.valueOf(selectedMangaCurrentPageNumTEMP + 1));
     }
 
     private static void removeNewChapFlagIfPresent() {
-        if (currentContent.get(currentContentListIndexNumber).isNewChapters()) {
+        if (currentContent.get(currentContentListIndexNumberTEMP).isNewChapters()) {
             MangaValues.changeNewChaptersFlag(false, Values.DB_NAME_MANGA.getValue());
         }
     }
@@ -886,7 +901,7 @@ public class ControllerMain {
 
     public void navigateMangaCurrentlyReading(KeyEvent event) {
         readerRequestFocus();
-        MangaTurnPage.turnPagePreviousNext(event, selectedMangaCurrentChapterFinalPage);
+        MangaTurnPage.turnPagePreviousNext(event, selectedMangaCurrentChapLastPageNumTEMP);
         MangaTurnPage.scrollPageUpDown(event, mangaPageVerticalScrollPane);
 
         //calculatechapternumber should actually happen first no? mangaturnpage should run that first as a private method
@@ -945,7 +960,6 @@ public class ControllerMain {
         currentContent.get(currentListIndex).setCurrentPage(currentPageNumber);
         currentParentList.get(currentParentListIndex).setCurrentPage(currentPageNumber);
     }
-
 
 
     private void calculateChapterNumber() {
@@ -1073,20 +1087,6 @@ public class ControllerMain {
         }
     }
 
-    public void beginReadingAtBookmark() {
-        //need to change this methodname probably cause its not actually launching reader
-        //need something in initialization block to determine if button is active or not.
-        // "you dont have any bookmarks yet you silly bastard" same with historypane
-
-        selectedMangaIdentNumber = bookmark.get(0).getTitleId();
-        selectedMangaTotalChapNum = bookmark.get(0).getTotalChapters();
-        selectedMangaLastChapReadNum = bookmark.get(0).getLastChapterRead();
-        selectedMangaCurrentPageNum = bookmark.get(0).getCurrentPage();
-//        beginReading(selectedMangaIdentNumber);
-        HistoryPane.storeHistory();
-        launchReader();
-    }
-
 //    private Runnable mangaPageTurned = () -> {
 ////        database.modifyManga("currently_reading", selectionIdentNum, "current_page", currentPageNumber);
 //        calculateChapterNumber();
@@ -1123,6 +1123,7 @@ public class ControllerMain {
     }
 
     private void createListFromFilteredStreamResults(ArrayList<MangaArrayList> arrayList, Predicate<MangaArrayList> predicate) {
+
         populateCurrentContentList(arrayList.stream()
                 .filter(predicate)
                 .collect(Collectors.toCollection(ArrayList::new)));
@@ -1141,19 +1142,34 @@ public class ControllerMain {
         createListFromFilteredStreamResults(Objects.requireNonNull(matchListToCurrentCategory()), predicateList.stream().reduce(w -> true, Predicate::and));
     }
 
-    public void searchBox() {
-//        currentContent.clear();
-        popupClose();
-        String searchTerm = removeInvalidValues(searchBox.getText());
+//    public void searchBox() {
+////        currentContent.clear();
+//
+//        popupClose();
+//        String searchTerm = removeInvalidValues(searchBox.getText());
+//
+//        String test = "(?i).*\\b(" + searchTerm + ")\\b.*";
+//        Pattern pattern = Pattern.compile("\\d");
+//
+//        createListFromFilteredStreamResults(Objects.requireNonNull(matchListToCurrentCategory()), m -> m.getTitle()
+//                .matches(".*\\b(" + searchTerm + ")\\b*.") || m.getSummary()
+//                .matches(".*\\b(" + searchTerm + ")\\b*."));
+//        searchBox.clear();
+//    }
 
-        createListFromFilteredStreamResults(Objects.requireNonNull(matchListToCurrentCategory()), m -> m.getTitle()
-                .matches("(?i).*\\b(" + searchTerm + ")\\b.*") || m.getSummary()
-                .matches("(?i).*\\b(" + searchTerm + ")\\b.*"));
+    public void searchBox() {
+        System.out.println(currentContent.size());
+        ArrayList<Predicate<MangaArrayList>> predicateArrayList = new ArrayList<>();
+
+        for (String eachWord : removeInvalidValues(searchBox.getText()).split(" ")) {
+                predicateArrayList.add(m -> removeInvalidValues(m.getTitle()).matches("(?i).*\\b(" + eachWord + ")\\b.*") || removeInvalidValues(m.getSummary()).matches("(?i).*\\b(" + eachWord + ")\\b.*"));
+        }
         searchBox.clear();
+        createListFromFilteredStreamResults(Objects.requireNonNull(matchListToCurrentCategory()), predicateArrayList.stream().reduce(Predicate::and).orElse(p -> true));
     }
 
     private String removeInvalidValues(String string) {
-        return string.replaceAll("[^a-zA-Z0-9!:;.,<>~`!@#$%^&]+", "");
+        return string.replaceAll("[^a-zA-Z0-9!:;.,<>~`@#$%^&= ]+", "");
     }
 
     public void resetThumbsPaneToDefault() {
@@ -1440,7 +1456,7 @@ public class ControllerMain {
                 downloadingStartingChapter = resultSet.getInt("last_chapter_read");
                 downloadingLastChapterDownloaded = resultSet.getInt("last_chapter_downloaded");
                 downloadingTitleId = resultSet.getInt("title_id");
-                downloadingWebAddress = AddressCheckAndCorrect.verifyAddress(resultSet.getString("web_address"), resultSet.getString("title"));
+                downloadingWebAddress = InvalidEntry.verifyAddress(resultSet.getString("web_address"), resultSet.getString("title"));
                 database.modifyManga("downloading", downloadingTitleId, "web_address", downloadingWebAddress);
                 downloadingCurrentPage = resultSet.getInt("current_page");
                 database.closeDb();
@@ -1473,6 +1489,35 @@ public class ControllerMain {
         }
     };
 }
+
+
+//    private void historyPaneVisibility(boolean visible) {
+//        historyPaneContent.setVisible(visible);
+//        historyClosePane.setVisible(visible);
+//    }
+//
+//    public void openFromHistory(ActionEvent event) {
+////        historyPaneVisibility(false);
+//        Button button = (Button) event.getSource();
+//
+//        // this whole button button shit is a seperate meothod now, so lets use it. or maybe this whole
+//        // method is obsolite, who even knows at this point fml
+//
+//
+//        System.out.println(history.get(0).getTitleId());
+//
+//        System.out.println(history.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
+//
+//        selectionIdentNum = history.get(Integer.parseInt(button.getId().substring(11))).getTitleId();
+//
+//        totalChaptersNumber = history.get(Integer.parseInt(button.getId().substring(11))).getTotalChapters();
+//        currentPageNumber = history.get(Integer.parseInt(button.getId().substring(11))).getCurrentPage();
+//        lastChapterReadNumber = history.get(Integer.parseInt(button.getId().substring(11))).getLastChapterRead();
+//        lastChapterDownloaded = history.get(Integer.parseInt(button.getId().substring(11))).getLastChapterDownloaded();
+//        beginReading(history.get(Integer.parseInt(button.getId().substring(11))).getTitleId());
+//        bookmark.set(0, history.get(Integer.parseInt(button.getId().substring(11))));
+//    }
+
 
 //        lastChapterRead.lengthProperty().addListener(new ChangeListener<>() {
 //            @Override
@@ -1720,7 +1765,7 @@ public class ControllerMain {
 //        navButtonVisibility();
 //    }
 
-    //    private void moveToPendingDownload() {
+//    private void moveToPendingDownload() {
 //        String tableName = null;
 //        if (currentCategory.getValue().equals("Not Collected")) {
 //            tableName = Values.DB_TABLE_AVAILABLE.getValue();
@@ -1733,7 +1778,7 @@ public class ControllerMain {
 //        database.closeDb();
 //    }
 
-    //    public void completeIncomplete() throws Exception {
+//    public void completeIncomplete() throws Exception {
 //
 //        //NEEDS TO BE A BUTTON!! THREE STAGE not currently in use!!
 //        if (completeIncomplete.isSelected()) {
@@ -1808,8 +1853,6 @@ public class ControllerMain {
 ////        }
 //    }
 //}
-
-
 
 
 //    public void genreIncludeExclude(ActionEvent event) {
