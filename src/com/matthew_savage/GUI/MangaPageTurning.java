@@ -8,38 +8,43 @@ import javafx.scene.input.KeyEvent;
 
 import static com.matthew_savage.CategoryMangaLists.*;
 
-public class MangaPageNavigation {
+public class MangaPageTurning {
 
 
-    public static void turnPagePreviousNext(KeyEvent event, int currentChapterFinalPage) {
+    public static void turnPagePreviousNext(KeyEvent event) {
         if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-            gotoNextPage(selectedMangaCurrentPageNumTEMP, currentChapterFinalPage);
+            gotoNextPage();
         }
         if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-            gotoPreviousPage(selectedMangaCurrentPageNumTEMP);
+            gotoPreviousPage();
         }
     }
 
 
-    private static void gotoNextPage(int currentPageNum, int currentChapterFinalPage) {
-        if (currentPageNum < currentChapterFinalPage) {
-            MangaValues.changeCurrentPageNumber(currentPageNum + 1, Values.DB_NAME_MANGA.getValue());
+    private static void gotoNextPage() {
+        if (selectedMangaCurrentPageNumTEMP < (selectedMangaCurrentChapLastPageNumTEMP)) {
+            System.out.println("going to next page lolz");
+            selectedMangaCurrentPageNumTEMP++;
+//            MangaValues.changeCurrentPageNumber(currentPageNum + 1, Values.DB_NAME_MANGA.getValue());
         } else {
             nextChapter();
         }
     }
 
-    private static void gotoPreviousPage(int currentPageNum) {
-        if (currentPageNum > 0) {
-            MangaValues.changeCurrentPageNumber(currentPageNum - 1, Values.DB_NAME_MANGA.getValue());
+    private static void gotoPreviousPage() {
+        if (selectedMangaCurrentPageNumTEMP > 0) {
+            System.out.println("going to previous page lolz");
+            selectedMangaCurrentPageNumTEMP--;
+//            MangaValues.changeCurrentPageNumber(currentPageNum - 1, Values.DB_NAME_MANGA.getValue());
         } else {
             previousChapter();
         }
     }
 
     private static void nextChapter() {
-        if (selectedMangaLastChapReadNumTEMP > selectedMangaTotalChapNumTEMP) {
+        if (selectedMangaLastChapReadNumTEMP < selectedMangaTotalChapNumTEMP) {
             MangaValues.changeLastChapterRead(selectedMangaLastChapReadNumTEMP + 1, Values.DB_NAME_MANGA.getValue());
+            MangaValues.changeCurrentPageNumber(0, Values.DB_NAME_MANGA.getValue());
             ControllerMain.mangaImageFilesToList();
         }
         if (selectedMangaLastChapReadNumTEMP == selectedMangaTotalChapNumTEMP) {
@@ -49,6 +54,7 @@ public class MangaPageNavigation {
 
     private static void changeMangaStatus() {
         MangaValues.changeStatus(true, Values.DB_NAME_MANGA.getValue());
+        MangaValues.clearBookmark();
         //method to close reader
     }
 
@@ -56,10 +62,8 @@ public class MangaPageNavigation {
         if (selectedMangaLastChapReadNumTEMP > 0) {
             MangaValues.changeLastChapterRead(selectedMangaLastChapReadNumTEMP - 1, Values.DB_NAME_MANGA.getValue());
             ControllerMain.mangaImageFilesToList();
-            MangaValues.changeCurrentPageNumber(-1, Values.DB_NAME_MANGA.getValue());
+            MangaValues.changeCurrentPageNumber(selectedMangaCurrentChapLastPageNumTEMP, Values.DB_NAME_MANGA.getValue());
             //method to load previous chapter into reader
         }
     }
-
-
 }

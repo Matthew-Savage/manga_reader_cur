@@ -17,7 +17,7 @@ public class MangaArrayList {
     private int currentPage;
     private int lastChapterRead;
     private int lastChapterDownloaded;
-    private boolean newChapters;
+    private int newChapters;
     private boolean favorite;
 
     public int getTitleId() {
@@ -108,11 +108,11 @@ public class MangaArrayList {
         this.lastChapterDownloaded = lastChapterDownloaded;
     }
 
-    public boolean isNewChapters() {
+    public int getNewChapters() {
         return newChapters;
     }
 
-    public void setNewChapters(boolean newChapters) {
+    public void setNewChapters(int newChapters) {
         this.newChapters = newChapters;
     }
 
@@ -136,7 +136,7 @@ public class MangaArrayList {
         this.summary = summary;
     }
 
-    public MangaArrayList(int titleId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, boolean newChapters, boolean favorite) {
+    public MangaArrayList(int titleId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChapters, boolean favorite) {
         this.titleId = titleId;
         this.title = title;
         this.authors = authors;

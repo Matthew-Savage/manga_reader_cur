@@ -256,41 +256,20 @@
                             </content>
                         </ScrollPane>
                         <ImageView id="popupThumb" fx:id="mangaThumb" fitHeight="250.0" fitWidth="167.0" layoutX="15.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button id="getInnerPopup" fx:id="getInnerPopup" layoutX="17.0" layoutY="482.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getThisManga" />
+                        <Button id="getInnerPopup" fx:id="getInnerPopup" layoutX="17.0" layoutY="482.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#addNewManga" />
                         <Button id="unignore" fx:id="unignore" layoutX="15.0" layoutY="482.0" maxHeight="35.0" maxWidth="731.0" minHeight="35.0" minWidth="731.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="731.0" />
                         <Button id="ignoreManga" fx:id="ignoreManga" layoutX="389.0" layoutY="482.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="357.0" />
                         <Button id="readManga" fx:id="readManga" layoutX="15.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#preReadingTasks" />
                         <Button id="rereadManga" fx:id="rereadManga" layoutX="15.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#changeCompletedToReading" />
-                        <Button id="favorite" fx:id="favorite" layoutX="265.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#sidebarFavorite" />
+                        <Button id="favorite" fx:id="favorite" layoutX="265.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#toggleFavorite" />
                         <Button id="ignoreMangaShort" fx:id="ignoreMangaShort" layoutX="514.0" layoutY="482.0" maxHeight="35.0" maxWidth="232.0" minHeight="35.0" minWidth="232.0" mnemonicParsing="false" onAction="#ignoreManga" prefHeight="35.0" prefWidth="232.0" />
                     </children></Pane>
-                <!--<Pane id="innerPopup" fx:id="innerPopup" layoutX="200.0" layoutY="690.0" maxHeight="222.0" maxWidth="391.0" minHeight="222.0" minWidth="391.0" prefHeight="222.0" prefWidth="391.0" visible="false">-->
-                    <!--<children>-->
-                        <!--<RadioButton id="haveNotRead" fx:id="haveNotRead" layoutX="17.0" layoutY="17.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getMangaButton" prefHeight="35.0" prefWidth="357.0">-->
-                            <!--<toggleGroup>-->
-                                <!--<ToggleGroup fx:id="addMethod" />-->
-                            <!--</toggleGroup></RadioButton>-->
-                        <!--<RadioButton id="haveRead" fx:id="haveRead" layoutX="17.0" layoutY="63.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getMangaButton" prefHeight="35.0" prefWidth="357.0" toggleGroup="$addMethod" />-->
-                        <!--<Pane id="innerPopupNumbox" fx:id="innerPopupNumbox" layoutX="129.0" layoutY="111.0" maxHeight="46.0" maxWidth="133.0" minHeight="46.0" minWidth="133.0" prefHeight="46.0" prefWidth="133.0" visible="false">-->
-                            <!--<children>-->
-                                <!--<TextField id="lastChapterRead" fx:id="lastChapterRead" alignment="CENTER" layoutX="17.0" layoutY="6.0" maxHeight="30.0" maxWidth="99.0" minHeight="30.0" minWidth="99.0" prefHeight="30.0" prefWidth="99.0" />-->
-                            <!--</children>-->
-                        <!--</Pane>-->
-                        <!--<Button id="startReading" fx:id="startReading" layoutX="17.0" layoutY="170.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#getThisManga" prefHeight="35.0" prefWidth="357.0" visible="false" />-->
-                    <!--</children>-->
-                <!--</Pane>-->
                 <Pane id="repairPopup" fx:id="repairPane" layoutX="200.0" layoutY="690.0" maxHeight="222.0" maxWidth="391.0" minHeight="222.0" minWidth="391.0" prefHeight="222.0" prefWidth="391.0" visible="false">
                     <children>
                         <Button id="repairError" fx:id="repairError" layoutX="17.0" layoutY="170.0" maxHeight="35.0" maxWidth="357.0" minHeight="35.0" minWidth="357.0" mnemonicParsing="false" onAction="#mangaProblem" prefHeight="35.0" prefWidth="357.0" />
                     </children>
                 </Pane>
             </children></Pane>
-        <!--<Pane id="launchPane" fx:id="launchPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">-->
-            <!--<children>-->
-                <!--<Button id="availableTitles" layoutX="1101.0" layoutY="425.0" maxHeight="224.0" maxWidth="271.0" minHeight="224.0" minWidth="271.0" mnemonicParsing="false" onAction="#showAvailableMangaBooksPane" prefHeight="224.0" prefWidth="271.0" />-->
-                <!--<Button id="gotoLast" layoutX="865.0" layoutY="437.0" maxHeight="237.0" maxWidth="198.0" minHeight="237.0" minWidth="198.0" mnemonicParsing="false" onAction="#goToLastMangaBookPageViewed" prefHeight="237.0" prefWidth="198.0" />-->
-                <!--<Button id="myCollection" layoutX="542.0" layoutY="419.0" maxHeight="229.0" maxWidth="270.0" minHeight="229.0" minWidth="270.0" mnemonicParsing="false" onAction="#showOwnedMangaBooksPane" prefHeight="229.0" prefWidth="270.0" />-->
-            <!--</children></Pane>-->
         <Pane layoutX="1820.0" maxHeight="60.0" maxWidth="100.0" minHeight="60.0" minWidth="100.0" prefHeight="60.0" prefWidth="100.0">
             <children>
                 <Button id="close" fx:id="appClose" layoutX="12.0" layoutY="10.0" maxHeight="38.0" maxWidth="37.0" minHeight="38.0" minWidth="37.0" mnemonicParsing="false" onAction="#appClose" prefHeight="38.0" prefWidth="37.0" />
@@ -298,7 +277,7 @@
             </children></Pane>
         <BorderPane id="readMangaPane" fx:id="readMangaPane" maxHeight="1026.0" maxWidth="1920.0" minHeight="1026.0" minWidth="1920.0" prefHeight="1026.0" prefWidth="1920.0" visible="false">
             <center>
-                <ScrollPane id="readMangaPane" fx:id="mangaPageVerticalScrollPane" hbarPolicy="NEVER" onKeyPressed="#turnMangaBookPage" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+                <ScrollPane id="readMangaPane" fx:id="mangaPageVerticalScrollPane" hbarPolicy="NEVER" onKeyPressed="#navigateMangaCurrentlyReading" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
                     <content>
                         <StackPane id="readMangaPane" fx:id="imageFrame" alignment="CENTER" maxWidth="1920.0" minWidth="1920.0" onScroll="#scrollWheel" prefWidth="1920.0">
                             <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" />
@@ -309,13 +288,13 @@
         </BorderPane>
         <Pane id="sidebarPane" fx:id="sidebarPane" layoutX="4.0" layoutY="3.0" maxHeight="942.0" maxWidth="103.0" minHeight="942.0" minWidth="103.0" onMouseEntered="#sidebarVisible" onMouseExited="#sidebarInvisible" opacity="0" prefHeight="942.0" prefWidth="103.0" visible="false">
             <children>
-                <Button id="sidebarPane_favorite" layoutX="15.0" layoutY="15.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#sidebarFavorite" prefHeight="74.0" prefWidth="73.0" />
+                <Button id="sidebarPane_favorite" layoutX="15.0" layoutY="15.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="74.0" prefWidth="73.0" />
                 <Button id="sidebarPane_size_decrease" fx:id="sidebarPaneSizeDecrease" layoutX="15.0" layoutY="100.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" visible="false" />
                 <Button id="sidebarPane_size_increase" fx:id="sidebarPaneSizeIncrease" layoutX="15.0" layoutY="185.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#mangaBookPageZoomInOrOut" prefHeight="74.0" prefWidth="73.0" />
                 <Button id="sidebarPane_goback" layoutX="15.0" layoutY="270.0" maxHeight="74.0" maxWidth="73.0" minHeight="74.0" minWidth="73.0" mnemonicParsing="false" onAction="#sidebarGoBack" prefHeight="74.0" prefWidth="73.0" />
                 <TextField id="textSize42" fx:id="sidebarCurScrollSpeed" alignment="CENTER" editable="false" layoutX="-20.0" layoutY="353.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" />
-                <Button id="sidebarPane_scroll_down" layoutX="15.0" layoutY="422.0" maxHeight="32.0" maxWidth="31.0" minHeight="32.0" minWidth="31.0" mnemonicParsing="false" onAction="#adjustMangaPageUpDownSpeed" prefHeight="32.0" prefWidth="31.0" />
-                <Button id="sidebarPane_scroll_up" layoutX="57.0" layoutY="422.0" maxHeight="32.0" maxWidth="31.0" minHeight="32.0" minWidth="31.0" mnemonicParsing="false" onAction="#adjustMangaPageUpDownSpeed" prefHeight="32.0" prefWidth="31.0" />
+                <Button id="sidebarPane_scrollSpeed_decrease" fx:id="scrollSpeedDown" layoutX="15.0" layoutY="422.0" maxHeight="32.0" maxWidth="31.0" minHeight="32.0" minWidth="31.0" mnemonicParsing="false" onAction="#adjustMangaPageUpDownSpeed" prefHeight="32.0" prefWidth="31.0" />
+                <Button id="sidebarPane_scrollSpeed_increase" fx:id="scrollSpeedUp" layoutX="57.0" layoutY="422.0" maxHeight="32.0" maxWidth="31.0" minHeight="32.0" minWidth="31.0" mnemonicParsing="false" onAction="#adjustMangaPageUpDownSpeed" prefHeight="32.0" prefWidth="31.0" />
                 <TextField id="textSize42" fx:id="sidebarCurChapNum" alignment="CENTER" editable="false" layoutX="-20.0" layoutY="562.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" />
                 <TextField id="textSize42" fx:id="sidebarPageNumber" alignment="CENTER" editable="false" layoutX="-20.0" layoutY="663.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" />
                 <TextField id="textSize42" fx:id="sidebarTotalChapNum" alignment="CENTER" editable="false" layoutX="-20.0" layoutY="764.0" maxHeight="87.0" maxWidth="140.0" minHeight="87.0" minWidth="140.0" prefHeight="87.0" prefWidth="140.0" />

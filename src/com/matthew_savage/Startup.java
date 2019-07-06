@@ -90,7 +90,7 @@ public class Startup {
                             0,
                             0,
                             0,
-                            false,
+                            0,
                             false));
                 }
                 resultSet.close();
@@ -114,7 +114,7 @@ public class Startup {
                             resultSet.getInt("current_page"),
                             resultSet.getInt("last_chapter_read"),
                             resultSet.getInt("last_chapter_downloaded"),
-                            resultSet.getBoolean("new_chapters"),
+                            resultSet.getInt("new_chapters"),
                             resultSet.getBoolean("favorite")));
                 }
                 resultSet.close();

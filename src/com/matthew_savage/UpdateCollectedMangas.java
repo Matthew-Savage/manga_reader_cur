@@ -54,7 +54,7 @@ public class UpdateCollectedMangas {
 
         try {
             while (resultSet.next()) {
-                checkList.add(new MangaArrayList(resultSet.getInt("title_id"), null, null, null, null, resultSet.getString("web_address"), null, resultSet.getInt("total_chapters"), 0, 0, 0, false, false));
+                checkList.add(new MangaArrayList(resultSet.getInt("title_id"), null, null, null, null, resultSet.getString("web_address"), null, resultSet.getInt("total_chapters"), 0, 0, 0, 0, false));
             }
             resultSet.close();
         } catch (Exception e) {

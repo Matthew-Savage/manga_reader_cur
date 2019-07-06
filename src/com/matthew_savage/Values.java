@@ -106,6 +106,7 @@ public enum Values {
     DB_TABLE_AVAILABLE("available_manga"),
     DB_TABLE_COMPLETED("completed"),
     DB_TABLE_READING("currently_reading"),
+    DB_TABLE_HISTORY("history"),
     DB_TABLE_DOWNLOAD("downloading"),
     DB_TABLE_NOT_INTERESTED("not_interested"),
     DB_TABLE_FIVE_NEWEST("newest_manga"),

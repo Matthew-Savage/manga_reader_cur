@@ -18,19 +18,27 @@ public class CategoryMangaLists {
     public static ArrayList<MangaArrayList> currentContent = new ArrayList<>();
     public static ArrayList<MangaArrayList> fiveNewestTitles = new ArrayList<>();
     public static List<Predicate<MangaArrayList>> predicateList = new ArrayList<>();
-//    public static ArrayList<MangaArrayList> historyInverted = new ArrayList<>();
     public static ArrayList<MangaArrayList> currentParentList = new ArrayList<>();
     public static ArrayList<File> mangaPageImageFiles = new ArrayList<>();
     public static int parentListIndexNumberTEMP;
     public static int currentContentListIndexNumberTEMP;
+
+
     public static int selectedMangaIdentNumberTEMP;
-    public static int selectedMangaLastChapReadNumTEMP;
+    public static String selectedMangaTitleTEMP;
+    public static String selectedMangaAuthorsTEMP;
+    public static String selectedMangaStatusTEMP;
+    public static String selectedMangaSummaryTEMP;
+    public static String selectedMangaWebAddressTEMP;
+    public static String selectedMangaGenresTEMP;
     public static int selectedMangaTotalChapNumTEMP;
     public static int selectedMangaCurrentPageNumTEMP;
+    public static int selectedMangaLastChapReadNumTEMP;
+    public static int selectedMangaLastChapDownloadedTEMP;
+    public static int selectedMangaNewChapNumTEMP;
+    public static boolean selectedMangaIsFavoriteTEMP;
+
     public static int selectedMangaCurrentChapLastPageNumTEMP;
-    public static String selectedMangaTitleTEMP;
-    public static String selectedMangaSummaryTEMP;
-    public static String selectedMangaAuthorsTEMP;
-    public static String selectedMangaGenresTEMP;
-//    public static int selectedMangaCurrentChapFinalPage;
+
+
 }

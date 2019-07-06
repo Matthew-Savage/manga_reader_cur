@@ -9,7 +9,7 @@ public class ToggleNavButtons {
 
     public static List<Boolean> navButtonVisibility(int currentPageNumber, int totalPagesNumber) {
 
-        if (totalPagesNumber == 1) {
+        if (totalPagesNumber == 1 || totalPagesNumber == 0) {
             return Stream.of(false, false, false, false, false).collect(Collectors.toList());
         } else{
             return multiPageToggle(currentPageNumber, totalPagesNumber);

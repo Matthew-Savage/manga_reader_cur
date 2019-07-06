@@ -711,25 +711,25 @@
     -fx-border-color: transparent;
 }
 
-#sidebarPane_scroll_down {
+#sidebarPane_scrollSpeed_decrease {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_decrease.png");
     -fx-border-color: transparent;
 }
 
-#sidebarPane_scroll_down:pressed {
+#sidebarPane_scrollSpeed_decrease:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_decrease_pressed.png");
     -fx-border-color: transparent;
 }
 
-#sidebarPane_scroll_up {
+#sidebarPane_scrollSpeed_increase {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_increase.png");
     -fx-border-color: transparent;
 }
 
-#sidebarPane_scroll_up:pressed {
+#sidebarPane_scrollSpeed_increase:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_increase_pressed.png");
     -fx-border-color: transparent;

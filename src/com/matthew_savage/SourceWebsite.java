@@ -214,7 +214,7 @@ public class SourceWebsite {
             newMangaEntries.addAll(fiveNewestTitles);
         }
 
-        MangaValues.setFiveLatestMangas(newMangaEntries);
+        MangaValues.setFiveLatestMangaTitles(newMangaEntries);
 
 
         for (MangaArrayList five : newMangaEntries) {

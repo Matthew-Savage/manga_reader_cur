@@ -1,9 +1,15 @@
 package com.matthew_savage.GUI;
 
+import com.matthew_savage.CategoryMangaLists;
+
 public class ThumbPageNumbering {
 
     public static int setCurrentCatalogPageNumber(int indexIncrementValue) {
-        return (indexIncrementValue / 30) + 1;
+        if (CategoryMangaLists.currentContent.size() == 0) {
+            return 0;
+        } else {
+            return (indexIncrementValue / 30) + 1;
+        }
     }
 
     public static int setTotalCatalogPagesNumber(int currentCategoryListSize) {

@@ -35,12 +35,30 @@ public class Database {
 //        PreparedStatement
     }
 
-    public static void removeManga(int mangaIdentNumber) {
-
+    public static void removeManga(String tableName, int mangaIdentNumber) {
+        try (Statement sqlStatement = dbConnection.createStatement()) {
+            sqlStatement.execute("DELETE FROM " + tableName + " WHERE title_id = '" + mangaIdentNumber + "'");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-    public static <T> void modifyManga(int mangaIdentNumber, String valueColumnName, T newValue) {
+    public static <T> void modifyValue (String tableName, int mangaIdentNumber, String valueColumnName, T newValue) {
+        try (Statement sqlStatement = dbConnection.createStatement()) {
+            sqlStatement.execute("UPDATE " + tableName + " SET " + valueColumnName + " = '" + newValue + "' WHERE title_id = '" + mangaIdentNumber + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static void addMangaEntry(String tableName, int mangaId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChaptersBoolean, boolean favoriteBoolean) {
+
+        try (Statement sqlStatement = dbConnection.createStatement()) {
+            sqlStatement.execute("INSERT INTO " + tableName + " (title_id, title, authors, status, summary, web_address, genre_tags, total_chapters, current_page, last_chapter_read, last_chapter_downloaded, new_chapters, favorite) VALUES " +
+                    "('" + mangaId + "', '" + title + "', '" + authors + "', '" + status + "', '" + summary + "', '" + webAddress + "', '" + genreTags + "', '" + totalChapters + "', '" + currentPage + "', '" + lastChapterRead + "', '" + lastChapterDownloaded + "', '" + newChaptersBoolean + "', '" + favoriteBoolean + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void terminateDbAccess() {

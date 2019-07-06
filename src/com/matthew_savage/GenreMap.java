@@ -16,17 +16,17 @@ public class GenreMap {
 
         genreMap.put("genre0.include",m -> m.getGenreTags().contains("Action"));
         genreMap.put("genre0.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre1.include",m -> m.getGenreTags().contains("Action"));
-        genreMap.put("genre1.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre2.include",m -> m.getGenreTags().contains("Action"));
-        genreMap.put("genre2.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre3.include",m -> m.getGenreTags().contains("Action"));
-        genreMap.put("genre3.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre4.include",m -> m.getGenreTags().contains("Action"));
-        genreMap.put("genre4.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre5.include",m -> m.getGenreTags().contains("Action"));
-        genreMap.put("genre5.exclude",m -> !m.getGenreTags().contains("Action"));
-        genreMap.put("genre6.include",m -> m.getGenreTags().contains("Action"));
+        genreMap.put("genre1.include",m -> m.getGenreTags().contains("Adult"));
+        genreMap.put("genre1.exclude",m -> !m.getGenreTags().contains("Adult"));
+        genreMap.put("genre2.include",m -> m.getGenreTags().contains("Adventure"));
+        genreMap.put("genre2.exclude",m -> !m.getGenreTags().contains("Adventure"));
+        genreMap.put("genre3.include",m -> m.getGenreTags().contains("Comedy"));
+        genreMap.put("genre3.exclude",m -> !m.getGenreTags().contains("Comedy"));
+        genreMap.put("genre4.include",m -> m.getGenreTags().contains("Cooking"));
+        genreMap.put("genre4.exclude",m -> !m.getGenreTags().contains("Cooking"));
+        genreMap.put("genre5.include",m -> m.getGenreTags().contains("Doujinshi"));
+        genreMap.put("genre5.exclude",m -> !m.getGenreTags().contains("Doujinshi"));
+        genreMap.put("genre6.include",m -> m.getGenreTags().contains("Drama"));
         genreMap.put("genre6.exclude",m -> !m.getGenreTags().contains("Drama"));
         genreMap.put("genre7.include",m -> m.getGenreTags().contains("Ecchi"));
         genreMap.put("genre7.exclude",m -> !m.getGenreTags().contains("Ecchi"));
