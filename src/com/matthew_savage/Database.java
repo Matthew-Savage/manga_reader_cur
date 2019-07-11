@@ -11,7 +11,7 @@ public class Database {
 
     public Connection openDb(String databaseFilename) {
         try {
-            return dbConnect = DriverManager.getConnection("jdbc:sqlite:" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + databaseFilename);
+            return dbConnect = DriverManager.getConnection("jdbc:sqlite:" + StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_DB.getValue() + File.separator + databaseFilename);
         } catch (SQLException e) {
             System.out.println("Opening DB connect failed");
         }
@@ -21,7 +21,7 @@ public class Database {
     //all this shit needs to run using its own thread, probably make a global executor service
     public static void accessDb(String dbFileName) {
         try {
-            dbConnection = DriverManager.getConnection("jdbc:sqlite:" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + dbFileName);
+            dbConnection = DriverManager.getConnection("jdbc:sqlite:" + StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_DB.getValue() + File.separator + dbFileName);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,7 +119,7 @@ public class Database {
 
     public void downloadDbAttach() {
         try (Statement sqlStatement = dbConnect.createStatement()) {
-            sqlStatement.execute("ATTACH DATABASE '" + Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + Values.DB_NAME_DOWNLOADING.getValue() + "' AS downloadDb");
+            sqlStatement.execute("ATTACH DATABASE '" + StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_DB.getValue() + File.separator + StaticStrings.DB_NAME_DOWNLOADING.getValue() + "' AS downloadDb");
         } catch (Exception e) {
             System.out.println(e);
         }

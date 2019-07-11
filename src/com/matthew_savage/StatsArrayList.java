@@ -6,7 +6,7 @@ public class StatsArrayList {
     private int titlesFinished;
     private int pagesRead;
     private int favorites;
-    private int blasklisted;
+    private int blacklisted;
     private int dailyPages;
     private String genreOne;
     private String genreTwo;
@@ -52,12 +52,12 @@ public class StatsArrayList {
         this.favorites = favorites;
     }
 
-    public int getBlasklisted() {
-        return blasklisted;
+    public int getBlacklisted() {
+        return blacklisted;
     }
 
-    public void setBlasklisted(int blasklisted) {
-        this.blasklisted = blasklisted;
+    public void setBlacklisted(int blacklisted) {
+        this.blacklisted = blacklisted;
     }
 
     public int getDailyPages() {
@@ -98,7 +98,7 @@ public class StatsArrayList {
         this.titlesFinished = titlesFinished;
         this.pagesRead = pagesRead;
         this.favorites = favorites;
-        this.blasklisted = blasklisted;
+        this.blacklisted = blasklisted;
         this.dailyPages = dailyPages;
         this.genreOne = genreOne;
         this.genreTwo = genreTwo;

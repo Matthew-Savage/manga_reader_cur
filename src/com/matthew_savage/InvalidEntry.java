@@ -9,7 +9,6 @@ import java.util.ArrayList;
 class InvalidEntry {
 
     private static String databaseMangaName;
-    private static Database db = new Database();
 
     static String verifyAddress(String webAddress, String mangaName) {
 
@@ -39,7 +38,7 @@ class InvalidEntry {
 
     private static Document getSearchResults(String mangaName) {
         try {
-            return Jsoup.connect(Values.URL_ROOT.getValue() + Values.URL_SEARCH.getValue() + mangaName).get();
+            return Jsoup.connect(StaticStrings.URL_ROOT.getValue() + StaticStrings.URL_SEARCH.getValue() + mangaName).get();
         } catch (IOException e) {
             e.printStackTrace();
         }

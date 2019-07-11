@@ -8,15 +8,15 @@ public class Startup {
 
     private static Database database = new Database();
 
-    public static ArrayList<MangaArrayList> buildArray(String fileName, String tableName) {
+    public static ArrayList<Manga> buildArray(String fileName, String tableName) {
         return resultSetToArrayList(fileName, tableName);
     }
 
     public static void implementDatabaseChanges() {
-        File userFile = new File(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_DB.getValue() + File.separator + "usr.db");
+        File userFile = new File(StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_DB.getValue() + File.separator + "usr.db");
 
         if (!userFile.exists()) {
-            System.out.println("user file doesn't exist bro! making it.. bro!");
+            ControllerLoader.update.set("Update required! Updating to version " + StaticStrings.VER_NUM_CURRENT.getValue() + "!");
             database.openDb("usr.db");
             database.createUserTable();
             database.storeVersionEntry("version_number", 2);
@@ -24,7 +24,7 @@ public class Startup {
             database.closeDb();
             changesNeeded();
         } else {
-            System.out.println("no changes needed!");
+            ControllerLoader.update.set("Running version " + StaticStrings.VER_NUM_CURRENT.getValue() + " - No update needed.");
         }
     }
 
@@ -35,10 +35,10 @@ public class Startup {
         database.createBookmarkTable();
         fetchCurrentBookmark();
         database.deleteTable("resume_last_manga");
-        database.createIndex(Values.DB_TABLE_COMPLETED.getValue());
-        database.createIndex(Values.DB_TABLE_FIVE_NEWEST.getValue());
-        database.createIndex(Values.DB_TABLE_READING.getValue());
-        database.createIndex(Values.DB_TABLE_NOT_INTERESTED.getValue());
+        database.createIndex(StaticStrings.DB_TABLE_COMPLETED.getValue());
+        database.createIndex(StaticStrings.DB_TABLE_FIVE_NEWEST.getValue());
+        database.createIndex(StaticStrings.DB_TABLE_READING.getValue());
+        database.createIndex(StaticStrings.DB_TABLE_NOT_INTERESTED.getValue());
         database.closeDb();
     }
 
@@ -72,13 +72,13 @@ public class Startup {
                 0);
     }
 
-    private static ArrayList<MangaArrayList> resultSetToArrayList(String fileName, String tableName) {
-        ArrayList<MangaArrayList> list = new ArrayList<>();
+    private static ArrayList<Manga> resultSetToArrayList(String fileName, String tableName) {
+        ArrayList<Manga> list = new ArrayList<>();
         ResultSet resultSet = fetchResultSet(fileName, tableName);
-        if (tableName.equals(Values.DB_TABLE_FIVE_NEWEST.getValue())) {
+        if (tableName.equals(StaticStrings.DB_TABLE_FIVE_NEWEST.getValue())) {
             try {
                 while (resultSet.next()) {
-                    list.add(new MangaArrayList(
+                    list.add(new Manga(
                             resultSet.getInt("title_id"),
                             resultSet.getString("title"),
                             null,
@@ -91,7 +91,7 @@ public class Startup {
                             0,
                             0,
                             0,
-                            false));
+                            0));
                 }
                 resultSet.close();
                 database.closeDb();
@@ -102,7 +102,7 @@ public class Startup {
         } else {
             try {
                 while (resultSet.next()) {
-                    list.add(new MangaArrayList(
+                    list.add(new Manga(
                             resultSet.getInt("title_id"),
                             resultSet.getString("title"),
                             resultSet.getString("authors"),
@@ -115,7 +115,7 @@ public class Startup {
                             resultSet.getInt("last_chapter_read"),
                             resultSet.getInt("last_chapter_downloaded"),
                             resultSet.getInt("new_chapters"),
-                            resultSet.getBoolean("favorite")));
+                            resultSet.getInt("favorite")));
                 }
                 resultSet.close();
                 database.closeDb();

@@ -1,10 +1,6 @@
 package com.matthew_savage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class MangaArrayList {
+public class Manga {
 
     private int titleId;
     private String title;
@@ -18,7 +14,7 @@ public class MangaArrayList {
     private int lastChapterRead;
     private int lastChapterDownloaded;
     private int newChapters;
-    private boolean favorite;
+    private int favorite;
 
     public int getTitleId() {
         return titleId;
@@ -116,27 +112,27 @@ public class MangaArrayList {
         this.newChapters = newChapters;
     }
 
-    public boolean isFavorite() {
+    public int getFavorite() {
         return favorite;
     }
 
-    public void setFavorite(boolean favorite) {
+    public void setFavorite(int favorite) {
         this.favorite = favorite;
     }
 
 
-    public MangaArrayList(String title, String webAddress) {
+    public Manga(String title, String webAddress) {
         this.title = title;
         this.webAddress = webAddress;
     }
 
-    public MangaArrayList(int titleId, String title, String summary) {
+    public Manga(int titleId, String title, String summary) {
         this.titleId = titleId;
         this.title = title;
         this.summary = summary;
     }
 
-    public MangaArrayList(int titleId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChapters, boolean favorite) {
+    public Manga(int titleId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChapters, int favorite) {
         this.titleId = titleId;
         this.title = title;
         this.authors = authors;

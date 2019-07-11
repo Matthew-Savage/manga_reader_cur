@@ -1,6 +1,6 @@
 package com.matthew_savage;
 
-public enum Values {
+public enum StaticStrings {
     GENRE_1("Action"),
     GENRE_DESC_1("Action is about conflict. Whether with guns, blades, fists, or mysterious powers, these titles feature characters in combat - either to protect themselves or the things or people they value, or simply as a way of life"),
     GENRE_2("Adult"),
@@ -79,9 +79,14 @@ public enum Values {
     GENRE_DESC_38("Yaoi, also known as Boys' Love or BL in Japan, is a genre mostly written by women, for women, that depicts homosexual relationships between men. Japan typically uses this single category for all forms of these relationships, sexual or not. In the West, the term Shounen-ai categorizes stories that focus on emotional aspects of relationships, while Yaoi categorizes more of the sexual aspects, such as Smut, or explicit content. As Anime-Planet's audience is mostly based in the West, we use the Western definition for both Yaoi and Shounen-ai. See BL for a list of both titles."),
     GENRE_39("Yuri"),
     GENRE_DESC_39("Yuri is a genre that depicts homosexual relationships between women. Japan typically uses this single category for all forms of these relationships, sexual or not. In the West, the term Shoujo-ai categorizes stories that focus on the emotional aspects of the relationships, while Yuri categorizes more of the sexual aspects and explicit content. As Anime-Planet's audience is mostly based in the West, we use the Western definition for both Yuri and Shoujo-ai."),
+    ERR_HTML("Manganelo.com has modified it's codebase! Cupcaked Reader will not be able to get new content or updates to existing content until this has been addressed!"),
+    ERR_DL_MISC("Something terrible has happened. I have no idea what that something is of course, but what I do know is nothing is downloading."),
+    DL_PART(" is in the process of downloading but is available to begin reading."),
+    DL_DONE(" has completed downloading!"),
     CAT_NOT_COLLECTED("Not Collected"),
     CAT_COLLECTED("Collected"),
     CAT_COMPLETED("Completed"),
+    CAT_UNSURE("Undecided"),
     CAT_REJECTED("Rejected"),
     STAT_PRE_TITLE_TOT("My reader has "),
     STAT_SUF_TITLE_TOT(" total manga titles."),
@@ -131,6 +136,7 @@ public enum Values {
     DB_COL_ENT("entry_number"),
     DB_COL_FAVE_BOOL("favorite"),
     DB_VER_COL_VER("version"),
+    VER_NUM_CURRENT("2"),
     DB_STATS_COL_TITLE_TOT("titles_total"),
     DB_STATS_COL_READING_TOT("reading_total"),
     DB_STATS_COL_FIN_TOT("finished_reading"),
@@ -156,7 +162,7 @@ public enum Values {
 
     private final String value;
 
-    Values(final String valueString) {
+    StaticStrings(final String valueString) {
         this.value = valueString;
     }
 

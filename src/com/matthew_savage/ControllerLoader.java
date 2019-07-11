@@ -1,6 +1,11 @@
 package com.matthew_savage;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +15,15 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ControllerLoader {
 
@@ -26,54 +36,25 @@ public class ControllerLoader {
     @FXML
     TextField preloadProgressBottom;
 
-    private Executor executor = Executors.newFixedThreadPool(1, Executors.defaultThreadFactory());
-//    private static ArrayList<MangaArrayList> available = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> blacklist = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> completed = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> reading = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> history = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> bookmark = new ArrayList<>();
-//    private static ArrayList<MangaArrayList> downloading = new ArrayList<>();
-//    private static ArrayList<StatsArrayList> stats = new ArrayList<>();
+    private Executor executor = Executors.newSingleThreadExecutor();
     private static boolean online = false;
-//
-//    public static ArrayList<MangaArrayList> getAvailable() {
-//        return available;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getBlacklist() {
-//        return blacklist;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getCompleted() {
-//        return completed;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getReading() {
-//        return reading;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getHistory() {
-//        return history;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getBookmark() {
-//        return bookmark;
-//    }
-//
-//    public static ArrayList<MangaArrayList> getDownloading() {
-//        return downloading;
-//    }
-//
-//    public static ArrayList<StatsArrayList> getStats() {
-//        return stats;
-//    }
+    public static boolean updatable = true;
+    public static StringProperty update = new SimpleStringProperty();
 
     public static boolean isOnline() {
         return online;
     }
+    public static boolean isUpdatable() {
+        return updatable;
+    }
 
     public void initialize() {
+        update.addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                preloadProgressCenter.setText(newValue);
+            }
+        });
         executor.execute(this::preload);
     }
 
@@ -88,56 +69,41 @@ public class ControllerLoader {
     }
 
     private void initializeArrays() {
-//        preloadProgressCenter.setText("Populating Manga Data...");
+        update.set("Building Manga cache ...");
         CategoryMangaLists.notCollectedMangaList.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_AVAILABLE.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_AVAILABLE.getValue()));
         CategoryMangaLists.rejectedMangaList.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_NOT_INTERESTED.getValue()));
         CategoryMangaLists.completedMangaList.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_COMPLETED.getValue()));
         CategoryMangaLists.collectedMangaList.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_READING.getValue()));
         CategoryMangaLists.bookmark.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_BOOKMARK.getValue()));
         CategoryMangaLists.downloading.addAll(
-                initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue()));
+                initializeArray(StaticStrings.DB_NAME_DOWNLOADING.getValue(), StaticStrings.DB_TABLE_DOWNLOAD.getValue()));
         CategoryMangaLists.fiveNewestTitles.addAll(
-                initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_FIVE_NEWEST.getValue()));
+                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_FIVE_NEWEST.getValue()));
         CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
         CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
-
-//
-//        blacklist = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_NOT_INTERESTED.getValue());
-//        completed = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_COMPLETED.getValue());
-//        reading = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_READING.getValue());
-//        bookmark = initializeArray(Values.DB_NAME_MANGA.getValue(), Values.DB_TABLE_BOOKMARK.getValue());
-//        downloading = initializeArray(Values.DB_NAME_DOWNLOADING.getValue(), Values.DB_TABLE_DOWNLOAD.getValue());
-//        history = HistoryPane.retrieveStoredHistory();
-//        stats = StatsPane.retrieveStoredStats();
     }
 
-    private static ArrayList<MangaArrayList> initializeArray(String fileName, String tableName) {
+    private static ArrayList<Manga> initializeArray(String fileName, String tableName) {
         return Startup.buildArray(fileName, tableName);
     }
 
-    public void launchMainApp() {
+    private void boot() {
+        update.set("Launching Reader ...");
         Platform.runLater(this::switchStage);
     }
 
-    private void boot() {
-//        preloadProgressCenter.setText("Starting...");
-        launchMainApp();
-    }
-
     private void fetchNewTitles() {
-//        preloadProgressCenter.setText("Checking For New Manga");
-//        populate.findStartingPage();
         SourceWebsite.indexTitles();
-        System.out.println("the break worked lol?");
     }
 
     private void switchStage() {
         Stage primaryStage = (Stage) loadingPane.getScene().getWindow();
+
         primaryStage.hide();
         Parent root = null;
         try {
@@ -147,7 +113,7 @@ public class ControllerLoader {
         }
         primaryStage.getIcons().add(new Image("assets/ico.png"));
         primaryStage.setTitle("Cupcaked Manga Reader");
-        primaryStage.setScene(new Scene(root, 1920, 1034, Color.TRANSPARENT));  //1026
+        primaryStage.setScene(new Scene(Objects.requireNonNull(root), 1920, 1034, Color.TRANSPARENT));  //1026
         primaryStage.setX(0);
         primaryStage.setY(0);
         primaryStage.setResizable(false);
@@ -155,7 +121,5 @@ public class ControllerLoader {
 //        primaryStage.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.ESCAPE));
         primaryStage.show();
         root.requestFocus();
-
-
     }
 }

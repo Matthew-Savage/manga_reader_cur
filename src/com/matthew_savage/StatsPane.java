@@ -12,10 +12,10 @@ public class StatsPane {
     }
 
     private static ArrayList<StatsArrayList> readFromDatabase() {
-        database.openDb(Values.DB_NAME_SETTINGS.getValue());
+        database.openDb(StaticStrings.DB_NAME_SETTINGS.getValue());
 
         try {
-            return resultsToArray(database.fetchTableData(Values.DB_TABLE_STATS.getValue()));
+            return resultsToArray(database.fetchTableData(StaticStrings.DB_TABLE_STATS.getValue()));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -27,16 +27,16 @@ public class StatsPane {
         ArrayList<StatsArrayList> statsList = new ArrayList<>();
 
         while (resultSet.next()) {
-            statsList.add(new StatsArrayList(resultSet.getInt(Values.DB_STATS_COL_TITLE_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_READING_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_FIN_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_PAGES_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_FAVE_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_BL_TOT.getValue()),
-                    resultSet.getInt(Values.DB_STATS_COL_PAGES_DAY.getValue()),
-                    resultSet.getString(Values.DB_STATS_COL_GEN_ONE.getValue()),
-                    resultSet.getString(Values.DB_STATS_COL_GEN_TWO.getValue()),
-                    resultSet.getString(Values.DB_STATS_COL_GEN_THREE.getValue())));
+            statsList.add(new StatsArrayList(resultSet.getInt(StaticStrings.DB_STATS_COL_TITLE_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_READING_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_FIN_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_PAGES_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_FAVE_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_BL_TOT.getValue()),
+                    resultSet.getInt(StaticStrings.DB_STATS_COL_PAGES_DAY.getValue()),
+                    resultSet.getString(StaticStrings.DB_STATS_COL_GEN_ONE.getValue()),
+                    resultSet.getString(StaticStrings.DB_STATS_COL_GEN_TWO.getValue()),
+                    resultSet.getString(StaticStrings.DB_STATS_COL_GEN_THREE.getValue())));
         }
         resultSet.close();
         return statsList;

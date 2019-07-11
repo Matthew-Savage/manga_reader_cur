@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 
 public class GenreMap {
 
-    private static Map<String, Predicate<MangaArrayList>> genreMap = new HashMap<>();
+    private static Map<String, Predicate<Manga>> genreMap = new HashMap<>();
 
-    public static Map<String, Predicate<MangaArrayList>> getGenreMap() {
+    public static Map<String, Predicate<Manga>> getGenreMap() {
         return genreMap;
     }
 

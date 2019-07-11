@@ -13,9 +13,9 @@ public class RemoteImage {
     public static void saveLocally(String webAddress, int imageNumber) {
         try {
             InputStream website = new URL(webAddress.replace("http:", "https:")).openStream();
-            Path localPath = Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue());
+            Path localPath = Paths.get(StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_THUMBS.getValue());
             Files.createDirectories(localPath);
-            Files.copy(website, Paths.get(Values.DIR_ROOT.getValue() + File.separator + Values.DIR_THUMBS.getValue() + File.separator + imageNumber + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(website, Paths.get(StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_THUMBS.getValue() + File.separator + imageNumber + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             e.printStackTrace();
         }
