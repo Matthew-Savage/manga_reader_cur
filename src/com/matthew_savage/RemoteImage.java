@@ -18,6 +18,7 @@ public class RemoteImage {
             Files.copy(website, Paths.get(StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_THUMBS.getValue() + File.separator + imageNumber + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         }
     }
 }

@@ -3,6 +3,7 @@ package com.matthew_savage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -15,10 +16,12 @@ class IndexMangaChapters {
             mangaChapters = Jsoup.connect(webAddress).get();
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         }
 
         for (Element list : Objects.requireNonNull(mangaChapters).select(".chapter-list .row")) {
             linksList.add(list.select("span a").first().attr("abs:href"));
-        }return linksList;
+        }
+        return linksList;
     }
 }

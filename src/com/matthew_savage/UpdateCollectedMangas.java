@@ -1,66 +1,68 @@
 package com.matthew_savage;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import static com.matthew_savage.CategoryMangaLists.*;
 
 public class UpdateCollectedMangas {
 
-    private static Database database = new Database();
+    private static int totalUpdatedTitles = 0;
+    private static int totalUpdatedChapters = 0;
+    private static ArrayList<Manga> currentlyCompleted = new ArrayList<>();
 
-    static void seeIfUpdated() {
-        ArrayList<Manga> checkList = fetchChecklist();
-
-        for (Manga currentTitle : checkList) {
-            try {
-                compareLocalToRemote(currentTitle.getTitleId(), currentTitle.getWebAddress(), currentTitle.getTotalChapters());
-            } catch (Exception e) {
-                System.out.println(e);
+    public static void checkIfUpdated() {
+        currentlyCompleted.clear();
+        currentlyCompleted.addAll(completedMangaList);
+        for (Manga thisTitle : currentlyCompleted) {
+            if (thisTitle.getStatus().equals("Ongoing")) {
+                compareRemoteToLocal(thisTitle);
             }
+        }
+        if (totalUpdatedTitles > 1) {
+            ControllerMain.updateMessage.set(totalUpdatedChapters + " new chapters added across " +
+                    totalUpdatedTitles + " separate manga's!");
+        } else if (totalUpdatedTitles == 1) {
+            ControllerMain.updateMessage.set("A single title has " +
+                    totalUpdatedChapters + " new chapters for your reading pleasure, yay!");
+        }
+        ControllerMain.firstUpdateRun = true;
+    }
+
+    private static void compareRemoteToLocal(Manga manga) {
+        String webAddress = checkAddress(manga.getWebAddress(), manga.getTitle(), manga.getTitleId());
+        int remoteChapCount = IndexMangaChapters.getChapterAddresses(webAddress).size();
+        int parentIndexNum = ControllerMain.fetchOriginalIndexNumber(completedMangaList, manga.getTitleId());
+
+        if (remoteChapCount > manga.getTotalChapters()) {
+            manga.setNewChapters(remoteChapCount - manga.getTotalChapters());
+            manga.setTotalChapters(remoteChapCount);
+            DownloadRunnable.addToDatabase(manga.getTitleId(),
+                    manga.getTitle(),
+                    manga.getAuthors(),
+                    manga.getStatus(),
+                    manga.getSummary(),
+                    manga.getWebAddress(),
+                    manga.getAuthors(),
+                    manga.getTotalChapters(),
+                    manga.getCurrentPage(),
+                    manga.getLastChapterRead(),
+                    manga.getLastChapterDownloaded(),
+                    manga.getNewChapters(),
+                    manga.getFavorite());
+            downloading.add(completedMangaList.get(parentIndexNum));
+            totalUpdatedTitles = totalUpdatedTitles + 1;
+            totalUpdatedChapters = totalUpdatedChapters + manga.getNewChapters();
+            MangaValues.justRemove(completedMangaList, parentIndexNum);
+            MangaValues.executeChanges();
         }
     }
 
-    private static void queueForDownload(int mangaId, int newChapterCount) {
-        database.openDb(StaticStrings.DB_NAME_MANGA.getValue());
-        database.modifyManga(StaticStrings.DB_TABLE_COMPLETED.getValue(), mangaId, "total_chapters", newChapterCount);
-        database.modifyManga(StaticStrings.DB_TABLE_COMPLETED.getValue(), mangaId, "new_chapters", 1);
-        database.closeDb();
-        database.openDb(StaticStrings.DB_NAME_DOWNLOADING.getValue());
-        database.openDb(StaticStrings.DB_NAME_MANGA.getValue());
-        database.downloadDbAttach();
-        database.moveManga(StaticStrings.DB_ATTACHED_PREFIX.getValue() + StaticStrings.DB_TABLE_COMPLETED.getValue(), StaticStrings.DB_ATTACHED_DOWNLOADING.getValue(), mangaId);
-        database.deleteManga(StaticStrings.DB_ATTACHED_PREFIX.getValue() + StaticStrings.DB_TABLE_COMPLETED.getValue(), mangaId);
-        database.downloadDbDetach();
-        database.closeDb();
-        database.closeDb();
-    }
-
-    private static void compareLocalToRemote(int mangaId, String webAddress, int currentTotalChapters) throws Exception{
-        int newChapterCount = IndexMangaChapters.getChapterAddresses(webAddress).size();
-
-        if (newChapterCount > currentTotalChapters) {
-            queueForDownload(mangaId, newChapterCount);
+    private static String checkAddress(String webAddress, String title, int identNum) {
+        String currentAddress = InvalidEntry.verifyAddress(webAddress, title);
+        if (!webAddress.equals(currentAddress)) {
+            ErrorLogging.logError(webAddress + " is invalid! Replacing with " + currentAddress);
+            MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_URL.getValue(), currentAddress, identNum);
         }
+        return currentAddress;
     }
-
-    private static ArrayList<Manga> fetchChecklist() {
-        database.openDb(StaticStrings.DB_NAME_MANGA.getValue());
-        ArrayList<Manga> checkList = assembleChecklist(database.filterManga("completed", "status", "Ongoing"));
-        database.closeDb();
-        return checkList;
-    }
-
-    private static ArrayList<Manga> assembleChecklist(ResultSet resultSet) {
-        ArrayList<Manga> checkList = new ArrayList<>();
-
-        try {
-            while (resultSet.next()) {
-                checkList.add(new Manga(resultSet.getInt("title_id"), null, null, null, null, resultSet.getString("web_address"), null, resultSet.getInt("total_chapters"), 0, 0, 0, 0, 0));
-            }
-            resultSet.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        } return checkList;
-    }
-
-
 }

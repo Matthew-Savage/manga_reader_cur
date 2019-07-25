@@ -1,6 +1,5 @@
 package com.matthew_savage.GUI;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,7 +10,7 @@ public class ToggleNavButtons {
 
         if (totalPagesNumber == 1 || totalPagesNumber == 0) {
             return Stream.of(false, false, false, false, false).collect(Collectors.toList());
-        } else{
+        } else {
             return multiPageToggle(currentPageNumber, totalPagesNumber);
         }
     }

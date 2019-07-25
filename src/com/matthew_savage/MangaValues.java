@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.matthew_savage.CategoryMangaLists.*;
 
@@ -26,14 +27,21 @@ public class MangaValues {
                     File.separator + StaticStrings.DB_NAME_MANGA.getValue());
             Statement statement = connection.createStatement();
             for (String process : queue) {
+                ErrorLogging.logError(process);
                 statement.execute(process);
             }
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
+        } finally {
+            queue.clear();
         }
-        queue.clear();
     };
+
+    public static void addToQueue(String process) {
+        queue.add(process);
+    }
 
     public static void addAndRemove(ArrayList<Manga> source, ArrayList<Manga> dest, int sourceIndexNum, boolean sourceRemove) {
         String process = assembleInsertStatement(dest, source, sourceIndexNum);
@@ -44,6 +52,11 @@ public class MangaValues {
             queue.add(assembleRemoveStatement(source, sourceIndexNum));
             source.remove(sourceIndexNum);
         }
+    }
+
+    public static void justRemove(ArrayList<Manga> source, int sourceIndexNum) {
+        queue.add(assembleRemoveStatement(source, sourceIndexNum));
+        source.remove(sourceIndexNum);
     }
 
     public static void topFive(ArrayList<Manga> source) {
@@ -58,7 +71,19 @@ public class MangaValues {
     }
 
     public static <T> void modifyValue(ArrayList<Manga> currentParent, String columnName, T newValue, int mangaIdentNum) {
+        updateListValues(currentParent);
         queue.add(assembleModifyStatement(currentParent, columnName, newValue, mangaIdentNum));
+    }
+
+    private static void updateListValues(ArrayList<Manga> currentParent) {
+        currentParent.get(parentListIndexNumberTEMP).setTitle(selectedMangaTitleTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setStatus(selectedMangaStatusTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setWebAddress(selectedMangaWebAddressTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setTotalChapters(selectedMangaTotalChapNumTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setCurrentPage(selectedMangaCurrentPageNumTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setLastChapterRead(selectedMangaLastChapReadNumTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setNewChapters(selectedMangaNewChapNumTEMP);
+        currentParent.get(parentListIndexNumberTEMP).setFavorite(selectedMangaIsFavoriteTEMP);
     }
 
     private static <T> String assembleModifyStatement(ArrayList<Manga> currentParent, String columnName, T newValue, int mangaIdentNum) {
@@ -73,14 +98,6 @@ public class MangaValues {
                     "title) VALUES " + "(" +
                     "'" + source.get(sourceIndexNum).getTitleId() + "', " +
                     "'" + source.get(sourceIndexNum).getTitle() + "')";
-        } else if (dest.equals(history)) {
-            return "INSERT INTO " + arrayListToTableName(dest) + " (" +
-                    "title_id, " +
-                    "title, " +
-                    "summary) VALUES " + "(" +
-                    "'" + source.get(sourceIndexNum).getTitleId() + "', " +
-                    "'" + source.get(sourceIndexNum).getTitle() + "', " +
-                    "'" + source.get(sourceIndexNum).getSummary() + "')";
         } else {
             return "INSERT INTO " + arrayListToTableName(dest) + " (" +
                     "title_id, " +

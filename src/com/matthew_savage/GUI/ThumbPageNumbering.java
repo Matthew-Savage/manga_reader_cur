@@ -23,7 +23,7 @@ public class ThumbPageNumbering {
     public static int setCurrentCatalogPageNumberLayoutX(int currentPageNumber) {
         if (currentPageNumber < 10) {
             return 1669;
-        } else if (currentPageNumber < 100){
+        } else if (currentPageNumber < 100) {
             return 1655;
         } else {
             return 1642;

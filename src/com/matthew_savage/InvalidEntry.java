@@ -3,6 +3,7 @@ package com.matthew_savage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,7 +17,9 @@ class InvalidEntry {
         databaseMangaName = mangaName;
 
         if (isAddressInvalid(webAddress)) {
-            return checkResultAddresses(getResultAddresses(getSearchResults(mangaNameFormatted)));
+            String newAddress = checkResultAddresses(getResultAddresses(getSearchResults(mangaNameFormatted)));
+            ErrorLogging.logError(webAddress + " is invalid! Replacing with " + newAddress);
+            return newAddress;
         }
         return webAddress;
     }
@@ -31,7 +34,8 @@ class InvalidEntry {
             Document mangaError = Jsoup.connect(webAddress).get();
             return mangaError.select(".login").text().equals("Sorry, the page you have requested cannot be found. Click here go visit our homepage");
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         }
         return false;
     }
@@ -41,6 +45,7 @@ class InvalidEntry {
             return Jsoup.connect(StaticStrings.URL_ROOT.getValue() + StaticStrings.URL_SEARCH.getValue() + mangaName).get();
         } catch (IOException e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         }
         return null;
     }
@@ -63,6 +68,7 @@ class InvalidEntry {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                ErrorLogging.logError(e.toString());
             }
         }
         return null;

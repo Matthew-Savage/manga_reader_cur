@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CategoryMangaLists {
 
@@ -13,7 +11,8 @@ public class CategoryMangaLists {
     public static ArrayList<Manga> rejectedMangaList = new ArrayList<>();
     public static ArrayList<Manga> completedMangaList = new ArrayList<>();
     public static ArrayList<Manga> collectedMangaList = new ArrayList<>();
-    public static ArrayList<Manga> unsureMangaList = new ArrayList<>();
+    public static ArrayList<Manga> favoritesMangaList = new ArrayList<>();
+    public static ArrayList<Manga> tentativeMangaList = new ArrayList<>();
     public static ArrayList<Manga> history = new ArrayList<>();
     public static ArrayList<Manga> bookmark = new ArrayList<>();
     public static ArrayList<Manga> downloading = new ArrayList<>();
@@ -25,7 +24,7 @@ public class CategoryMangaLists {
     public static ArrayList<File> mangaPageImageFiles = new ArrayList<>();
 
     public static int parentListIndexNumberTEMP;
-    public static int currentContentListIndexNumberTEMP;
+//    public static int currentContentListIndexNumberTEMP;
 
     public static int selectedMangaIdentNumberTEMP;
     public static String selectedMangaTitleTEMP;
@@ -42,19 +41,23 @@ public class CategoryMangaLists {
     public static int selectedMangaIsFavoriteTEMP;
 
     public static int selectedMangaCurrentChapLastPageNumTEMP;
+    public static int currentCategoryNumber;
 
-
-    public static ArrayList<Manga> toList(String currentActivity) {
-        if (currentActivity.equals(StaticStrings.CAT_NOT_COLLECTED.getValue())) {
-            return notCollectedMangaList;
-        } else if (currentActivity.equals(StaticStrings.CAT_COLLECTED.getValue())) {
-            return collectedMangaList;
-        } else if (currentActivity.equals(StaticStrings.CAT_COMPLETED.getValue())) {
-            return completedMangaList;
-        } else if (currentActivity.equals(StaticStrings.CAT_UNSURE.getValue())) {
-            return unsureMangaList;
-        } else {
-            return rejectedMangaList;
+    public static ArrayList<Manga> toList() {
+        switch (currentCategoryNumber) {
+            case 1:
+                return notCollectedMangaList;
+            case 2:
+                return collectedMangaList;
+            case 3:
+                return completedMangaList;
+            case 4:
+                return favoritesMangaList;
+            case 5:
+                return tentativeMangaList;
+            case 6:
+                return rejectedMangaList;
         }
+        return null;
     }
 }

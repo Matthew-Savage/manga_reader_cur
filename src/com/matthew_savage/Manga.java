@@ -120,7 +120,6 @@ public class Manga {
         this.favorite = favorite;
     }
 
-
     public Manga(String title, String webAddress) {
         this.title = title;
         this.webAddress = webAddress;

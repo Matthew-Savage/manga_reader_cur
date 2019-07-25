@@ -18,9 +18,11 @@ public class StatsPane {
             return resultsToArray(database.fetchTableData(StaticStrings.DB_TABLE_STATS.getValue()));
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         } finally {
             database.closeDb();
-        } return null;
+        }
+        return null;
     }
 
     private static ArrayList<StatsArrayList> resultsToArray(ResultSet resultSet) throws Exception {
@@ -41,4 +43,9 @@ public class StatsPane {
         resultSet.close();
         return statsList;
     }
+
+    private static void trackGenres() {
+
+    }
+
 }

@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,15 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class ControllerLoader {
 
@@ -40,19 +36,37 @@ public class ControllerLoader {
     private static boolean online = false;
     public static boolean updatable = true;
     public static StringProperty update = new SimpleStringProperty();
+    public static StringProperty updateBottom = new SimpleStringProperty();
 
     public static boolean isOnline() {
         return online;
     }
+
     public static boolean isUpdatable() {
         return updatable;
     }
 
     public void initialize() {
+        preloadProgressTop.setEditable(false);
+        preloadProgressTop.setMouseTransparent(true);
+        preloadProgressTop.setFocusTraversable(false);
+        preloadProgressCenter.setEditable(false);
+        preloadProgressCenter.setMouseTransparent(true);
+        preloadProgressCenter.setFocusTraversable(false);
+        preloadProgressBottom.setEditable(false);
+        preloadProgressBottom.setMouseTransparent(true);
+        preloadProgressBottom.setFocusTraversable(false);
+
         update.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 preloadProgressCenter.setText(newValue);
+            }
+        });
+        updateBottom.addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                preloadProgressBottom.setText(newValue);
             }
         });
         executor.execute(this::preload);
@@ -63,7 +77,7 @@ public class ControllerLoader {
         initializeArrays();
         if (InternetConnection.checkIfConnected()) {
             online = true;
-            fetchNewTitles();
+//            fetchNewTitles();
         }
         boot();
     }
@@ -82,8 +96,6 @@ public class ControllerLoader {
                 initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_BOOKMARK.getValue()));
         CategoryMangaLists.downloading.addAll(
                 initializeArray(StaticStrings.DB_NAME_DOWNLOADING.getValue(), StaticStrings.DB_TABLE_DOWNLOAD.getValue()));
-        CategoryMangaLists.fiveNewestTitles.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_FIVE_NEWEST.getValue()));
         CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
         CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
     }
@@ -98,7 +110,7 @@ public class ControllerLoader {
     }
 
     private void fetchNewTitles() {
-        SourceWebsite.indexTitles();
+        RemoteCatalog.indexTitles();
     }
 
     private void switchStage() {
@@ -110,6 +122,8 @@ public class ControllerLoader {
             root = FXMLLoader.load(getClass().getResource("main.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
+
         }
         primaryStage.getIcons().add(new Image("assets/ico.png"));
         primaryStage.setTitle("Cupcaked Manga Reader");

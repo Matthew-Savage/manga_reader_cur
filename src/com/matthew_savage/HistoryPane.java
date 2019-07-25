@@ -9,17 +9,27 @@ public class HistoryPane {
         return readFromDatabase();
     }
 
-    public static void storeHistory() {
-        checkIfTitlePresent();
+    public static boolean storeHistory() {
+        return checkIfTitlePresent();
     }
 
-    private static void checkIfTitlePresent() {
+    private static boolean checkIfTitlePresent() {
         if (CategoryMangaLists.history.stream().noneMatch(v -> v.getTitleId() == CategoryMangaLists.selectedMangaIdentNumberTEMP)) {
-            MangaValues.addAndRemove(CategoryMangaLists.collectedMangaList, CategoryMangaLists.history, CategoryMangaLists.parentListIndexNumberTEMP, false);
+            MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_HISTORY.getValue() + " (" +
+                    "title_id, " +
+                    "title, " +
+                    "summary) VALUES " + "(" +
+                    "'" + CategoryMangaLists.selectedMangaIdentNumberTEMP + "', " +
+                    "'" + CategoryMangaLists.selectedMangaTitleTEMP + "', " +
+                    "'" + CategoryMangaLists.selectedMangaSummaryTEMP + "')");
+            CategoryMangaLists.history.add(0, CategoryMangaLists.collectedMangaList.get(CategoryMangaLists.parentListIndexNumberTEMP));
+            return false;
+        } else {
+            return true;
         }
     }
 
-    private static ArrayList<Manga> resultSetToArray(ResultSet resultSet) throws Exception{
+    private static ArrayList<Manga> resultSetToArray(ResultSet resultSet) throws Exception {
         ArrayList<Manga> historyList = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -35,8 +45,10 @@ public class HistoryPane {
             return resultSetToArray(Database.retrieveHistoryEntries());
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         } finally {
             Database.terminateDbAccess();
-        } return null;
+        }
+        return null;
     }
 }

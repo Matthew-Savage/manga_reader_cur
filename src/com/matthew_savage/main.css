@@ -32,6 +32,11 @@
     -fx-background-image: url("../../assets/stats.png");
 }
 
+#waitPane {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/search.png");
+}
+
 #sidebarPane {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_bg.png");
@@ -42,10 +47,36 @@
     -fx-background-image: url("../../assets/popup.png");
 }
 
+#authorPaneLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/author_long.png");
+}
+
+#authorPaneShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/author_short.png");
+}
+
 #errorPane {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/error.png");
 }
+
+#dropdown {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/dropdown.png");
+}
+
+#errorIcon {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/errorIcon.png");
+}
+
+#updateIcon {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/updateIcon.png");
+}
+
 
 #pageNumTextPane {
     -fx-background-color: transparent;
@@ -60,6 +91,11 @@
 #readMangaPane > .viewport {
     -fx-background-color: black;
     -fx-border-color: transparent;
+}
+
+#downloadQueue {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/active_downloads.png");
 }
 
 #innerPopup {
@@ -125,6 +161,18 @@
     -fx-background-image: url("../../assets/error_button_pressed.png");
 }
 
+#fetchAgain {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/refetch.png");
+}
+
+#fetchAgain:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/refetch_pressed.png");
+}
+
 #haveRead {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
@@ -172,6 +220,8 @@
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/never_read_selected_pressed.png");
 }
+
+
 
 .choice-box {
     -fx-background-image: url("../../assets/choicebox.png");
@@ -244,6 +294,126 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: null;
+}
+
+#tabNotCollected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_not_collected_50.png");
+}
+
+#tabNotCollected:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_not_collected.png");
+}
+
+#tabNotCollected:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_not_collected_pressed.png");
+}
+
+#tabCollected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_collected_50.png");
+}
+
+#tabCollected:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_collected.png");
+}
+
+#tabCollected:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_collected_pressed.png");
+}
+
+#tabCompleted {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_completed_50.png");
+}
+
+#tabCompleted:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_completed.png");
+}
+
+#tabCompleted:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_completed_pressed.png");
+}
+
+#tabFavorites {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_favorites_50.png");
+}
+
+#tabFavorites:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_favorites.png");
+}
+
+#tabFavorites:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_favorites_pressed.png");
+}
+
+#tabTentative {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_tentative_50.png");
+}
+
+#tabTentative:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_tentative.png");
+}
+
+#tabTentative:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_tentative_pressed.png");
+}
+
+#tabRejected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_rejected_50.png");
+}
+
+#tabRejected:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_rejected.png");
+}
+
+#tabRejected:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/tab_rejected_pressed.png");
+}
+
+#searchTitle, #searchAuthor, #searchSummary {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/checkbox.png");
+}
+
+#searchTitle:selected, #searchAuthor:selected, #searchSummary:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-image: url("../../assets/checkbox_checked.png");
 }
 
 #lastChapterRead {
@@ -347,6 +517,18 @@
     -fx-prompt-text-fill: #b6b6b9;
 }
 
+#textSize18B {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-size: 18px;
+    -fx-prompt-text-fill: #b6b6b9;
+}
+
 #textSize16 {
     -fx-background-color: transparent;
     -fx-background: transparent;
@@ -359,6 +541,18 @@
     -fx-prompt-text-fill: #b6b6b9;
 }
 
+#textSize16B {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-size: 16px;
+    -fx-prompt-text-fill: #b6b6b9;
+}
+
 #textSize14 {
     -fx-background-color: transparent;
     -fx-background: transparent;
@@ -367,6 +561,18 @@
     -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #b6b6b9;
+}
+
+#textSize14B {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: NORMAL;
+    -fx-text-fill: #000000;
     -fx-font-size: 14px;
     -fx-prompt-text-fill: #b6b6b9;
 }
@@ -404,11 +610,11 @@
     -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .viewport{
+.text-area .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .content{
+.text-area .scroll-pane .content {
     -fx-background-color: transparent;
 }
 
@@ -432,30 +638,38 @@
 #historyToggle {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-background-image: url("../../assets/history_button.png");
+    -fx-background-image: url("../../assets/reading_history.png");
 }
 
 #historyToggle:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-background-image: url("../../assets/history_button_pressed.png");
+    -fx-background-image: url("../../assets/reading_history_pressed.png");
 }
 
 #statsToggle {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-background-image: url("../../assets/stats_button.png");
-}
-
-#openBookmark {
-    -fx-border-color: black;
-    -fx-background-color: pink;
+    -fx-background-image: url("../../assets/statistics.png");
 }
 
 #statsToggle:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-background-image: url("../../assets/stats_button_pressed.png");
+    -fx-background-image: url("../../assets/statistics_pressed.png");
+}
+
+#bookmarkToggle {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/bookmark.png");
+}
+
+
+#bookmarkToggle:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/bookmark_pressed.png");
 }
 
 
@@ -579,6 +793,18 @@
     -fx-border-color: transparent;
 }
 
+#unfavorite {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/unfavorite.png");
+    -fx-border-color: transparent;
+}
+
+#unfavorite:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/unfavorite_pressed.png");
+    -fx-border-color: transparent;
+}
+
 #ignoreMangaShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ignore_short.png");
@@ -639,6 +865,7 @@
     -fx-background-image: url("../../assets/prev_pressed.png");
     -fx-border-color: transparent;
 }
+
 #pageNext {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/next.png");
@@ -672,6 +899,18 @@
 #sidebarPane_favorite:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_favorite_pressed.png");
+    -fx-border-color: transparent;
+}
+
+#sidebarPane_unfavorite {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/sidebar_favorite_true.png");
+    -fx-border-color: transparent;
+}
+
+#sidebarPane_unfavorite:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/sidebar_favorite_true_pressed.png");
     -fx-border-color: transparent;
 }
 
@@ -735,20 +974,16 @@
     -fx-border-color: transparent;
 }
 
-#thumb0Pane  {
+#thumb0Pane {
     -fx-background-color: red;
 }
 
 #thumb0, #thumb1, #thumb2, #thumb3, #thumb4, #thumb5, #thumb6, #thumb7, #thumb8, #thumb9, #thumb10, #thumb11, #thumb12, #thumb13, #thumb14, #thumb15, #thumb16, #thumb17, #thumb18, #thumb19, #thumb20, #thumb21, #thumb22, #thumb23, #thumb24, #thumb25, #thumb26, #thumb27, #thumb28, #thumb29,
 #thumb30, #thumb31, #thumb32, #thumb33, #thumb34, #thumb35, #thumb36, #thumb37, #thumb38, #popupThumb, #historyThumb0, #historyThumb1, #historyThumb2, #historyThumb3, #historyThumb4, #historyThumb5, #historyThumb6, #historyThumb7, #historyThumb8, #historyThumb9 {
-    -fx-effect: dropShadow( three-pass-box, #795e69, 3, 0.0, 4, 4);
+    -fx-effect: dropShadow(three-pass-box, #795e69, 3, 0.0, 4, 4);
 }
 
-#genre0 .box, #genre0 .mark, #genre1 .box, #genre1 .mark, #genre2 .box, #genre2 .mark, #genre3 .box, #genre3 .mark, #genre4 .box, #genre4 .mark, #genre5 .box, #genre5 .mark, #genre6 .box, #genre6 .mark, #genre7 .box, #genre7 .mark, #genre8 .box, #genre8 .mark
-, #genre9 .box, #genre9 .mark, #genre10 .box, #genre10 .mark, #genre11 .box, #genre11 .mark, #genre12 .box, #genre12 .mark, #genre13 .box, #genre13 .mark, #genre14 .box, #genre14 .mark, #genre15 .box, #genre15 .mark, #genre16 .box, #genre16 .mark, #genre17 .box, #genre17 .mark
-, #genre18 .box, #genre18 .mark, #genre19 .box, #genre19 .mark, #genre20 .box, #genre20 .mark, #genre21 .box, #genre21 .mark, #genre22 .box, #genre22 .mark, #genre23 .box, #genre23 .mark, #genre24 .box, #genre24 .mark, #genre25 .box, #genre25 .mark, #genre26 .box, #genre26 .mark
-, #genre27 .box, #genre27 .mark, #genre28 .box, #genre28 .mark, #genre29 .box, #genre29 .mark, #genre30 .box, #genre30 .mark, #genre31 .box, #genre31 .mark, #genre32 .box, #genre32 .mark, #genre33 .box, #genre33 .mark, #genre34 .box, #genre34 .mark, #genre35 .box, #genre35 .mark
-, #genre36 .box, #genre36 .mark, #genre37 .box, #genre37 .mark, #genre38 .box, #genre38 .mark {
+#genre0 .box, #genre0 .mark, #genre1 .box, #genre1 .mark, #genre2 .box, #genre2 .mark, #genre3 .box, #genre3 .mark, #genre4 .box, #genre4 .mark, #genre5 .box, #genre5 .mark, #genre6 .box, #genre6 .mark, #genre7 .box, #genre7 .mark, #genre8 .box, #genre8 .mark, #genre9 .box, #genre9 .mark, #genre10 .box, #genre10 .mark, #genre11 .box, #genre11 .mark, #genre12 .box, #genre12 .mark, #genre13 .box, #genre13 .mark, #genre14 .box, #genre14 .mark, #genre15 .box, #genre15 .mark, #genre16 .box, #genre16 .mark, #genre17 .box, #genre17 .mark, #genre18 .box, #genre18 .mark, #genre19 .box, #genre19 .mark, #genre20 .box, #genre20 .mark, #genre21 .box, #genre21 .mark, #genre22 .box, #genre22 .mark, #genre23 .box, #genre23 .mark, #genre24 .box, #genre24 .mark, #genre25 .box, #genre25 .mark, #genre26 .box, #genre26 .mark, #genre27 .box, #genre27 .mark, #genre28 .box, #genre28 .mark, #genre29 .box, #genre29 .mark, #genre30 .box, #genre30 .mark, #genre31 .box, #genre31 .mark, #genre32 .box, #genre32 .mark, #genre33 .box, #genre33 .mark, #genre34 .box, #genre34 .mark, #genre35 .box, #genre35 .mark, #genre36 .box, #genre36 .mark, #genre37 .box, #genre37 .mark, #genre38 .box, #genre38 .mark {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }

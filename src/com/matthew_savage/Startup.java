@@ -20,7 +20,7 @@ public class Startup {
             database.openDb("usr.db");
             database.createUserTable();
             database.storeVersionEntry("version_number", 2);
-            database.storeStatEntries("stats", 0, 0, 0, 0,0, 0, 0, "", "", "");
+            database.storeStatEntries("stats", 0, 0, 0, 0, 0, 0, 0, "", "", "");
             database.closeDb();
             changesNeeded();
         } else {
@@ -46,12 +46,13 @@ public class Startup {
         ResultSet resultSet = database.fetchTableData("resume_last_manga");
 
         try {
-                while (resultSet.next()) {
-                    fromOldToNew(resultSet.getInt("title_id"), resultSet.getInt("total_chapters"), resultSet.getInt("last_chapter_read"), resultSet.getInt("current_page"));
-                }
+            while (resultSet.next()) {
+                fromOldToNew(resultSet.getInt("title_id"), resultSet.getInt("total_chapters"), resultSet.getInt("last_chapter_read"), resultSet.getInt("current_page"));
+            }
             resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
+            ErrorLogging.logError(e.toString());
         }
     }
 
@@ -98,6 +99,7 @@ public class Startup {
                 return list;
             } catch (Exception e) {
                 e.printStackTrace();
+                ErrorLogging.logError(e.toString());
             }
         } else {
             try {
@@ -122,6 +124,7 @@ public class Startup {
                 return list;
             } catch (Exception e) {
                 e.printStackTrace();
+                ErrorLogging.logError(e.toString());
             }
         }
         return list;

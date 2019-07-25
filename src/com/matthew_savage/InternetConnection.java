@@ -14,7 +14,6 @@ public class InternetConnection {
         } catch (Exception e) {
             return false;
         }
-        System.out.println("internet working");
         return true;
     }
 }

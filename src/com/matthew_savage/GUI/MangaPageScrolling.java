@@ -3,15 +3,13 @@ package com.matthew_savage.GUI;
 import com.matthew_savage.ControllerMain;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 
 public class MangaPageScrolling {
 
-    public static void scrollPageUpDown(KeyEvent event){
-        System.out.println(event.getCode());
+    public static void scrollPageUpDown(KeyEvent event) {
         if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
             ControllerMain.scrollMangaPageUp();
         }
