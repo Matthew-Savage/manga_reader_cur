@@ -11,7 +11,7 @@ public class Voucher {
             semaphore.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.matthew_savage.GUI;
 
+import com.matthew_savage.CategoryMangaLists;
 import com.matthew_savage.StaticStrings;
 
 import java.util.List;
@@ -24,16 +25,22 @@ public class InfoBox {
         }
     }
 
-    public static List<Boolean> displayCorrectInfoBox(String currentActivity) {
-
-        if (currentActivity.equals(StaticStrings.CAT_NOT_COLLECTED.getValue())) {
-            return Stream.of(false, false, true, true, false, false, true, false, true).collect(Collectors.toList());
-        } else if (currentActivity.equals(StaticStrings.CAT_COLLECTED.getValue())) {
-            return Stream.of(true, true, false, false, false, false, false, true, false).collect(Collectors.toList());
-        } else if (currentActivity.equals(StaticStrings.CAT_COMPLETED.getValue())) {
-            return Stream.of(true, false, false, false, false, true, true, true, false).collect(Collectors.toList());
-        } else {
-            return Stream.of(false, false, false, false, true, false, true, false, true).collect(Collectors.toList());
+    public static List<Boolean> displayCorrectInfoBox() {
+        Boolean read = CategoryMangaLists.selectedMangaTotalChapNumTEMP == CategoryMangaLists.selectedMangaLastChapDownloadedTEMP;
+        switch (CategoryMangaLists.currentCategoryNumber) {
+            case 1:
+                return Stream.of(true, false, true, true, false, false, false, false, true, true).collect(Collectors.toList());
+            case 2:
+                return Stream.of(false, true, true, true, false, false, false, true, false, false).collect(Collectors.toList());
+            case 3:
+                return Stream.of(false, true, true, true, false, false, false, true, false, false).collect(Collectors.toList());
+            case 4:
+                return Stream.of(!read, read, true, true, false, false, false, false, true, false).collect(Collectors.toList());
+            case 5:
+                return Stream.of(false, false, false, false, true, false, true, false, true, true).collect(Collectors.toList());
+            case 6:
+                return Stream.of(false, false, false, false, true, true, false, false, true, true).collect(Collectors.toList());
         }
+        return null;
     }
 }

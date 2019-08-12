@@ -1,5 +1,6 @@
 package com.matthew_savage;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,14 +12,20 @@ class InvalidEntry {
 
     private static String databaseMangaName;
 
-    static String verifyAddress(String webAddress, String mangaName) {
+    static String verifyAddress(String webAddress, String mangaName, String mangaAuthors) {
 
-        String mangaNameFormatted = mangaName.replaceAll("[^a-zA-Z0-9 ]", "").replace(" ", "_");
+        String mangaNameFormatted = mangaName.replaceAll("[^a-zA-Z0-9]", "_");
+        String authorNamesFormatted = mangaAuthors.replaceAll("[^a-zA-Z0-9]", "_");
         databaseMangaName = mangaName;
+        String newAddress;
 
         if (isAddressInvalid(webAddress)) {
-            String newAddress = checkResultAddresses(getResultAddresses(getSearchResults(mangaNameFormatted)));
-            ErrorLogging.logError(webAddress + " is invalid! Replacing with " + newAddress);
+            newAddress = checkResultAddresses(getResultAddresses(getSearchResults(StaticStrings.URL_SEARCH_TITLE.getValue() + mangaNameFormatted)));
+            if (newAddress == null) {
+                newAddress = checkResultAddresses(getResultAddresses(getSearchResults(StaticStrings.URL_SEARCH_AUTHOR.getValue() + authorNamesFormatted)));
+            }
+            Logging.logError("invalid Entry - " + webAddress + " is invalid! Replacing with " + newAddress);
+            System.out.println(newAddress);
             return newAddress;
         }
         return webAddress;
@@ -35,17 +42,17 @@ class InvalidEntry {
             return mangaError.select(".login").text().equals("Sorry, the page you have requested cannot be found. Click here go visit our homepage");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
         return false;
     }
 
-    private static Document getSearchResults(String mangaName) {
+    private static Document getSearchResults(String searchString) {
         try {
-            return Jsoup.connect(StaticStrings.URL_ROOT.getValue() + StaticStrings.URL_SEARCH.getValue() + mangaName).get();
+            return Jsoup.connect(StaticStrings.URL_ROOT.getValue() + searchString).get();
         } catch (IOException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
         return null;
     }
@@ -68,7 +75,7 @@ class InvalidEntry {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                ErrorLogging.logError(e.toString());
+                Logging.logError(e.toString());
             }
         }
         return null;

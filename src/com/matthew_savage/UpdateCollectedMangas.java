@@ -29,7 +29,7 @@ public class UpdateCollectedMangas {
     }
 
     private static void compareRemoteToLocal(Manga manga) {
-        String webAddress = checkAddress(manga.getWebAddress(), manga.getTitle(), manga.getTitleId());
+        String webAddress = checkAddress(manga.getWebAddress(), manga.getTitle(), manga.getAuthors(), manga.getTitleId());
         int remoteChapCount = IndexMangaChapters.getChapterAddresses(webAddress).size();
         int parentIndexNum = ControllerMain.fetchOriginalIndexNumber(completedMangaList, manga.getTitleId());
 
@@ -57,10 +57,9 @@ public class UpdateCollectedMangas {
         }
     }
 
-    private static String checkAddress(String webAddress, String title, int identNum) {
-        String currentAddress = InvalidEntry.verifyAddress(webAddress, title);
+    private static String checkAddress(String webAddress, String title, String authors, int identNum) {
+        String currentAddress = InvalidEntry.verifyAddress(webAddress, title, authors);
         if (!webAddress.equals(currentAddress)) {
-            ErrorLogging.logError(webAddress + " is invalid! Replacing with " + currentAddress);
             MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_URL.getValue(), currentAddress, identNum);
         }
         return currentAddress;

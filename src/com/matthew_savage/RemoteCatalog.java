@@ -17,11 +17,11 @@ public class RemoteCatalog {
     private static ArrayList<Manga> results = new ArrayList<>();
     private static int currentPageNum = 1;
     private static int currentEntryNum = 0;
-    private static int currentMultiplier = 1;
+//    private static int currentMultiplier = 1;
     private static boolean matchNotFound = true;
 
     public static void forceUpdate() {
-        selectedMangaWebAddressTEMP = InvalidEntry.verifyAddress(selectedMangaWebAddressTEMP, selectedMangaTitleTEMP);
+        selectedMangaWebAddressTEMP = InvalidEntry.verifyAddress(selectedMangaWebAddressTEMP, selectedMangaTitleTEMP, selectedMangaAuthorsTEMP);
         newestTitleIdent = selectedMangaIdentNumberTEMP;
         results.clear();
         results.add(new Manga(selectedMangaTitleTEMP, selectedMangaWebAddressTEMP));
@@ -29,6 +29,21 @@ public class RemoteCatalog {
         selectedMangaAuthorsTEMP = results.get(0).getAuthors();
         selectedMangaSummaryTEMP = results.get(0).getSummary();
         selectedMangaGenresTEMP = results.get(0).getGenreTags();
+    }
+
+    public static int findPageNumber(String mangaName) {
+        matchNotFound = true;
+        currentPageNum = 1;
+        do {
+            for (Element remoteEntry : remoteEntries().select(entryVal())) {
+                if (remoteMangaTitle(remoteEntry).equals(mangaName)) {
+                    matchNotFound = false;
+                    return currentPageNum;
+                }
+            }
+            currentPageNum++;
+        } while (matchNotFound);
+        return currentPageNum;
     }
 
     public static void indexTitles() {
@@ -45,14 +60,9 @@ public class RemoteCatalog {
     }
 
     private static void populateFiveNewest() {
-        ArrayList<Manga> mangaConsolidation = new ArrayList<>();
-        mangaConsolidation.addAll(notCollectedMangaList);
-        mangaConsolidation.addAll(collectedMangaList);
-        mangaConsolidation.addAll(completedMangaList);
-        mangaConsolidation.addAll(rejectedMangaList);
-        mangaConsolidation.addAll(downloading);
-        mangaConsolidation.sort(Comparator.comparingInt(Manga::getTitleId).reversed());
-        determineFiveLatest(mangaConsolidation);
+        ArrayList<Manga> consolidated = MangaConsolidated.list();
+        consolidated.sort(Comparator.comparingInt(Manga::getTitleId).reversed());
+        determineFiveLatest(consolidated);
     }
 
     private static void determineFiveLatest(ArrayList<Manga> arrayList) {
@@ -88,7 +98,6 @@ public class RemoteCatalog {
         if (remoteMangaTitle(element).equals(localMangaTitle())) {
             matchNotFound = false;
             processResults();
-            updateFiveLatest();
         } else {
             results.add(new Manga(remoteMangaTitle(element), remoteMangaWebAddress(element)));
         }
@@ -120,8 +129,8 @@ public class RemoteCatalog {
         results.get(indexNumber).setTitleId(newestTitleIdent);
         document.select("h2 p").remove();
         results.get(indexNumber).setSummary(document.select("div#noidungm").text().replace("'", ""));
-        RemoteImage.saveLocally(document.select(".manga-info-pic img").first().attr("abs:src"), newestTitleIdent);
         if (firstTimeFetched) {
+            RemoteImage.saveLocally(document.select(".manga-info-pic img").first().attr("abs:src"), newestTitleIdent);
             results.get(indexNumber).setTotalChapters(0);
             results.get(indexNumber).setCurrentPage(0);
             results.get(indexNumber).setLastChapterRead(0);
@@ -162,34 +171,32 @@ public class RemoteCatalog {
     private static void tryNextPage() {
         currentPageNum++;
 
-        if (currentPageNum == (10 * currentMultiplier)) {
+        if (currentEntryNum == 4 && currentPageNum == 50) {
+            ControllerLoader.updatable = false;
+            matchNotFound = false;
+        }
+
+        if (currentPageNum == 50) {
+            ControllerLoader.update.set("Still fetching ...");
+            results.clear();
             currentEntryNum++;
             currentPageNum = 1;
-            if (currentEntryNum == 5) {
-                if (currentMultiplier == 1) {
-                    ControllerLoader.update.set("Still fetching ...");
-                    currentMultiplier = 10;
-                    currentPageNum = 10;
-                    currentEntryNum = 0;
-                } else if (currentMultiplier == 10) {
-                    ControllerLoader.updatable = false;
-                    matchNotFound = false;
-                }
-            }
         }
-    }
-
-    private static void updateFiveLatest() {
-        Collections.reverse(results);
-        if (results.size() < 5) {
-            results.addAll(fiveNewestTitles);
-        }
-        Database.accessDb(StaticStrings.DB_NAME_MANGA.getValue());
-        Database.removeAll(StaticStrings.DB_TABLE_FIVE_NEWEST.getValue());
-        for (int i = 0; i < 5; i++) {
-            insertNewRecord(i, StaticStrings.DB_TABLE_FIVE_NEWEST.getValue());
-        }
-        Database.terminateDbAccess();
+//        if (currentPageNum == (10 * currentMultiplier)) {
+//            currentEntryNum++;
+//            currentPageNum = 1;
+//            if (currentEntryNum == 5) {
+//                if (currentMultiplier == 1) {
+//                    ControllerLoader.update.set("Still fetching ...");
+//                    currentMultiplier = 10;
+//                    currentPageNum = 10;
+//                    currentEntryNum = 0;
+//                } else if (currentMultiplier == 10) {
+//                    ControllerLoader.updatable = false;
+//                    matchNotFound = false;
+//                }
+//            }
+//        }
     }
 
     private static boolean comparisonsExhausted() {

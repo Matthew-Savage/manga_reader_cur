@@ -27,6 +27,7 @@ public class DownloadRunnable {
     private static int currentMangaIdent;
     private static String currentMangaTitle;
     private static String currentMangaWebAddress;
+    private static String currentMangaAuthors;
     private static int currentMangaLastChapDownloaded;
     private static int totalPendingDownloads;
 
@@ -36,8 +37,10 @@ public class DownloadRunnable {
         if (CategoryMangaLists.downloading.size() > 0 && ControllerMain.firstUpdateRun) {
             downloadQueue.clear();
             downloadQueue.addAll(CategoryMangaLists.downloading);
-            totalPendingDownloads = downloadQueue.size();
             CategoryMangaLists.downloading.clear();
+        }
+        if (downloadQueue.size() > 0) {
+            totalPendingDownloads = downloadQueue.size();
             beginProcessingProcess();
         }
     }
@@ -47,8 +50,12 @@ public class DownloadRunnable {
             ControllerMain.downloadMessage.set(String.valueOf(totalPendingDownloads));
             currentMangaIdent = downloadQueue.get(i).getTitleId();
             currentMangaTitle = downloadQueue.get(i).getTitle();
+            currentMangaAuthors = downloadQueue.get(i).getAuthors();
             currentMangaLastChapDownloaded = downloadQueue.get(i).getLastChapterDownloaded();
-            checkMangaAddress(downloadQueue.get(i).getWebAddress());
+            currentMangaWebAddress = checkMangaAddress(downloadQueue.get(i).getWebAddress());
+            if (currentMangaWebAddress == null) {
+                continue;
+            }
             populateChapterList();
             createLocalFolders();
             writeNewTotalChapValue(i);
@@ -56,12 +63,13 @@ public class DownloadRunnable {
         }
     }
 
-    private static void checkMangaAddress(String webAddress) {
-        currentMangaWebAddress = InvalidEntry.verifyAddress(webAddress, currentMangaTitle);
-        if (!webAddress.equals(currentMangaWebAddress)) {
-            ErrorLogging.logError(webAddress + " is invalid! Replacing with " + currentMangaWebAddress);
-            modifyDownloadDatabase(StaticStrings.DB_COL_URL.getValue(), currentMangaWebAddress, currentMangaIdent);
+    private static String checkMangaAddress(String webAddress) {
+        String address = InvalidEntry.verifyAddress(webAddress, currentMangaTitle, currentMangaAuthors);
+        if (!webAddress.equals(address)) {
+            Logging.logError("DownloadRunnable - " + webAddress + " is invalid! Replacing with " + address);
+            modifyDownloadDatabase(StaticStrings.DB_COL_URL.getValue(), address, currentMangaIdent);
         }
+        return address;
     }
 
     private static void populateChapterList() {
@@ -81,7 +89,7 @@ public class DownloadRunnable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -106,7 +114,7 @@ public class DownloadRunnable {
             return chapterOne.select(".vung-doc img").first() == null;
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
         return true;
     }
@@ -141,7 +149,7 @@ public class DownloadRunnable {
             return Jsoup.connect(mangaChapters.get(indexNumber)).cookies(response.cookies()).get();
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
         return null;
     }
@@ -169,12 +177,12 @@ public class DownloadRunnable {
             Files.copy(imageUrl, Paths.get(StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_MANGA.getValue() + File.separator + currentMangaIdent + File.separator + startingChapterNumber + File.separator + String.format("%03d", imageNumber) + ".png"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
     private static void insertIfReady(int indexNumber, int lastChapDown, int originalChapDown) {
-        if (lastChapDown == (originalChapDown + 1)) {
+        if (lastChapDown == (originalChapDown + 1)  && CategoryMangaLists.collectedMangaList.stream().noneMatch(v -> v.getTitleId() == downloadQueue.get(indexNumber).getTitleId())) {
             CategoryMangaLists.collectedMangaList.add(downloadQueue.get(indexNumber));
             MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_READING.getValue() + " (" +
                     "title_id, " +
@@ -219,37 +227,39 @@ public class DownloadRunnable {
     public static void addToDatabase(int titleIdent, String title, String authors, String status, String summary, String webAddress, String genres, int chapTotal, int curPage, int lastChapRead, int lastChapDown, int chapsNew, int fav) {
         Voucher.acquire();
         Database.accessDb(StaticStrings.DB_NAME_DOWNLOADING.getValue());
+        String insert = "INSERT INTO " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " (" +
+                "title_id, " +
+                "title, " +
+                "authors, " +
+                "status, " +
+                "summary, " +
+                "web_address, " +
+                "genre_tags, " +
+                "total_chapters, " +
+                "current_page, " +
+                "last_chapter_read, " +
+                "last_chapter_downloaded, " +
+                "new_chapters, " +
+                "favorite) VALUES " + "(" +
+                "'" + titleIdent + "', " +
+                "'" + title + "', " +
+                "'" + authors + "', " +
+                "'" + status + "', " +
+                "'" + summary + "', " +
+                "'" + webAddress + "', " +
+                "'" + genres + "', " +
+                "'" + chapTotal + "', " +
+                "'" + curPage + "', " +
+                "'" + lastChapRead + "', " +
+                "'" + lastChapDown + "', " +
+                "'" + chapsNew + "', " +
+                "'" + fav + "')";
         try (Statement sqlStatement = Database.dbConnection.createStatement()) {
-            sqlStatement.execute("INSERT INTO " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " (" +
-                    "title_id, " +
-                    "title, " +
-                    "authors, " +
-                    "status, " +
-                    "summary, " +
-                    "web_address, " +
-                    "genre_tags, " +
-                    "total_chapters, " +
-                    "current_page, " +
-                    "last_chapter_read, " +
-                    "last_chapter_downloaded, " +
-                    "new_chapters, " +
-                    "favorite) VALUES " + "(" +
-                    "'" + titleIdent + "', " +
-                    "'" + title + "', " +
-                    "'" + authors + "', " +
-                    "'" + status + "', " +
-                    "'" + summary + "', " +
-                    "'" + webAddress + "', " +
-                    "'" + genres + "', " +
-                    "'" + chapTotal + "', " +
-                    "'" + curPage + "', " +
-                    "'" + lastChapRead + "', " +
-                    "'" + lastChapDown + "', " +
-                    "'" + chapsNew + "', " +
-                    "'" + fav + "')");
+            sqlStatement.execute(insert);
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
+            Logging.logError(insert);
         }
         Database.terminateDbAccess();
         Voucher.release();
@@ -258,11 +268,13 @@ public class DownloadRunnable {
     private static <T> void modifyDownloadDatabase(String valueColumnName, T newValue, int mangaIdentNumber) {
         Voucher.acquire();
         Database.accessDb(StaticStrings.DB_NAME_DOWNLOADING.getValue());
+        String insert = "UPDATE " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " SET " + valueColumnName + " = '" + newValue + "' WHERE title_id = '" + mangaIdentNumber + "'";
         try (Statement sqlStatement = Database.dbConnection.createStatement()) {
-            sqlStatement.execute("UPDATE " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " SET " + valueColumnName + " = '" + newValue + "' WHERE title_id = '" + mangaIdentNumber + "'");
+            sqlStatement.execute(insert);
         } catch (SQLException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError("downloadRunnable - " + e.toString());
+            Logging.logError(insert);
         }
         Database.terminateDbAccess();
         Voucher.release();
@@ -271,11 +283,13 @@ public class DownloadRunnable {
     private static void downloadDatabaseDelete(int mangaIdentNumber) {
         Voucher.acquire();
         Database.accessDb(StaticStrings.DB_NAME_DOWNLOADING.getValue());
+        String insert = "DELETE FROM " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " WHERE title_id = '" + mangaIdentNumber + "'";
         try (Statement sqlStatement = Database.dbConnection.createStatement()) {
-            sqlStatement.execute("DELETE FROM " + StaticStrings.DB_TABLE_DOWNLOAD.getValue() + " WHERE title_id = '" + mangaIdentNumber + "'");
+            sqlStatement.execute(insert);
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError("downloadRunnable - " + e.toString());
+            Logging.logError(insert);
         }
         Database.terminateDbAccess();
         Voucher.release();

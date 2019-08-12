@@ -45,7 +45,7 @@ public class HistoryPane {
             return resultSetToArray(Database.retrieveHistoryEntries());
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         } finally {
             Database.terminateDbAccess();
         }

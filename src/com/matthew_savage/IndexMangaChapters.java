@@ -16,7 +16,7 @@ class IndexMangaChapters {
             mangaChapters = Jsoup.connect(webAddress).get();
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
 
         for (Element list : Objects.requireNonNull(mangaChapters).select(".chapter-list .row")) {

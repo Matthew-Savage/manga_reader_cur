@@ -9,25 +9,25 @@ import javafx.scene.input.ScrollEvent;
 
 public class MangaPageScrolling {
 
-    public static void scrollPageUpDown(KeyEvent event) {
-        if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
-            ControllerMain.scrollMangaPageUp();
-        }
-        if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
-            ControllerMain.scrollMangaPageDown();
-        }
-    }
-
-    public static void simulateMouseWheelScroll(ScrollEvent scrollMouseWheel) {
-        if (scrollMouseWheel.getDeltaY() == 40) {
-            scrollMouseWheel.consume();
-            ControllerMain.scrollMangaPageUp();
-        }
-        if (scrollMouseWheel.getDeltaY() == -40) {
-            scrollMouseWheel.consume();
-            ControllerMain.scrollMangaPageDown();
-        }
-    }
+//    public static void scrollPageUpDown(KeyEvent event) {
+//        System.out.println(event.getCode());
+//        if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
+//        }
+//        if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
+////            ControllerMain.scrollMangaPageDown();
+//        }
+//    }
+//
+//    public static void simulateMouseWheelScroll(ScrollEvent scrollMouseWheel) {
+//        if (scrollMouseWheel.getDeltaY() == 40) {
+//            scrollMouseWheel.consume();
+//            ControllerMain.scrollMangaPageUp();
+//        }
+//        if (scrollMouseWheel.getDeltaY() == -40) {
+//            scrollMouseWheel.consume();
+////            ControllerMain.scrollMangaPageDown();
+//        }
+//    }
 
     public static int adjustScrollSpeed(ActionEvent event, int currentScrollSpeed) {
         Button button = (Button) event.getSource();

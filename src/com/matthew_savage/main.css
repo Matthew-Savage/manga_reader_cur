@@ -296,109 +296,109 @@
     -fx-background-image: null;
 }
 
-#tabNotCollected {
+#1 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected_50.png");
 }
 
-#tabNotCollected:selected {
+#1:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected.png");
 }
 
-#tabNotCollected:hover {
+#1:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected_pressed.png");
 }
 
-#tabCollected {
+#2 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected_50.png");
 }
 
-#tabCollected:selected {
+#2:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected.png");
 }
 
-#tabCollected:hover {
+#2:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected_pressed.png");
 }
 
-#tabCompleted {
+#3 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed_50.png");
 }
 
-#tabCompleted:selected {
+#3:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed.png");
 }
 
-#tabCompleted:hover {
+#3:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed_pressed.png");
 }
 
-#tabFavorites {
+#4 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites_50.png");
 }
 
-#tabFavorites:selected {
+#4:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites.png");
 }
 
-#tabFavorites:hover {
+#4:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites_pressed.png");
 }
 
-#tabTentative {
+#5 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-background-image: url("../../assets/tab_tentative_50.png");
+    -fx-background-image: url("../../assets/tab_undecided_50.png");
 }
 
-#tabTentative:selected {
+#5:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-background-image: url("../../assets/tab_tentative.png");
+    -fx-background-image: url("../../assets/tab_undecided.png");
 }
 
-#tabTentative:hover {
+#5:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-background-image: url("../../assets/tab_tentative_pressed.png");
+    -fx-background-image: url("../../assets/tab_undecided_pressed.png");
 }
 
-#tabRejected {
+#6 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected_50.png");
 }
 
-#tabRejected:selected {
+#6:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected.png");
 }
 
-#tabRejected:hover {
+#6:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected_pressed.png");
@@ -589,6 +589,18 @@
     -fx-prompt-text-fill: #b6b6b9;
 }
 
+#textSize12B {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: NORMAL;
+    -fx-text-fill: #000000;
+    -fx-font-size: 12px;
+    -fx-prompt-text-fill: #b6b6b9;
+}
+
 #textSize11 {
     -fx-background-color: transparent;
     -fx-background: transparent;
@@ -597,6 +609,18 @@
     -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-prompt-text-fill: #b6b6b9;
+}
+
+#textSize11B {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-background-image: null;
+    -fx-border-color: transparent;
+    -fx-font-family: "Open Sans";
+    -fx-font-weight: NORMAL;
+    -fx-text-fill: #000000;
     -fx-font-size: 11px;
     -fx-prompt-text-fill: #b6b6b9;
 }
@@ -754,6 +778,138 @@
 #issue:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/issue_pressed.png");
+    -fx-border-color: transparent;
+}
+
+#titleAddShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/collection_add_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleAddShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/collection_add_pressed_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleReadShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/read_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleReadShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/read_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavAddShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_add_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavAddShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_add_pressed_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavRemoveShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_remove_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavRemoveShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_remove_pressed_x4.png");
+    -fx-border-color: transparent;
+}
+
+#undecidedShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/undecided_add_x4.png");
+    -fx-border-color: transparent;
+}
+
+#undecidedShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/undecided_add_pressed_x4.png");
+    -fx-border-color: transparent;
+}
+
+#rejectShort {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/reject_add_x4.png");
+    -fx-border-color: transparent;
+}
+
+#rejectShort:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/reject_add_pressed_x4.png");
+    -fx-border-color: transparent;
+}
+
+#titleAddLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/collection_add_x3.png");
+    -fx-border-color: transparent;
+}
+
+#titleAddLong:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/collection_add_pressed_x3.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavAddLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_add_x3.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavAddLong:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_add_pressed_x3.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavRemoveLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_remove_x3.png");
+    -fx-border-color: transparent;
+}
+
+#titleFavRemoveLong:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/favorite_remove_pressed_x3.png");
+    -fx-border-color: transparent;
+}
+
+#undecidedLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/undecided_add_x3.png");
+    -fx-border-color: transparent;
+}
+
+#undecidedLong:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/undecided_add_pressed_x3.png");
+    -fx-border-color: transparent;
+}
+
+#rejectLong {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/reject_add_x3.png");
+    -fx-border-color: transparent;
+}
+
+#rejectLong:pressed {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/buttons_popup/reject_add_pressed_x3.png");
     -fx-border-color: transparent;
 }
 
@@ -989,1765 +1145,1765 @@
 }
 
 #genre0:indeterminate {
-    -fx-background-image: url("../../assets/action_neutral.png");
+    -fx-background-image: url("../../assets/genres/action_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:indeterminate:pressed {
-    -fx-background-image: url("../../assets/action_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/action_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:selected {
-    -fx-background-image: url("../../assets/action_selected.png");
+    -fx-background-image: url("../../assets/genres/action_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:selected:pressed {
-    -fx-background-image: url("../../assets/action_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/action_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0 {
-    -fx-background-image: url("../../assets/action_deselected.png");
+    -fx-background-image: url("../../assets/genres/action_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:pressed {
-    -fx-background-image: url("../../assets/action_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/action_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:indeterminate {
-    -fx-background-image: url("../../assets/adult_neutral.png");
+    -fx-background-image: url("../../assets/genres/adult_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:indeterminate:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/adult_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:selected {
-    -fx-background-image: url("../../assets/adult_selected.png");
+    -fx-background-image: url("../../assets/genres/adult_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:selected:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/adult_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1 {
-    -fx-background-image: url("../../assets/adult_deselected.png");
+    -fx-background-image: url("../../assets/genres/adult_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/adult_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:indeterminate {
-    -fx-background-image: url("../../assets/adventure_neutral.png");
+    -fx-background-image: url("../../assets/genres/adventure_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:indeterminate:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/adventure_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:selected {
-    -fx-background-image: url("../../assets/adventure_selected.png");
+    -fx-background-image: url("../../assets/genres/adventure_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:selected:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/adventure_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2 {
-    -fx-background-image: url("../../assets/adventure_deselected.png");
+    -fx-background-image: url("../../assets/genres/adventure_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/adventure_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:indeterminate {
-    -fx-background-image: url("../../assets/comedy_neutral.png");
+    -fx-background-image: url("../../assets/genres/comedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:indeterminate:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/comedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:selected {
-    -fx-background-image: url("../../assets/comedy_selected.png");
+    -fx-background-image: url("../../assets/genres/comedy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:selected:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/comedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3 {
-    -fx-background-image: url("../../assets/comedy_deselected.png");
+    -fx-background-image: url("../../assets/genres/comedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/comedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:indeterminate {
-    -fx-background-image: url("../../assets/cooking_neutral.png");
+    -fx-background-image: url("../../assets/genres/cooking_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:indeterminate:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/cooking_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:selected {
-    -fx-background-image: url("../../assets/cooking_selected.png");
+    -fx-background-image: url("../../assets/genres/cooking_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:selected:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/cooking_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4 {
-    -fx-background-image: url("../../assets/cooking_deselected.png");
+    -fx-background-image: url("../../assets/genres/cooking_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/cooking_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:indeterminate {
-    -fx-background-image: url("../../assets/doujin_neutral.png");
+    -fx-background-image: url("../../assets/genres/doujin_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:indeterminate:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/doujin_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:selected {
-    -fx-background-image: url("../../assets/doujin_selected.png");
+    -fx-background-image: url("../../assets/genres/doujin_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:selected:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/doujin_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5 {
-    -fx-background-image: url("../../assets/doujin_deselected.png");
+    -fx-background-image: url("../../assets/genres/doujin_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/doujin_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:indeterminate {
-    -fx-background-image: url("../../assets/drama_neutral.png");
+    -fx-background-image: url("../../assets/genres/drama_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:indeterminate:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/drama_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:selected {
-    -fx-background-image: url("../../assets/drama_selected.png");
+    -fx-background-image: url("../../assets/genres/drama_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:selected:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/drama_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6 {
-    -fx-background-image: url("../../assets/drama_deselected.png");
+    -fx-background-image: url("../../assets/genres/drama_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/drama_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:indeterminate {
-    -fx-background-image: url("../../assets/ecchi_neutral.png");
+    -fx-background-image: url("../../assets/genres/ecchi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:indeterminate:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/ecchi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:selected {
-    -fx-background-image: url("../../assets/ecchi_selected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:selected:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7 {
-    -fx-background-image: url("../../assets/ecchi_deselected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:indeterminate {
-    -fx-background-image: url("../../assets/fantasy_neutral.png");
+    -fx-background-image: url("../../assets/genres/fantasy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:indeterminate:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/fantasy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:selected {
-    -fx-background-image: url("../../assets/fantasy_selected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:selected:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8 {
-    -fx-background-image: url("../../assets/fantasy_deselected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:indeterminate {
-    -fx-background-image: url("../../assets/gender_bender_neutral.png");
+    -fx-background-image: url("../../assets/genres/gb_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:indeterminate:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/gb_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:selected {
-    -fx-background-image: url("../../assets/gender_bender_selected.png");
+    -fx-background-image: url("../../assets/genres/gb_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:selected:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/gb_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9 {
-    -fx-background-image: url("../../assets/gender_bender_deselected.png");
+    -fx-background-image: url("../../assets/genres/gb_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/gb_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:indeterminate {
-    -fx-background-image: url("../../assets/action_neutral.png");
+    -fx-background-image: url("../../assets/genres/action_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:indeterminate:pressed {
-    -fx-background-image: url("../../assets/action_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/action_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:selected {
-    -fx-background-image: url("../../assets/action_selected.png");
+    -fx-background-image: url("../../assets/genres/action_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:selected:pressed {
-    -fx-background-image: url("../../assets/action_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/action_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0 {
-    -fx-background-image: url("../../assets/action_deselected.png");
+    -fx-background-image: url("../../assets/genres/action_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre0:pressed {
-    -fx-background-image: url("../../assets/action_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/action_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:indeterminate {
-    -fx-background-image: url("../../assets/adult_neutral.png");
+    -fx-background-image: url("../../assets/genres/adult_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:indeterminate:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/adult_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:selected {
-    -fx-background-image: url("../../assets/adult_selected.png");
+    -fx-background-image: url("../../assets/genres/adult_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:selected:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/adult_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1 {
-    -fx-background-image: url("../../assets/adult_deselected.png");
+    -fx-background-image: url("../../assets/genres/adult_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre1:pressed {
-    -fx-background-image: url("../../assets/adult_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/adult_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:indeterminate {
-    -fx-background-image: url("../../assets/adventure_neutral.png");
+    -fx-background-image: url("../../assets/genres/adventure_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:indeterminate:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/adventure_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:selected {
-    -fx-background-image: url("../../assets/adventure_selected.png");
+    -fx-background-image: url("../../assets/genres/adventure_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:selected:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/adventure_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2 {
-    -fx-background-image: url("../../assets/adventure_deselected.png");
+    -fx-background-image: url("../../assets/genres/adventure_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre2:pressed {
-    -fx-background-image: url("../../assets/adventure_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/adventure_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:indeterminate {
-    -fx-background-image: url("../../assets/comedy_neutral.png");
+    -fx-background-image: url("../../assets/genres/comedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:indeterminate:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/comedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:selected {
-    -fx-background-image: url("../../assets/comedy_selected.png");
+    -fx-background-image: url("../../assets/genres/comedy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:selected:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/comedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3 {
-    -fx-background-image: url("../../assets/comedy_deselected.png");
+    -fx-background-image: url("../../assets/genres/comedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre3:pressed {
-    -fx-background-image: url("../../assets/comedy_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/comedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:indeterminate {
-    -fx-background-image: url("../../assets/cooking_neutral.png");
+    -fx-background-image: url("../../assets/genres/cooking_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:indeterminate:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/cooking_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:selected {
-    -fx-background-image: url("../../assets/cooking_selected.png");
+    -fx-background-image: url("../../assets/genres/cooking_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:selected:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/cooking_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4 {
-    -fx-background-image: url("../../assets/cooking_deselected.png");
+    -fx-background-image: url("../../assets/genres/cooking_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre4:pressed {
-    -fx-background-image: url("../../assets/cooking_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/cooking_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:indeterminate {
-    -fx-background-image: url("../../assets/doujin_neutral.png");
+    -fx-background-image: url("../../assets/genres/doujin_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:indeterminate:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/doujin_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:selected {
-    -fx-background-image: url("../../assets/doujin_selected.png");
+    -fx-background-image: url("../../assets/genres/doujin_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:selected:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/doujin_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5 {
-    -fx-background-image: url("../../assets/doujin_deselected.png");
+    -fx-background-image: url("../../assets/genres/doujin_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre5:pressed {
-    -fx-background-image: url("../../assets/doujin_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/doujin_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:indeterminate {
-    -fx-background-image: url("../../assets/drama_neutral.png");
+    -fx-background-image: url("../../assets/genres/drama_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:indeterminate:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/drama_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:selected {
-    -fx-background-image: url("../../assets/drama_selected.png");
+    -fx-background-image: url("../../assets/genres/drama_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:selected:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/drama_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6 {
-    -fx-background-image: url("../../assets/drama_deselected.png");
+    -fx-background-image: url("../../assets/genres/drama_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre6:pressed {
-    -fx-background-image: url("../../assets/drama_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/drama_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:indeterminate {
-    -fx-background-image: url("../../assets/ecchi_neutral.png");
+    -fx-background-image: url("../../assets/genres/ecchi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:indeterminate:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/ecchi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:selected {
-    -fx-background-image: url("../../assets/ecchi_selected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:selected:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7 {
-    -fx-background-image: url("../../assets/ecchi_deselected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre7:pressed {
-    -fx-background-image: url("../../assets/ecchi_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/ecchi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:indeterminate {
-    -fx-background-image: url("../../assets/fantasy_neutral.png");
+    -fx-background-image: url("../../assets/genres/fantasy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:indeterminate:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/fantasy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:selected {
-    -fx-background-image: url("../../assets/fantasy_selected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:selected:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8 {
-    -fx-background-image: url("../../assets/fantasy_deselected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre8:pressed {
-    -fx-background-image: url("../../assets/fantasy_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/fantasy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:indeterminate {
-    -fx-background-image: url("../../assets/gender_bender_neutral.png");
+    -fx-background-image: url("../../assets/genres/gb_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:indeterminate:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/gb_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:selected {
-    -fx-background-image: url("../../assets/gender_bender_selected.png");
+    -fx-background-image: url("../../assets/genres/gb_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:selected:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/gb_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9 {
-    -fx-background-image: url("../../assets/gender_bender_deselected.png");
+    -fx-background-image: url("../../assets/genres/gb_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre9:pressed {
-    -fx-background-image: url("../../assets/gender_bender_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/gb_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10:indeterminate {
-    -fx-background-image: url("../../assets/harem_neutral.png");
+    -fx-background-image: url("../../assets/genres/harem_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10:indeterminate:pressed {
-    -fx-background-image: url("../../assets/harem_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/harem_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10:selected {
-    -fx-background-image: url("../../assets/harem_selected.png");
+    -fx-background-image: url("../../assets/genres/harem_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10:selected:pressed {
-    -fx-background-image: url("../../assets/harem_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/harem_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10 {
-    -fx-background-image: url("../../assets/harem_deselected.png");
+    -fx-background-image: url("../../assets/genres/harem_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre10:pressed {
-    -fx-background-image: url("../../assets/harem_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/harem_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11:indeterminate {
-    -fx-background-image: url("../../assets/historical_neutral.png");
+    -fx-background-image: url("../../assets/genres/historical_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11:indeterminate:pressed {
-    -fx-background-image: url("../../assets/historical_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/historica_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11:selected {
-    -fx-background-image: url("../../assets/historical_selected.png");
+    -fx-background-image: url("../../assets/genres/historica_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11:selected:pressed {
-    -fx-background-image: url("../../assets/historical_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/historica_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11 {
-    -fx-background-image: url("../../assets/historical_deselected.png");
+    -fx-background-image: url("../../assets/genres/historica_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre11:pressed {
-    -fx-background-image: url("../../assets/historical_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/historica_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12:indeterminate {
-    -fx-background-image: url("../../assets/horror_neutral.png");
+    -fx-background-image: url("../../assets/genres/horror_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12:indeterminate:pressed {
-    -fx-background-image: url("../../assets/horror_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/horror_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12:selected {
-    -fx-background-image: url("../../assets/horror_selected.png");
+    -fx-background-image: url("../../assets/genres/horror_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12:selected:pressed {
-    -fx-background-image: url("../../assets/horror_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/horror_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12 {
-    -fx-background-image: url("../../assets/horror_deselected.png");
+    -fx-background-image: url("../../assets/genres/horror_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre12:pressed {
-    -fx-background-image: url("../../assets/horror_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/horror_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13:indeterminate {
-    -fx-background-image: url("../../assets/josei_neutral.png");
+    -fx-background-image: url("../../assets/genres/josei_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13:indeterminate:pressed {
-    -fx-background-image: url("../../assets/josei_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/josei_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13:selected {
-    -fx-background-image: url("../../assets/josei_selected.png");
+    -fx-background-image: url("../../assets/genres/josei_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13:selected:pressed {
-    -fx-background-image: url("../../assets/josei_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/josei_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13 {
-    -fx-background-image: url("../../assets/josei_deselected.png");
+    -fx-background-image: url("../../assets/genres/josei_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre13:pressed {
-    -fx-background-image: url("../../assets/josei_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/josei_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14:indeterminate {
-    -fx-background-image: url("../../assets/manhua_neutral.png");
+    -fx-background-image: url("../../assets/genres/manhua_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14:indeterminate:pressed {
-    -fx-background-image: url("../../assets/manhua_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/manhua_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14:selected {
-    -fx-background-image: url("../../assets/manhua_selected.png");
+    -fx-background-image: url("../../assets/genres/manhua_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14:selected:pressed {
-    -fx-background-image: url("../../assets/manhua_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/manhua_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14 {
-    -fx-background-image: url("../../assets/manhua_deselected.png");
+    -fx-background-image: url("../../assets/genres/manhua_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre14:pressed {
-    -fx-background-image: url("../../assets/manhua_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/manhua_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15:indeterminate {
-    -fx-background-image: url("../../assets/manhwa_neutral.png");
+    -fx-background-image: url("../../assets/genres/manhwa_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15:indeterminate:pressed {
-    -fx-background-image: url("../../assets/manhwa_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/manhwa_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15:selected {
-    -fx-background-image: url("../../assets/manhwa_selected.png");
+    -fx-background-image: url("../../assets/genres/manhwa_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15:selected:pressed {
-    -fx-background-image: url("../../assets/manhwa_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/manhwa_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15 {
-    -fx-background-image: url("../../assets/manhwa_deselected.png");
+    -fx-background-image: url("../../assets/genres/manhwa_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre15:pressed {
-    -fx-background-image: url("../../assets/manhwa_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/manhwa_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16:indeterminate {
-    -fx-background-image: url("../../assets/martial_arts_neutral.png");
+    -fx-background-image: url("../../assets/genres/ma_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16:indeterminate:pressed {
-    -fx-background-image: url("../../assets/martial_arts_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/ma_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16:selected {
-    -fx-background-image: url("../../assets/martial_arts_selected.png");
+    -fx-background-image: url("../../assets/genres/ma_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16:selected:pressed {
-    -fx-background-image: url("../../assets/martial_arts_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/ma_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16 {
-    -fx-background-image: url("../../assets/martial_arts_deselected.png");
+    -fx-background-image: url("../../assets/genres/ma_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre16:pressed {
-    -fx-background-image: url("../../assets/martial_arts_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/ma_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17:indeterminate {
-    -fx-background-image: url("../../assets/mature_neutral.png");
+    -fx-background-image: url("../../assets/genres/mature_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17:indeterminate:pressed {
-    -fx-background-image: url("../../assets/mature_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/mature_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17:selected {
-    -fx-background-image: url("../../assets/mature_selected.png");
+    -fx-background-image: url("../../assets/genres/mature_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17:selected:pressed {
-    -fx-background-image: url("../../assets/mature_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/mature_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17 {
-    -fx-background-image: url("../../assets/mature_deselected.png");
+    -fx-background-image: url("../../assets/genres/mature_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre17:pressed {
-    -fx-background-image: url("../../assets/mature_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/maturet_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18:indeterminate {
-    -fx-background-image: url("../../assets/mecha_neutral.png");
+    -fx-background-image: url("../../assets/genres/mecha_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18:indeterminate:pressed {
-    -fx-background-image: url("../../assets/mecha_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/mecha_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18:selected {
-    -fx-background-image: url("../../assets/mecha_selected.png");
+    -fx-background-image: url("../../assets/genres/mecha_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18:selected:pressed {
-    -fx-background-image: url("../../assets/mecha_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/mecha_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18 {
-    -fx-background-image: url("../../assets/mecha_deselected.png");
+    -fx-background-image: url("../../assets/genres/mecha_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre18:pressed {
-    -fx-background-image: url("../../assets/mecha_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/mecha_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19:indeterminate {
-    -fx-background-image: url("../../assets/medical_neutral.png");
+    -fx-background-image: url("../../assets/genres/medical_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19:indeterminate:pressed {
-    -fx-background-image: url("../../assets/medical_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/medical_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19:selected {
-    -fx-background-image: url("../../assets/medical_selected.png");
+    -fx-background-image: url("../../assets/genres/medical_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19:selected:pressed {
-    -fx-background-image: url("../../assets/medical_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/medical_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19 {
-    -fx-background-image: url("../../assets/medical_deselected.png");
+    -fx-background-image: url("../../assets/genres/medical_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre19:pressed {
-    -fx-background-image: url("../../assets/medical_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/medical_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20:indeterminate {
-    -fx-background-image: url("../../assets/mystery_neutral.png");
+    -fx-background-image: url("../../assets/genres/mystery_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20:indeterminate:pressed {
-    -fx-background-image: url("../../assets/mystery_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/mystery_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20:selected {
-    -fx-background-image: url("../../assets/mystery_selected.png");
+    -fx-background-image: url("../../assets/genres/mystery_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20:selected:pressed {
-    -fx-background-image: url("../../assets/mystery_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/mystery_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20 {
-    -fx-background-image: url("../../assets/mystery_deselected.png");
+    -fx-background-image: url("../../assets/genres/mystery_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre20:pressed {
-    -fx-background-image: url("../../assets/mystery_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/mystery_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21:indeterminate {
-    -fx-background-image: url("../../assets/one_shot_neutral.png");
+    -fx-background-image: url("../../assets/genres/oneshot_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21:indeterminate:pressed {
-    -fx-background-image: url("../../assets/one_shot_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/oneshot_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21:selected {
-    -fx-background-image: url("../../assets/one_shot_selected.png");
+    -fx-background-image: url("../../assets/genres/oneshot_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21:selected:pressed {
-    -fx-background-image: url("../../assets/one_shot_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/oneshot_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21 {
-    -fx-background-image: url("../../assets/one_shot_deselected.png");
+    -fx-background-image: url("../../assets/genres/oneshot_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre21:pressed {
-    -fx-background-image: url("../../assets/one_shot_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/oneshot_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22:indeterminate {
-    -fx-background-image: url("../../assets/psychological_neutral.png");
+    -fx-background-image: url("../../assets/genres/psy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22:indeterminate:pressed {
-    -fx-background-image: url("../../assets/psychological_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/psy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22:selected {
-    -fx-background-image: url("../../assets/psychological_selected.png");
+    -fx-background-image: url("../../assets/genres/psy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22:selected:pressed {
-    -fx-background-image: url("../../assets/psychological_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/psy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22 {
-    -fx-background-image: url("../../assets/psychological_deselected.png");
+    -fx-background-image: url("../../assets/genres/psy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre22:pressed {
-    -fx-background-image: url("../../assets/psychological_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/psy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23:indeterminate {
-    -fx-background-image: url("../../assets/romance_neutral.png");
+    -fx-background-image: url("../../assets/genres/romance_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23:indeterminate:pressed {
-    -fx-background-image: url("../../assets/romance_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/romance_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23:selected {
-    -fx-background-image: url("../../assets/romance_selected.png");
+    -fx-background-image: url("../../assets/genres/romance_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23:selected:pressed {
-    -fx-background-image: url("../../assets/romance_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/romance_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23 {
-    -fx-background-image: url("../../assets/romance_deselected.png");
+    -fx-background-image: url("../../assets/genres/romance_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre23:pressed {
-    -fx-background-image: url("../../assets/romance_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/romance_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24:indeterminate {
-    -fx-background-image: url("../../assets/school_life_neutral.png");
+    -fx-background-image: url("../../assets/genres/sl_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24:indeterminate:pressed {
-    -fx-background-image: url("../../assets/school_life_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/sl_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24:selected {
-    -fx-background-image: url("../../assets/school_life_selected.png");
+    -fx-background-image: url("../../assets/genres/sl_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24:selected:pressed {
-    -fx-background-image: url("../../assets/school_life_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/sl_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24 {
-    -fx-background-image: url("../../assets/school_life_deselected.png");
+    -fx-background-image: url("../../assets/genres/sl_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre24:pressed {
-    -fx-background-image: url("../../assets/school_life_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/sl_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25:indeterminate {
-    -fx-background-image: url("../../assets/sci_fi_neutral.png");
+    -fx-background-image: url("../../assets/genres/scifi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25:indeterminate:pressed {
-    -fx-background-image: url("../../assets/sci_fi_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/scifi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25:selected {
-    -fx-background-image: url("../../assets/sci_fi_selected.png");
+    -fx-background-image: url("../../assets/genres/scifi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25:selected:pressed {
-    -fx-background-image: url("../../assets/sci_fi_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/scifi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25 {
-    -fx-background-image: url("../../assets/sci_fi_deselected.png");
+    -fx-background-image: url("../../assets/genres/scifi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre25:pressed {
-    -fx-background-image: url("../../assets/sci_fi_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/scifi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26:indeterminate {
-    -fx-background-image: url("../../assets/seinen_neutral.png");
+    -fx-background-image: url("../../assets/genres/seinen_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26:indeterminate:pressed {
-    -fx-background-image: url("../../assets/seinen_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/seinen_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26:selected {
-    -fx-background-image: url("../../assets/seinen_selected.png");
+    -fx-background-image: url("../../assets/genres/seinen_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26:selected:pressed {
-    -fx-background-image: url("../../assets/seinen_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/seinen_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26 {
-    -fx-background-image: url("../../assets/seinen_deselected.png");
+    -fx-background-image: url("../../assets/genres/seinen_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre26:pressed {
-    -fx-background-image: url("../../assets/seinen_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/seinen_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27:indeterminate {
-    -fx-background-image: url("../../assets/shoujo_neutral.png");
+    -fx-background-image: url("../../assets/genres/shoujo_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27:indeterminate:pressed {
-    -fx-background-image: url("../../assets/shoujo_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/shoujo_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27:selected {
-    -fx-background-image: url("../../assets/shoujo_selected.png");
+    -fx-background-image: url("../../assets/genres/shoujo_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27:selected:pressed {
-    -fx-background-image: url("../../assets/shoujo_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/shoujo_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27 {
-    -fx-background-image: url("../../assets/shoujo_deselected.png");
+    -fx-background-image: url("../../assets/genres/shoujo_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre27:pressed {
-    -fx-background-image: url("../../assets/shoujo_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/shoujo_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28:indeterminate {
-    -fx-background-image: url("../../assets/shoujo_ai_neutral.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28:indeterminate:pressed {
-    -fx-background-image: url("../../assets/shoujo_ai_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28:selected {
-    -fx-background-image: url("../../assets/shoujo_ai_selected.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28:selected:pressed {
-    -fx-background-image: url("../../assets/shoujo_ai_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28 {
-    -fx-background-image: url("../../assets/shoujo_ai_deselected.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre28:pressed {
-    -fx-background-image: url("../../assets/shoujo_ai_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/shoujoai_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29:indeterminate {
-    -fx-background-image: url("../../assets/shounen_neutral.png");
+    -fx-background-image: url("../../assets/genres/shounen_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29:indeterminate:pressed {
-    -fx-background-image: url("../../assets/shounen_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/shounen_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29:selected {
-    -fx-background-image: url("../../assets/shounen_selected.png");
+    -fx-background-image: url("../../assets/genres/shounen_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29:selected:pressed {
-    -fx-background-image: url("../../assets/shounen_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/shounen_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29 {
-    -fx-background-image: url("../../assets/shounen_deselected.png");
+    -fx-background-image: url("../../assets/genres/shounen_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre29:pressed {
-    -fx-background-image: url("../../assets/shounen_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/shounen_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30:indeterminate {
-    -fx-background-image: url("../../assets/shounen_ai_neutral.png");
+    -fx-background-image: url("../../assets/genres/sa_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30:indeterminate:pressed {
-    -fx-background-image: url("../../assets/shounen_ai_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/sa_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30:selected {
-    -fx-background-image: url("../../assets/shounen_ai_selected.png");
+    -fx-background-image: url("../../assets/genres/sa_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30:selected:pressed {
-    -fx-background-image: url("../../assets/shounen_ai_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/sa_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30 {
-    -fx-background-image: url("../../assets/shounen_ai_deselected.png");
+    -fx-background-image: url("../../assets/genres/sa_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre30:pressed {
-    -fx-background-image: url("../../assets/shounen_ai_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/sa_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31:indeterminate {
-    -fx-background-image: url("../../assets/slice_of_life_neutral.png");
+    -fx-background-image: url("../../assets/genres/sol_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31:indeterminate:pressed {
-    -fx-background-image: url("../../assets/slice_of_life_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/sol_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31:selected {
-    -fx-background-image: url("../../assets/slice_of_life_selected.png");
+    -fx-background-image: url("../../assets/genres/sol_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31:selected:pressed {
-    -fx-background-image: url("../../assets/slice_of_life_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/sol_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31 {
-    -fx-background-image: url("../../assets/slice_of_life_deselected.png");
+    -fx-background-image: url("../../assets/genres/sol_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre31:pressed {
-    -fx-background-image: url("../../assets/slice_of_life_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/sol_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32:indeterminate {
-    -fx-background-image: url("../../assets/smut_neutral.png");
+    -fx-background-image: url("../../assets/genres/smut_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32:indeterminate:pressed {
-    -fx-background-image: url("../../assets/smut_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/smut_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32:selected {
-    -fx-background-image: url("../../assets/smut_selected.png");
+    -fx-background-image: url("../../assets/genres/smut_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32:selected:pressed {
-    -fx-background-image: url("../../assets/smut_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/smut_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32 {
-    -fx-background-image: url("../../assets/smut_deselected.png");
+    -fx-background-image: url("../../assets/genres/smut_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre32:pressed {
-    -fx-background-image: url("../../assets/smut_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/smut_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33:indeterminate {
-    -fx-background-image: url("../../assets/sports_neutral.png");
+    -fx-background-image: url("../../assets/genres/sports_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33:indeterminate:pressed {
-    -fx-background-image: url("../../assets/sports_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/sports_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33:selected {
-    -fx-background-image: url("../../assets/sports_selected.png");
+    -fx-background-image: url("../../assets/genres/sports_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33:selected:pressed {
-    -fx-background-image: url("../../assets/sports_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/sports_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33 {
-    -fx-background-image: url("../../assets/sports_deselected.png");
+    -fx-background-image: url("../../assets/genres/sports_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre33:pressed {
-    -fx-background-image: url("../../assets/sports_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/sports_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34:indeterminate {
-    -fx-background-image: url("../../assets/supernatural_neutral.png");
+    -fx-background-image: url("../../assets/genres/sn_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34:indeterminate:pressed {
-    -fx-background-image: url("../../assets/supernatural_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/sn_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34:selected {
-    -fx-background-image: url("../../assets/supernatural_selected.png");
+    -fx-background-image: url("../../assets/genres/sn_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34:selected:pressed {
-    -fx-background-image: url("../../assets/supernatural_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/sn_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34 {
-    -fx-background-image: url("../../assets/supernatural_deselected.png");
+    -fx-background-image: url("../../assets/genres/sn_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre34:pressed {
-    -fx-background-image: url("../../assets/supernatural_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/sn_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35:indeterminate {
-    -fx-background-image: url("../../assets/tragedy_neutral.png");
+    -fx-background-image: url("../../assets/genres/trragedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35:indeterminate:pressed {
-    -fx-background-image: url("../../assets/tragedy_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/tragedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35:selected {
-    -fx-background-image: url("../../assets/tragedy_selected.png");
+    -fx-background-image: url("../../assets/genres/wt_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35:selected:pressed {
-    -fx-background-image: url("../../assets/tragedy_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/tragedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35 {
-    -fx-background-image: url("../../assets/tragedy_deselected.png");
+    -fx-background-image: url("../../assets/genres/tragedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre35:pressed {
-    -fx-background-image: url("../../assets/tragedy_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/tragedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36:indeterminate {
-    -fx-background-image: url("../../assets/webtoons_neutral.png");
+    -fx-background-image: url("../../assets/genres/wt_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36:indeterminate:pressed {
-    -fx-background-image: url("../../assets/webtoons_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/wt_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36:selected {
-    -fx-background-image: url("../../assets/webtoons_selected.png");
+    -fx-background-image: url("../../assets/genres/wt_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36:selected:pressed {
-    -fx-background-image: url("../../assets/webtoons_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/wt_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36 {
-    -fx-background-image: url("../../assets/webtoons_deselected.png");
+    -fx-background-image: url("../../assets/genres/wt_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre36:pressed {
-    -fx-background-image: url("../../assets/webtoons_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/wtt_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37:indeterminate {
-    -fx-background-image: url("../../assets/yaoi_neutral.png");
+    -fx-background-image: url("../../assets/genres/yaoi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37:indeterminate:pressed {
-    -fx-background-image: url("../../assets/yaoi_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/yaoi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37:selected {
-    -fx-background-image: url("../../assets/yaoi_selected.png");
+    -fx-background-image: url("../../assets/genres/yaoi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37:selected:pressed {
-    -fx-background-image: url("../../assets/yaoi_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/yaoi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37 {
-    -fx-background-image: url("../../assets/yaoi_deselected.png");
+    -fx-background-image: url("../../assets/genres/yaoi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre37:pressed {
-    -fx-background-image: url("../../assets/yaoi_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/yaoi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38:indeterminate {
-    -fx-background-image: url("../../assets/yuri_neutral.png");
+    -fx-background-image: url("../../assets/genres/yuri_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38:indeterminate:pressed {
-    -fx-background-image: url("../../assets/yuri_clicked_neutral.png");
+    -fx-background-image: url("../../assets/genres/yuri_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38:selected {
-    -fx-background-image: url("../../assets/yuri_selected.png");
+    -fx-background-image: url("../../assets/genres/yuri_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38:selected:pressed {
-    -fx-background-image: url("../../assets/yuri_clicked_selected.png");
+    -fx-background-image: url("../../assets/genres/yuri_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38 {
-    -fx-background-image: url("../../assets/yuri_deselected.png");
+    -fx-background-image: url("../../assets/genres/yuri_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 #genre38:pressed {
-    -fx-background-image: url("../../assets/yuri_clicked_deselected.png");
+    -fx-background-image: url("../../assets/genres/yuri_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }

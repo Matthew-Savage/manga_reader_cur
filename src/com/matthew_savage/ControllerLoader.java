@@ -47,15 +47,6 @@ public class ControllerLoader {
     }
 
     public void initialize() {
-        preloadProgressTop.setEditable(false);
-        preloadProgressTop.setMouseTransparent(true);
-        preloadProgressTop.setFocusTraversable(false);
-        preloadProgressCenter.setEditable(false);
-        preloadProgressCenter.setMouseTransparent(true);
-        preloadProgressCenter.setFocusTraversable(false);
-        preloadProgressBottom.setEditable(false);
-        preloadProgressBottom.setMouseTransparent(true);
-        preloadProgressBottom.setFocusTraversable(false);
 
         update.addListener(new ChangeListener<String>() {
             @Override
@@ -75,33 +66,34 @@ public class ControllerLoader {
     private void preload() {
         Startup.implementDatabaseChanges();
         initializeArrays();
+//        DebuggingTools.mangaCollectionHealth();
         if (InternetConnection.checkIfConnected()) {
             online = true;
-//            fetchNewTitles();
+            fetchNewTitles();
         }
         boot();
     }
 
     private void initializeArrays() {
-        update.set("Building Manga cache ...");
-        CategoryMangaLists.notCollectedMangaList.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_AVAILABLE.getValue()));
-        CategoryMangaLists.rejectedMangaList.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_NOT_INTERESTED.getValue()));
-        CategoryMangaLists.completedMangaList.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_COMPLETED.getValue()));
-        CategoryMangaLists.collectedMangaList.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_READING.getValue()));
-        CategoryMangaLists.bookmark.addAll(
-                initializeArray(StaticStrings.DB_NAME_MANGA.getValue(), StaticStrings.DB_TABLE_BOOKMARK.getValue()));
-        CategoryMangaLists.downloading.addAll(
-                initializeArray(StaticStrings.DB_NAME_DOWNLOADING.getValue(), StaticStrings.DB_TABLE_DOWNLOAD.getValue()));
+        Database.accessDb(StaticStrings.DB_NAME_MANGA.getValue());
+        CategoryMangaLists.notCollectedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_AVAILABLE.getValue()));
+        CategoryMangaLists.rejectedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_NOT_INTERESTED.getValue()));
+        CategoryMangaLists.completedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_COMPLETED.getValue()));
+        CategoryMangaLists.collectedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_READING.getValue()));
+        CategoryMangaLists.bookmark.addAll(initializeArray(StaticStrings.DB_TABLE_BOOKMARK.getValue()));
+        Database.terminateDbAccess();
         CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
         CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
+        Database.accessDb(StaticStrings.DB_NAME_DOWNLOADING.getValue());
+        CategoryMangaLists.downloading.addAll(initializeArray(StaticStrings.DB_TABLE_DOWNLOAD.getValue()));
+        Database.terminateDbAccess();
+        CategoryMangaLists.buildFavoritesArray();
+        update.set("Building Manga cache ...");
+        update.set("Building Manga cache ...");
     }
 
-    private static ArrayList<Manga> initializeArray(String fileName, String tableName) {
-        return Startup.buildArray(fileName, tableName);
+    private static ArrayList<Manga> initializeArray(String tableName) {
+        return Startup.buildArray(tableName);
     }
 
     private void boot() {
@@ -122,7 +114,7 @@ public class ControllerLoader {
             root = FXMLLoader.load(getClass().getResource("main.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
 
         }
         primaryStage.getIcons().add(new Image("assets/ico.png"));

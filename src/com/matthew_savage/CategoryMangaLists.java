@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CategoryMangaLists {
 
@@ -12,7 +13,7 @@ public class CategoryMangaLists {
     public static ArrayList<Manga> completedMangaList = new ArrayList<>();
     public static ArrayList<Manga> collectedMangaList = new ArrayList<>();
     public static ArrayList<Manga> favoritesMangaList = new ArrayList<>();
-    public static ArrayList<Manga> tentativeMangaList = new ArrayList<>();
+    public static ArrayList<Manga> undecidedMangaList = new ArrayList<>();
     public static ArrayList<Manga> history = new ArrayList<>();
     public static ArrayList<Manga> bookmark = new ArrayList<>();
     public static ArrayList<Manga> downloading = new ArrayList<>();
@@ -25,6 +26,8 @@ public class CategoryMangaLists {
 
     public static int parentListIndexNumberTEMP;
 //    public static int currentContentListIndexNumberTEMP;
+
+    public static Double currentVersionNumber;
 
     public static int selectedMangaIdentNumberTEMP;
     public static String selectedMangaTitleTEMP;
@@ -43,6 +46,14 @@ public class CategoryMangaLists {
     public static int selectedMangaCurrentChapLastPageNumTEMP;
     public static int currentCategoryNumber;
 
+    public static void buildFavoritesArray() {
+        favoritesMangaList.clear();
+        ArrayList<Manga> collectedAndCompleted = new ArrayList<>();
+        collectedAndCompleted.addAll(collectedMangaList);
+        collectedAndCompleted.addAll(completedMangaList);
+        favoritesMangaList = collectedAndCompleted.stream().filter(i -> i.getFavorite() == 1).collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public static ArrayList<Manga> toList() {
         switch (currentCategoryNumber) {
             case 1:
@@ -54,7 +65,7 @@ public class CategoryMangaLists {
             case 4:
                 return favoritesMangaList;
             case 5:
-                return tentativeMangaList;
+                return undecidedMangaList;
             case 6:
                 return rejectedMangaList;
         }

@@ -24,7 +24,7 @@ public class Database {
             dbConnection = DriverManager.getConnection("jdbc:sqlite:" + StaticStrings.DIR_ROOT.getValue() + File.separator + StaticStrings.DIR_DB.getValue() + File.separator + dbFileName);
         } catch (SQLException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -58,18 +58,18 @@ public class Database {
             sqlStatement.execute("UPDATE " + tableName + " SET " + valueColumnName + " = '" + newValue + "' WHERE title_id = '" + mangaIdentNumber + "'");
         } catch (SQLException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
     public static void addMangaEntry(String tableName, int mangaId, String title, String authors, String status, String summary, String webAddress, String genreTags, int totalChapters, int currentPage, int lastChapterRead, int lastChapterDownloaded, int newChaptersBoolean, int favoriteBoolean) {
-        System.out.println(mangaId + " added to " + tableName);
+        System.out.println("Database.java" + title + " added to " + tableName);
         try (Statement sqlStatement = dbConnection.createStatement()) {
             sqlStatement.execute("INSERT INTO " + tableName + " (title_id, title, authors, status, summary, web_address, genre_tags, total_chapters, current_page, last_chapter_read, last_chapter_downloaded, new_chapters, favorite) VALUES " +
                     "('" + mangaId + "', '" + title + "', '" + authors + "', '" + status + "', '" + summary + "', '" + webAddress + "', '" + genreTags + "', '" + totalChapters + "', '" + currentPage + "', '" + lastChapterRead + "', '" + lastChapterDownloaded + "', '" + newChaptersBoolean + "', '" + favoriteBoolean + "')");
         } catch (SQLException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -78,7 +78,7 @@ public class Database {
             dbConnection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
     }
     }
 
@@ -234,7 +234,7 @@ public class Database {
             sqlStatemenet.execute("DROP TABLE IF EXISTS " + tableName);
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -244,7 +244,7 @@ public class Database {
             sqlStatement.execute("CREATE TABLE IF NOT EXISTS history (entry_number INTEGER PRIMARY KEY, title_id INTEGER, title TEXT, summary TEXT)");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -254,7 +254,7 @@ public class Database {
             sqlStatement.execute("CREATE TABLE IF NOT EXISTS bookmark (title_id INTEGER, title TEXT, authors TEXT, status TEXT, summary TEXT, web_address TEXT, genre_tags TEXT, total_chapters INTEGER, current_page INTEGER, last_chapter_read INTEGER, last_chapter_downloaded INTEGER, new_chapters INTEGER, favorite INTEGER)");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -275,7 +275,7 @@ public class Database {
                     " third_genre TEXT)");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -285,7 +285,7 @@ public class Database {
             sqlStatement.execute("CREATE UNIQUE INDEX IF NOT EXISTS `" + tableName + "_i` ON `" + tableName + "` ( `title_id` )");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -295,7 +295,7 @@ public class Database {
             sqlStatement.execute("INSERT INTO " + tableName + " (version) VALUES ('" + value + "')");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -306,7 +306,7 @@ public class Database {
                     "VALUES ('" + titlesTotal + "', '" + readingTotal + "', '" + finishedReading + "', '" + pagesRead + "', '" + favorites + "', '" + blacklisted + "', '" + pagesDaily + "', '" + firstGenre + "', '" + secondGenre + "', '" + thirdGenre + "')");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -316,7 +316,7 @@ public class Database {
             sqlStatement.execute("INSERT INTO history (title_id, title, summary) VALUES ('" + mangaId + "', '" + title + "', '" + summary + "')");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
     }
 
@@ -326,7 +326,7 @@ public class Database {
             return sqlStatement.executeQuery("SELECT * FROM history ORDER BY entry_number DESC LIMIT 10");
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
+            Logging.logError(e.toString());
         }
         return null;
     }

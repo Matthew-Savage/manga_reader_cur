@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +14,9 @@ import static com.matthew_savage.CategoryMangaLists.*;
 
 public class MangaValues {
 
-    private static ArrayList<String> queue = new ArrayList<>();
+//    private static ArrayList<String> queue = new ArrayList<>();
+    private static ArrayBlockingQueue<String> concurrentQueue = new ArrayBlockingQueue<>(10, true);
+
     private static ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public static void executeChanges() {
@@ -26,53 +30,52 @@ public class MangaValues {
                     File.separator + StaticStrings.DIR_DB.getValue() +
                     File.separator + StaticStrings.DB_NAME_MANGA.getValue());
             Statement statement = connection.createStatement();
-            for (String process : queue) {
-                ErrorLogging.logError(process);
+            for (String process : concurrentQueue) {
+                Logging.logDatabase(process);
                 statement.execute(process);
+                concurrentQueue.poll();
             }
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorLogging.logError(e.toString());
-        } finally {
-            queue.clear();
+            Logging.logError(e.toString());
         }
     };
 
     public static void addToQueue(String process) {
-        queue.add(process);
+//        queue.add(process);
+
+        try {
+            concurrentQueue.put(process);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void addAndRemove(ArrayList<Manga> source, ArrayList<Manga> dest, int sourceIndexNum, boolean sourceRemove) {
         String process = assembleInsertStatement(dest, source, sourceIndexNum);
         dest.add(source.get(sourceIndexNum));
-        queue.add(process);
+        concurrentQueue.add(process);
 
         if (sourceRemove) {
-            queue.add(assembleRemoveStatement(source, sourceIndexNum));
+            concurrentQueue.add(assembleRemoveStatement(source, sourceIndexNum));
             source.remove(sourceIndexNum);
         }
     }
 
     public static void justRemove(ArrayList<Manga> source, int sourceIndexNum) {
-        queue.add(assembleRemoveStatement(source, sourceIndexNum));
+        concurrentQueue.add(assembleRemoveStatement(source, sourceIndexNum));
         source.remove(sourceIndexNum);
     }
 
-    public static void topFive(ArrayList<Manga> source) {
-        for (int i = 0; i < 5; i++) {
-            queue.add(assembleInsertStatement(source, source, i));
-        }
-    }
-
     public static void deleteAll(ArrayList<Manga> source) {
-        queue.add("DELETE FROM " + arrayListToTableName(source));
+        concurrentQueue.add("DELETE FROM " + arrayListToTableName(source));
         source.clear();
     }
 
     public static <T> void modifyValue(ArrayList<Manga> currentParent, String columnName, T newValue, int mangaIdentNum) {
         updateListValues(currentParent);
-        queue.add(assembleModifyStatement(currentParent, columnName, newValue, mangaIdentNum));
+        concurrentQueue.add(assembleModifyStatement(currentParent, columnName, newValue, mangaIdentNum));
     }
 
     private static void updateListValues(ArrayList<Manga> currentParent) {
@@ -92,13 +95,6 @@ public class MangaValues {
     }
 
     private static String assembleInsertStatement(ArrayList<Manga> dest, ArrayList<Manga> source, int sourceIndexNum) {
-        if (dest.equals(fiveNewestTitles)) {
-            return "INSERT INTO " + arrayListToTableName(dest) + " (" +
-                    "title_id, " +
-                    "title) VALUES " + "(" +
-                    "'" + source.get(sourceIndexNum).getTitleId() + "', " +
-                    "'" + source.get(sourceIndexNum).getTitle() + "')";
-        } else {
             return "INSERT INTO " + arrayListToTableName(dest) + " (" +
                     "title_id, " +
                     "title, " +
@@ -126,7 +122,7 @@ public class MangaValues {
                     "'" + source.get(sourceIndexNum).getLastChapterDownloaded() + "', " +
                     "'" + source.get(sourceIndexNum).getNewChapters() + "', " +
                     "'" + source.get(sourceIndexNum).getFavorite() + "')";
-        }
+
     }
 
     private static String assembleRemoveStatement(ArrayList<Manga> arrayList, int sourceIndexNum) {
@@ -142,33 +138,14 @@ public class MangaValues {
             return StaticStrings.DB_TABLE_COMPLETED.getValue();
         } else if (arrayList.equals(history)) {
             return StaticStrings.DB_TABLE_HISTORY.getValue();
-        } else if (arrayList.equals(fiveNewestTitles)) {
-            return StaticStrings.DB_TABLE_FIVE_NEWEST.getValue();
+        } else if (arrayList.equals(undecidedMangaList)) {
+            return StaticStrings.DB_TABLE_UNDECIDED.getValue();
         } else if (arrayList.equals(bookmark)) {
             return StaticStrings.DB_TABLE_BOOKMARK.getValue();
         } else if (arrayList.equals(downloading)) {
             return StaticStrings.DB_TABLE_DOWNLOAD.getValue();
         } else {
             return StaticStrings.DB_TABLE_NOT_INTERESTED.getValue();
-        }
-    }
-
-    private static ArrayList<Manga> tableNameToArrayList(String tableName) {
-
-        if (tableName.equals(StaticStrings.DB_TABLE_AVAILABLE.getValue())) {
-            return notCollectedMangaList;
-        } else if (tableName.equals(StaticStrings.DB_TABLE_READING.getValue())) {
-            return collectedMangaList;
-        } else if (tableName.equals(StaticStrings.DB_TABLE_BOOKMARK.getValue())) {
-            return bookmark;
-        } else if (tableName.equals(StaticStrings.DB_TABLE_COMPLETED.getValue())) {
-            return completedMangaList;
-        } else if (tableName.equals(StaticStrings.DB_TABLE_HISTORY.getValue())) {
-            return history;
-        } else if (tableName.equals(StaticStrings.DB_TABLE_FIVE_NEWEST.getValue())) {
-            return fiveNewestTitles;
-        } else {
-            return rejectedMangaList;
         }
     }
 }

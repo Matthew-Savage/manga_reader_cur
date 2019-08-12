@@ -6,11 +6,11 @@
             xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.matthew_savage.ControllerLoader">
     <children>
-        <TextField id="textSize12" fx:id="preloadProgressTop" alignment="CENTER" editable="false" layoutX="40.0"
+        <TextField id="textSize12" fx:id="preloadProgressTop" alignment="CENTER" mouseTransparent="true" focusTraversable="false" editable="false" layoutX="40.0"
                    layoutY="193.0" prefHeight="28.0" prefWidth="199.0"/>
-        <TextField id="textSize12" fx:id="preloadProgressCenter" alignment="CENTER" editable="false" layoutX="40.0"
+        <TextField id="textSize12" fx:id="preloadProgressCenter" alignment="CENTER" mouseTransparent="true" focusTraversable="false" editable="false" layoutX="40.0"
                    layoutY="213.0" prefHeight="28.0" prefWidth="199.0"/>
-        <TextField id="textSize12" fx:id="preloadProgressBottom" alignment="CENTER" editable="false" layoutX="40.0"
+        <TextField id="textSize12" fx:id="preloadProgressBottom" alignment="CENTER" mouseTransparent="true" focusTraversable="false" editable="false" layoutX="40.0"
                    layoutY="233.0" prefHeight="28.0" prefWidth="199.0"/>
     </children>
 </AnchorPane>
