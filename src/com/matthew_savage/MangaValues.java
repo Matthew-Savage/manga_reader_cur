@@ -15,7 +15,7 @@ import static com.matthew_savage.CategoryMangaLists.*;
 public class MangaValues {
 
 //    private static ArrayList<String> queue = new ArrayList<>();
-    private static ArrayBlockingQueue<String> concurrentQueue = new ArrayBlockingQueue<>(10, true);
+    private static ArrayBlockingQueue<String> concurrentQueue = new ArrayBlockingQueue<>(100, true);
 
     private static ExecutorService executor = Executors.newSingleThreadExecutor();
 

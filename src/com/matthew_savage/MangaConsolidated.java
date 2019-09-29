@@ -3,7 +3,6 @@ package com.matthew_savage;
 import java.util.ArrayList;
 
 import static com.matthew_savage.CategoryMangaLists.*;
-import static com.matthew_savage.CategoryMangaLists.downloading;
 
 public class MangaConsolidated {
 

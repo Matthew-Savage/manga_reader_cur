@@ -69,7 +69,7 @@ public class ControllerLoader {
 //        DebuggingTools.mangaCollectionHealth();
         if (InternetConnection.checkIfConnected()) {
             online = true;
-            fetchNewTitles();
+//            fetchNewTitles();
         }
         boot();
     }

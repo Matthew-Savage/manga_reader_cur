@@ -219,6 +219,7 @@ public class DownloadRunnable {
                     lastChapDown + "' WHERE title_id = '" + currentMangaIdent + "'");
             MangaValues.executeChanges();
             totalPendingDownloads--;
+            downloadQueue.remove(indexNumber);
             ControllerMain.downloadMessage.set(String.valueOf(totalPendingDownloads));
             downloadDatabaseDelete(currentMangaIdent);
         }

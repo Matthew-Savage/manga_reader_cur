@@ -29,17 +29,17 @@ public class InfoBox {
         Boolean read = CategoryMangaLists.selectedMangaTotalChapNumTEMP == CategoryMangaLists.selectedMangaLastChapDownloadedTEMP;
         switch (CategoryMangaLists.currentCategoryNumber) {
             case 1:
-                return Stream.of(true, false, true, true, false, false, false, false, true, true).collect(Collectors.toList());
+                return Stream.of(true, false, true, true, false, false, false, false, true, true, true).collect(Collectors.toList());
             case 2:
-                return Stream.of(false, true, true, true, false, false, false, true, false, false).collect(Collectors.toList());
+                return Stream.of(false, true, true, true, false, false, false, true, false, false, false).collect(Collectors.toList());
             case 3:
-                return Stream.of(false, true, true, true, false, false, false, true, false, false).collect(Collectors.toList());
+                return Stream.of(false, true, true, true, false, false, false, true, false, false, false).collect(Collectors.toList());
             case 4:
-                return Stream.of(!read, read, true, true, false, false, false, false, true, false).collect(Collectors.toList());
+                return Stream.of(!read, read, true, true, false, false, false, false, true, false, false).collect(Collectors.toList());
             case 5:
-                return Stream.of(false, false, false, false, true, false, true, false, true, true).collect(Collectors.toList());
+                return Stream.of(false, false, false, false, true, false, true, false, true, true, true).collect(Collectors.toList());
             case 6:
-                return Stream.of(false, false, false, false, true, true, false, false, true, true).collect(Collectors.toList());
+                return Stream.of(false, false, false, false, true, true, false, false, true, true, true).collect(Collectors.toList());
         }
         return null;
     }

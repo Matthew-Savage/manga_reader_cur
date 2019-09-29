@@ -54,7 +54,7 @@
 
 #authorPaneShort {
     -fx-background-color: transparent;
-    -fx-background-image: url("../../assets/author_short.png");
+    -fx-background-image: url("../../assets/author_medium.png");
 }
 
 #errorPane {
@@ -77,6 +77,20 @@
     -fx-background-image: url("../../assets/updateIcon.png");
 }
 
+#updatePaneWait {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/wait.png");
+}
+
+#updatePaneNew {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/new_chapters.png");
+}
+
+#updatePaneNotNew {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/up_to_date.png");
+}
 
 #pageNumTextPane {
     -fx-background-color: transparent;
@@ -111,6 +125,42 @@
 #innerPopupNumbox {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/last_chap_read.png");
+}
+
+#update_okay {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/okay.png");
+}
+
+#update_okay:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/okay_pressed.png");
+}
+
+#update_no {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/no.png");
+}
+
+#update_no:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/no_pressed.png");
+}
+
+#update_yes {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/yes.png");
+}
+
+#update_yes:pressed {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../assets/update_button/yes_pressed.png");
 }
 
 #ascendDescend {
@@ -2813,7 +2863,7 @@
 }
 
 #genre36:selected {
-    -fx-background-image: url("../../assets/genres/wt_include.png");
+    -fx-background-image: url("../../assets/genres/webtoons_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }

@@ -1,25 +1,21 @@
 package com.matthew_savage;
 
-// we really shouldnt ship this build without a way to automate future updates, doing manually is soooo fucking lame its unreal. even placeholder image would have been so easy, doesnt exist? fine, download from blablabla.
-// add update button to info pane for... - lol finished but it doesnt actually do anything, neat lol fuck. need to write changes to db if there were any, but there arent. need to have it check another website i guess.
-// also throws java.nio.file.FileSystemException: C:\Users\Apple Laptop\Documents\reader\thumbs\21212.jpg: The process cannot access the file because it is being used by another process. - cant write to thumb, interesting
+//TODO
+// create installer that downloads latest complete reader
 // add cancel button to update catalog
 // add a tool suite to let natqlie fix issues on her own, like the zero total chapters bug i just fucking implemented
 //        "dont reset page when adding manga.. fucking irritating as fuck"
 //        genre tags should work WITH search box, just crashed the entire fucking program just now by running a search lol.
 // maybe somehow prevent manga from becoming complete if still in download queue? no idea how but... moop. maybe set last chapter downloaded
 // to -1? that might be something.
-//lol all the stats logic. this app is getting respectable i feel like
-// natalioe wants to check for new chapters to "prepare for offline"
-// let refresh button save, also add wait screen for that too.
+// lol all the stats logic. this app is getting respectable i feel like
 // let user select what catagories to pull favorites from for fav foldier, cool!
-// make sure new database changes can happen so like be there when natalie tries to do new database shit - seemed to start okay...
-//implement a change log? fuck!
-//let me know if a manga is complete or incomplete when i click it
-//mark as complete button, bitches love mark as complete buttons
-//need to make all these arraylists multithreaded bro. that curtainly cant be ideal that almost nothing is thread safe.
-//in app bug submissipon
-//find out what the deal is with the super high resolution korean shit. clearly we need a max resolution for the imgview
+// mark as complete button, bitches love mark as complete buttons
+// need to make all these arraylists multithreaded bro. that curtainly cant be ideal that almost nothing is thread safe.
+// in app bug submissipon
+// find out what the deal is with the super high resolution korean shit. clearly we need a max resolution for the imgview
+// moving to ignore and shit is putting manga in complete queue, that old bug
+// clicking read again for a complete manga is totally broken
 
 import com.matthew_savage.GUI.*;
 import javafx.animation.KeyFrame;
@@ -67,8 +63,6 @@ import java.util.stream.IntStream;
 
 import static com.matthew_savage.CategoryMangaLists.*;
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
-import static javafx.scene.input.KeyEvent.KEY_RELEASED;
-import static javafx.scene.input.ScrollEvent.SCROLL;
 
 public class ControllerMain {
 
@@ -129,6 +123,12 @@ public class ControllerMain {
     @FXML
     private Pane updateIcon;
     @FXML
+    private Pane updatePaneWait;
+    @FXML
+    private Pane updatePaneNew;
+    @FXML
+    private Pane updatePaneNotNew;
+    @FXML
     private StackPane imageFrame;
     @FXML
     private ScrollPane mangaPageVerticalScrollPane;
@@ -152,6 +152,8 @@ public class ControllerMain {
     private TextField searchBox;
     @FXML
     private TextField chapterTot;
+    @FXML
+    private TextField status;
     @FXML
     private TextField currentPageNumberDisplay;
     @FXML
@@ -214,6 +216,8 @@ public class ControllerMain {
     private RadioButton searchSummary;
     @FXML
     private Button pageFirst;
+    @FXML
+    private Button fetchAgain;
     @FXML
     private Button pagePrevious;
     @FXML
@@ -541,12 +545,54 @@ public class ControllerMain {
     }
 
     public void fetchAgain() {
-        RemoteCatalog.forceUpdate();
-        populateMangaInfoPane();
+        updatePaneWait.setVisible(true);
+        executor.execute(this::findIfNewChapters);
+
+//        RemoteCatalog.forceUpdate();
+//        populateMangaInfoPane();
+    }
+
+//    private Runnable findIfNewChapters = () -> {
+//        int newMaxChapters = IndexMangaChapters.getChapterAddresses(selectedMangaWebAddressTEMP).size();
+//        if (newMaxChapters > selectedMangaTotalChapNumTEMP) {
+//            System.out.println(selectedMangaTotalChapNumTEMP);
+//            selectedMangaTotalChapNumTEMP = newMaxChapters;
+//            System.out.println(selectedMangaTotalChapNumTEMP);
+//            updatePaneWait.setVisible(false);
+//            updatePaneNew.setVisible(true);
+//        } else {
+//            updatePaneWait.setVisible(false);
+//            updatePaneNotNew.setVisible(true);
+//        }
+//    };
+
+    private void findIfNewChapters() {
+        int newMaxChapters = IndexMangaChapters.getChapterAddresses(InvalidEntry.verifyAddress(selectedMangaWebAddressTEMP, selectedMangaTitleTEMP, selectedMangaAuthorsTEMP)).size();
+        if (newMaxChapters > selectedMangaTotalChapNumTEMP) {
+            if (selectedMangaNewChapNumTEMP > 0) {
+                selectedMangaNewChapNumTEMP = (newMaxChapters - selectedMangaTotalChapNumTEMP) + selectedMangaNewChapNumTEMP;
+            }
+            selectedMangaTotalChapNumTEMP = newMaxChapters;
+            updatePaneWait.setVisible(false);
+            updatePaneNew.setVisible(true);
+        } else {
+            updatePaneWait.setVisible(false);
+            updatePaneNotNew.setVisible(true);
+        }
+    };
+
+    public void addNewChapters() {
+        closeUpdatePane();
+        getThisManga();
     }
 
     public static void killDownloadProcess() {
         downloadThread.shutdown();
+    }
+
+    public void closeUpdatePane() {
+        updatePaneNew.setVisible(false);
+        updatePaneNotNew.setVisible(false);
     }
 
     private void defaultThumbPane(ArrayList<Manga> currentActivityMangaList) {
@@ -803,6 +849,9 @@ public class ControllerMain {
     private void positionInfoAndRepairBox(int thumbClickedIdent) {
         popupPane.setLayoutX(InfoBox.positionInfoBox(thumbClickedIdent));
         repairPane.setLayoutX(InfoBox.positionRepairBox(thumbClickedIdent));
+        updatePaneWait.setLayoutX(InfoBox.positionInfoBox(thumbClickedIdent));
+        updatePaneNew.setLayoutX(InfoBox.positionInfoBox(thumbClickedIdent));
+        updatePaneNotNew.setLayoutX(InfoBox.positionInfoBox(thumbClickedIdent));
     }
 
     public static int fetchOriginalIndexNumber(ArrayList<Manga> parentList, int titleID) {
@@ -831,6 +880,7 @@ public class ControllerMain {
         authorPaneShort.setVisible(isShown.get(7));
         authorPaneLong.setVisible(isShown.get(8));
         getIssuePopup.setDisable(isShown.get(9));
+        fetchAgain.setDisable(isShown.get(10));
         disableFavoriteButtons();
         toggleFavoriteButton();
     }
@@ -970,6 +1020,7 @@ public class ControllerMain {
         if (catIsCollectedOrComplete()) {
             authorShort.setText(removeEndingComma(selectedMangaAuthorsTEMP));
             chapterTot.setText(String.valueOf(selectedMangaTotalChapNumTEMP));
+            status.setText(selectedMangaStatusTEMP);
         } else {
             authorLong.setText(removeEndingComma(selectedMangaAuthorsTEMP));
         }
@@ -1006,10 +1057,8 @@ public class ControllerMain {
 
         if (ControllerLoader.isOnline()) {
             noInternet.setVisible(false);
-            if (ControllerLoader.isUpdatable()) {
                 checkIfUpdated.scheduleWithFixedDelay(updateRunnable, 15, 1800, TimeUnit.SECONDS);
                 downloadThread.scheduleWithFixedDelay(DownloadRunnable.processDownloadQueue, 1, 1, TimeUnit.MINUTES);
-            }
         }
     }
 
@@ -1075,17 +1124,55 @@ public class ControllerMain {
         }
     }
 
+    public void changeCompletedToReading() {
+        // this is only being used by the hiustory pane, or the used to be history pane at least... fml
+        selectedMangaLastChapReadNumTEMP = 0;
+        selectedMangaCurrentPageNumTEMP = 0;
+        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_LAST_CHAP_READ.getValue(), selectedMangaLastChapReadNumTEMP, selectedMangaIdentNumberTEMP);
+        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_CUR_PAGE.getValue(), selectedMangaCurrentPageNumTEMP, selectedMangaIdentNumberTEMP);
+        MangaValues.addAndRemove(completedMangaList, collectedMangaList, parentListIndexNumberTEMP, true);
+        popupClose();
+        getSelectedMangaValues(collectedMangaList);
+        preReadingTasks();
+    }
+
     public void preReadingTasks() {
         if (HistoryPane.storeHistory()) {
         }
 //        removeNewChapFlagIfPresent();
+
+        if (tabCompleted.isSelected()) {
+            //TODO
+            // move from completed to currently reading, reset everything back to zero. database shit
+        }
+
         try {
             mangaImageFilesToList();
             launchReader();
-        } catch (NullPointerException e) {
-            repairCollectedManga();
+        } catch (NullPointerException|IndexOutOfBoundsException e) {
+            e.printStackTrace();
+//            repairCollectedManga();
             errorMessage.set("\n" + selectedMangaTitleTEMP + " was unable to successfully launch. To correct this issue the manga has been queued for repair and will once again appear within your collection " +
                     "when this process has completed.");
+        }
+    }
+
+    private String sourceDatabase() {
+        if (tabNotCollected.isSelected()) {
+            return StaticStrings.DB_TABLE_AVAILABLE.getValue();
+        } else if (tabCollected.isSelected()) {
+            return StaticStrings.DB_TABLE_READING.getValue();
+        } else if (tabCompleted.isSelected()) {
+            return StaticStrings.DB_TABLE_COMPLETED.getValue();
+//        } else if (tabFavorites.isSelected()) {
+//            // would need to know parent db, fucking hell. honestly might need to setup a new database field to designate the table, or status. maybe everything should either be available or reading in the db? sorted
+//            // into catagories during startup?
+        } else if (tabTentative.isSelected()) {
+            return StaticStrings.DB_TABLE_UNDECIDED.getValue();
+        } else if (tabRejected.isSelected()) {
+            return StaticStrings.DB_TABLE_NOT_INTERESTED.getValue();
+        } else {
+            return null;
         }
     }
 
@@ -1163,16 +1250,17 @@ public class ControllerMain {
     private static boolean firstSet = false;
 
     public void processNavKeys(Event event) {
-//        if (System.currentTimeMillis() - firstTime > 70 || firstSet) {
-//            firstSet = false;
-//            firstTime = System.currentTimeMillis();
-//            scrollUpDown(InputSorting.sortInputs(event));
-//        } else {
-//            event.consume();
-//        }
-
-        scrollUpDown(InputSorting.sortInputs(event));
-
+        if (System.currentTimeMillis() - firstTime > 70 || firstSet) {
+            firstSet = false;
+            firstTime = System.currentTimeMillis();
+            if (selectedMangaTotalChapNumTEMP == selectedMangaLastChapReadNumTEMP && selectedMangaCurrentPageNumTEMP == 0) {
+                event.consume();
+            } else {
+                scrollUpDown(InputSorting.sortInputs(event));
+            }
+        } else {
+            event.consume();
+        }
     }
 
     private void navigateMangaCurrentlyReading() {
@@ -1469,18 +1557,9 @@ public class ControllerMain {
         searchStringBuilder();
     }
 
-    public void changeCompletedToReading() {
-        selectedMangaLastChapReadNumTEMP = 0;
-        selectedMangaCurrentPageNumTEMP = 0;
-        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_LAST_CHAP_READ.getValue(), selectedMangaLastChapReadNumTEMP, selectedMangaIdentNumberTEMP);
-        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_CUR_PAGE.getValue(), selectedMangaCurrentPageNumTEMP, selectedMangaIdentNumberTEMP);
-        MangaValues.addAndRemove(completedMangaList, collectedMangaList, parentListIndexNumberTEMP, true);
-        popupClose();
-        getSelectedMangaValues(collectedMangaList);
-        preReadingTasks();
-    }
-
     public void ignoreManga() {
+        //todo
+        // hardcode database changes i guess..
             MangaValues.addAndRemove(toList(), rejectedMangaList, parentListIndexNumberTEMP, true);
             MangaValues.executeChanges();
         popupClose();
@@ -1488,8 +1567,45 @@ public class ControllerMain {
     }
 
     public void makeMangaUndecided() {
-            MangaValues.addAndRemove(toList(), undecidedMangaList, parentListIndexNumberTEMP, true);
-            MangaValues.executeChanges();
+        //todo
+        // hardcode database changes i guess.
+        // update: this should be good, test it and if so, apply to ignore and honestly anywhere
+        // still using the old method. something about it just doesnt work. sick of fighting with it.
+
+
+        MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_UNDECIDED.getValue() + " (" +
+                "title_id, " +
+                "title, " +
+                "authors, " +
+                "status, " +
+                "summary, " +
+                "web_address, " +
+                "genre_tags, " +
+                "total_chapters, " +
+                "current_page, " +
+                "last_chapter_read, " +
+                "last_chapter_downloaded, " +
+                "new_chapters, " +
+                "favorite) VALUES " + "(" +
+                "'" + selectedMangaIdentNumberTEMP + "', " +
+                "'" + selectedMangaTitleTEMP + "', " +
+                "'" + selectedMangaAuthorsTEMP + "', " +
+                "'" + selectedMangaStatusTEMP + "', " +
+                "'" + selectedMangaSummaryTEMP + "', " +
+                "'" + selectedMangaWebAddressTEMP + "', " +
+                "'" + selectedMangaGenresTEMP + "', " +
+                "'" + selectedMangaTotalChapNumTEMP + "', " +
+                "'" + selectedMangaCurrentPageNumTEMP + "', " +
+                "'" + selectedMangaLastChapReadNumTEMP + "', " +
+                "'" + selectedMangaLastChapDownloadedTEMP + "', " +
+                "'" + selectedMangaNewChapNumTEMP + "', " +
+                "'" + selectedMangaIsFavoriteTEMP + "')");
+
+        MangaValues.addToQueue("DELETE FROM " + sourceDatabase() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+        undecidedMangaList.add(toList().get(parentListIndexNumberTEMP));
+        toList().remove(parentListIndexNumberTEMP);
+//        MangaValues.addAndRemove(toList(), undecidedMangaList, parentListIndexNumberTEMP, true);
+        MangaValues.executeChanges();
         popupClose();
         searchStringBuilder();
     }

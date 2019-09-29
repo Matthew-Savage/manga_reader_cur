@@ -696,7 +696,6 @@
                 <Pane id="waitPane" fx:id="waitPane" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0"
                       minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
                 </Pane>
-
                 <Pane id="popupPane" fx:id="popupPane" layoutX="15.0" layoutY="170.0" maxHeight="544.0" maxWidth="761.0"
                       minHeight="544.0" minWidth="761.0" prefHeight="544.0" prefWidth="761.0" visible="false">
                     <children>
@@ -707,7 +706,7 @@
                                 mnemonicParsing="false" onAction="#showRepairPopup" prefHeight="24.0" prefWidth="36.0"/>
                         <Button id="fetchAgain" fx:id="fetchAgain" layoutX="683.0" layoutY="44.0"
                                 maxHeight="24.0" maxWidth="36.0" minHeight="24.0" minWidth="36.0"
-                                mnemonicParsing="false" onAction="#fetchAgain" prefHeight="24.0" prefWidth="36.0" disable="true"/>
+                                mnemonicParsing="false" onAction="#fetchAgain" prefHeight="24.0" prefWidth="36.0" />
                         <Button id="miniClose" layoutX="731.0" layoutY="7.0" maxHeight="24.0" maxWidth="23.0"
                                 minHeight="24.0" minWidth="23.0" mnemonicParsing="false" onAction="#popupClose"
                                 prefHeight="24.0" prefWidth="23.0"/>
@@ -723,7 +722,10 @@
                             <TextField id="textSize12" fx:id="authorShort" mouseTransparent="true" focusTraversable="false" editable="false" layoutX="58.0" layoutY="4.0"
                                        maxHeight="42.0" maxWidth="445.0" minHeight="42.0" minWidth="445.0" prefHeight="42.0"
                                        prefWidth="445.0"/>
-                            <TextField id="textSize12" fx:id="chapterTot" editable="false" mouseTransparent="true" focusTraversable="false" layoutX="613.0" layoutY="4.0"
+                            <TextField id="textSize12" fx:id="chapterTot" editable="false" mouseTransparent="true" focusTraversable="false" layoutX="515.0" layoutY="4.0"
+                                       maxHeight="42.0" maxWidth="55.0" minHeight="42.0" minWidth="55.0" prefHeight="42.0"
+                                       prefWidth="55.0"/>
+                            <TextField id="textSize12" fx:id="status" editable="false" mouseTransparent="true" focusTraversable="false" layoutX="632.0" layoutY="4.0"
                                        maxHeight="42.0" maxWidth="95.0" minHeight="42.0" minWidth="95.0" prefHeight="42.0"
                                        prefWidth="95.0"/>
                         </Pane>
@@ -781,6 +783,24 @@
                         <ImageView id="popupThumb" fx:id="mangaThumb" fitHeight="250.0" fitWidth="167.0" layoutX="15.0"
                                    layoutY="79.0" pickOnBounds="true" preserveRatio="true"/>
                     </children>
+                </Pane>
+                <Pane id="updatePaneWait" fx:id="updatePaneWait" layoutX="15.0" layoutY="170.0" maxHeight="544.0" maxWidth="761.0"
+                      minHeight="544.0" minWidth="761.0" prefHeight="544.0" prefWidth="761.0" visible="false">
+                </Pane>
+                <Pane id="updatePaneNew" fx:id="updatePaneNew" layoutX="15.0" layoutY="170.0" maxHeight="544.0" maxWidth="761.0"
+                      minHeight="544.0" minWidth="761.0" prefHeight="544.0" prefWidth="761.0" visible="false">
+                    <Button id="update_yes" layoutX="227.0" layoutY="270.0" maxHeight="35.0" maxWidth="143.0"
+                            minHeight="35.0" minWidth="143.0" mnemonicParsing="false" onAction="#addNewChapters" prefHeight="35.0"
+                            prefWidth="143.0"/>
+                    <Button id="update_no" layoutX="395.0" layoutY="270.0" maxHeight="35.0" maxWidth="143.0"
+                            minHeight="35.0" minWidth="143.0" mnemonicParsing="false" onAction="#closeUpdatePane" prefHeight="35.0"
+                            prefWidth="143.0"/>
+                </Pane>
+                <Pane id="updatePaneNotNew" fx:id="updatePaneNotNew" layoutX="15.0" layoutY="170.0" maxHeight="544.0" maxWidth="761.0"
+                      minHeight="544.0" minWidth="761.0" prefHeight="544.0" prefWidth="761.0" visible="false">
+                    <Button id="update_okay" layoutX="227.0" layoutY="270.0" maxHeight="35.0" maxWidth="311.0"
+                            minHeight="35.0" minWidth="311.0" mnemonicParsing="false" onAction="#closeUpdatePane" prefHeight="35.0"
+                            prefWidth="311.0"/>
                 </Pane>
                 <Pane id="repairPopup" fx:id="repairPane" layoutX="200.0" layoutY="717.0" maxHeight="222.0"
                       maxWidth="391.0" minHeight="222.0" minWidth="391.0" prefHeight="222.0" prefWidth="391.0"
