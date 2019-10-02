@@ -64,13 +64,12 @@ public class ControllerLoader {
     }
 
     private void preload() {
-        Startup.implementDatabaseChanges();
+//        Startup.implementDatabaseChanges();
         initializeArrays();
 //        DebuggingTools.mangaCollectionHealth();
-        if (InternetConnection.checkIfConnected()) {
-            online = true;
-//            fetchNewTitles();
-        }
+//        if (InternetConnection.checkIfConnected()) {
+//            online = true;
+//        }
         boot();
     }
 
@@ -81,6 +80,7 @@ public class ControllerLoader {
         CategoryMangaLists.completedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_COMPLETED.getValue()));
         CategoryMangaLists.collectedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_READING.getValue()));
         CategoryMangaLists.bookmark.addAll(initializeArray(StaticStrings.DB_TABLE_BOOKMARK.getValue()));
+        CategoryMangaLists.undecidedMangaList.addAll(initializeArray(StaticStrings.DB_TABLE_UNDECIDED.getValue()));
         Database.terminateDbAccess();
         CategoryMangaLists.history.addAll(HistoryPane.retrieveStoredHistory());
         CategoryMangaLists.stats.addAll(StatsPane.retrieveStoredStats());
@@ -97,7 +97,7 @@ public class ControllerLoader {
     }
 
     private void boot() {
-        update.set("Launching Reader ...");
+//        update.set("Launching Reader ...");
         Platform.runLater(this::switchStage);
     }
 

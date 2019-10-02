@@ -16,7 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("loader.fxml"));
         primaryStage.getIcons().add(new Image("assets/ico.png"));
         primaryStage.setTitle("Cupcaked Manga Reader");
-        primaryStage.setScene(new Scene(root, 292, 312, Color.TRANSPARENT));  //1026
+        primaryStage.setScene(new Scene(root, 292, 312, Color.TRANSPARENT));
         primaryStage.setX(819);
         primaryStage.setY(323);
         primaryStage.setResizable(false);
