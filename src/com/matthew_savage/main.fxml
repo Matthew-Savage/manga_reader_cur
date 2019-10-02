@@ -22,7 +22,7 @@
                 <RadioButton toggleGroup="$navigationTabs" fx:id="tabTentative" id="5"  mnemonicParsing="false" onAction="#openCategory" layoutX="-3.0" layoutY="662.0" prefWidth="30.0" prefHeight="154.0" />
                 <RadioButton toggleGroup="$navigationTabs" fx:id="tabRejected" id="6"  mnemonicParsing="false" onAction="#openCategory" layoutX="-3.0" layoutY="810.0" prefWidth="30.0" prefHeight="154.0" />
                 <ImageView id="noInternet" fx:id="noInternet" fitHeight="51.0" fitWidth="50.0" layoutX="1840.0"
-                           layoutY="960.0" pickOnBounds="true" preserveRatio="true"/>
+                           layoutY="980.0" pickOnBounds="true" preserveRatio="true"/>
                 <Pane id="thumbPane" fx:id="thumbPane" layoutX="12.0" layoutY="15.0" maxHeight="1034.0" maxWidth="1920.0" minHeight="1034.0"
                       minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0">
                     <children>
@@ -524,8 +524,8 @@
                                maxHeight="30.0" maxWidth="70.0" minHeight="30.0" minWidth="70.0" prefHeight="30.0"
                                prefWidth="70.0"/>
                 </Pane>
-                <Pane id="historyPaneContent" fx:id="historyPaneContent" maxHeight="1026.0" maxWidth="1920.0"
-                      minHeight="1026.0" minWidth="1920.0" prefHeight="1026.0" prefWidth="1920.0" visible="false">
+                <Pane id="historyPaneContent" fx:id="historyPaneContent" maxHeight="1034.0" maxWidth="1920.0"
+                      minHeight="1034.0" minWidth="1920.0" prefHeight="1034.0" prefWidth="1920.0" visible="false">
                     <children>
                         <ImageView id="historyThumb0" fitHeight="100.0" fitWidth="65.0" layoutX="594.0" layoutY="185.0"
                                    pickOnBounds="true" preserveRatio="true"/>

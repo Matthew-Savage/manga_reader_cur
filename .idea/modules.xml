@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MangaReaderPinkFinal.iml" filepath="$PROJECT_DIR$/MangaReaderPinkFinal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manga_reader_cur.iml" filepath="$PROJECT_DIR$/manga_reader_cur.iml" />
     </modules>
   </component>
 </project>

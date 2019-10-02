@@ -11,11 +11,14 @@ package com.matthew_savage;
 // lol all the stats logic. this app is getting respectable i feel like
 // let user select what catagories to pull favorites from for fav foldier, cool!
 // mark as complete button, bitches love mark as complete buttons
-// need to make all these arraylists multithreaded bro. that curtainly cant be ideal that almost nothing is thread safe.
-// in app bug submissipon
+// need to make all these arraylists multithreaded bro. curtainly cant be ideal that almost nothing is thread safe.
+// in app bug submission - thisa is actually dope, it should be both in the manga popup/reader sidebar that autofills all data
+// specific to the title, and another general one just on the main screen for general non-title specific shit. if it already existed
+// id have a trouble ticket for the korean manga thing
 // find out what the deal is with the super high resolution korean shit. clearly we need a max resolution for the imgview
 // moving to ignore and shit is putting manga in complete queue, that old bug
-// clicking read again for a complete manga is totally broken
+// favorite tab needs a lot of work, user needs to be able to read, ignore, update, all that from this tab which adds a lot of logistical problems that a new database column would fix
+// when completing a manga (possibly only when its been moved from completed), a random manga appears in history. finishing the reading of a manga should not affect history at all.
 
 import com.matthew_savage.GUI.*;
 import javafx.animation.KeyFrame;
@@ -484,6 +487,7 @@ public class ControllerMain {
         toggleBookmarkButton();
         defaultThumbPane(collectedMangaList);
         currentCategoryNumber = 2;
+        tabFavorites.setDisable(true);
     }
 
 
@@ -983,6 +987,7 @@ public class ControllerMain {
         popupClose();
         ImageView image = (ImageView) imageClicked.getSource();
         clickedThumbIdent = Integer.parseInt(image.getId().substring(18));
+        System.out.println(clickedThumbIdent);
         selectedMangaIdentNumberTEMP = currentContent.get(indexIncrementValue + clickedThumbIdent).getTitleId();
         getSelectedMangaValues(toList());
         openMangaInfoPane();
@@ -1128,23 +1133,61 @@ public class ControllerMain {
         // this is only being used by the hiustory pane, or the used to be history pane at least... fml
         selectedMangaLastChapReadNumTEMP = 0;
         selectedMangaCurrentPageNumTEMP = 0;
-        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_LAST_CHAP_READ.getValue(), selectedMangaLastChapReadNumTEMP, selectedMangaIdentNumberTEMP);
-        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_CUR_PAGE.getValue(), selectedMangaCurrentPageNumTEMP, selectedMangaIdentNumberTEMP);
-        MangaValues.addAndRemove(completedMangaList, collectedMangaList, parentListIndexNumberTEMP, true);
+//        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_LAST_CHAP_READ.getValue(), selectedMangaLastChapReadNumTEMP, selectedMangaIdentNumberTEMP);
+//        MangaValues.modifyValue(completedMangaList, StaticStrings.DB_COL_CUR_PAGE.getValue(), selectedMangaCurrentPageNumTEMP, selectedMangaIdentNumberTEMP);
+
+//        MangaValues.addAndRemove(completedMangaList, collectedMangaList, parentListIndexNumberTEMP, true);
+
+
+
+        MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_READING.getValue() + " (" +
+                "title_id, " +
+                "title, " +
+                "authors, " +
+                "status, " +
+                "summary, " +
+                "web_address, " +
+                "genre_tags, " +
+                "total_chapters, " +
+                "current_page, " +
+                "last_chapter_read, " +
+                "last_chapter_downloaded, " +
+                "new_chapters, " +
+                "favorite) VALUES " + "(" +
+                "'" + selectedMangaIdentNumberTEMP + "', " +
+                "'" + selectedMangaTitleTEMP + "', " +
+                "'" + selectedMangaAuthorsTEMP + "', " +
+                "'" + selectedMangaStatusTEMP + "', " +
+                "'" + selectedMangaSummaryTEMP + "', " +
+                "'" + selectedMangaWebAddressTEMP + "', " +
+                "'" + selectedMangaGenresTEMP + "', " +
+                "'" + selectedMangaTotalChapNumTEMP + "', " +
+                "'" + selectedMangaCurrentPageNumTEMP + "', " +
+                "'" + selectedMangaLastChapReadNumTEMP + "', " +
+                "'" + selectedMangaLastChapDownloadedTEMP + "', " +
+                "'" + selectedMangaNewChapNumTEMP + "', " +
+                "'" + selectedMangaIsFavoriteTEMP + "')");
+
+        MangaValues.addToQueue("DELETE FROM " + sourceDatabase() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+        collectedMangaList.add(toList().get(parentListIndexNumberTEMP));
+        toList().remove(parentListIndexNumberTEMP);
+
+
+
+
         popupClose();
         getSelectedMangaValues(collectedMangaList);
-        preReadingTasks();
+        currentCategoryNumber = 2;
+//        preReadingTasks();
     }
 
     public void preReadingTasks() {
+        if (tabCompleted.isSelected()) {
+            changeCompletedToReading();
+        }
         if (HistoryPane.storeHistory()) {
         }
 //        removeNewChapFlagIfPresent();
-
-        if (tabCompleted.isSelected()) {
-            //TODO
-            // move from completed to currently reading, reset everything back to zero. database shit
-        }
 
         try {
             mangaImageFilesToList();
@@ -1250,13 +1293,22 @@ public class ControllerMain {
     private static boolean firstSet = false;
 
     public void processNavKeys(Event event) {
+        KeyEvent keyEvent = null;
+
         if (System.currentTimeMillis() - firstTime > 70 || firstSet) {
             firstSet = false;
             firstTime = System.currentTimeMillis();
-            if (selectedMangaTotalChapNumTEMP == selectedMangaLastChapReadNumTEMP && selectedMangaCurrentPageNumTEMP == 0) {
-                event.consume();
+            if (event.getEventType().equals(KEY_PRESSED)) {
+                keyEvent = (KeyEvent) event;
+            }
+            if (keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeWindow();
             } else {
-                scrollUpDown(InputSorting.sortInputs(event));
+                if (selectedMangaTotalChapNumTEMP == selectedMangaLastChapReadNumTEMP && selectedMangaCurrentPageNumTEMP == 0) {
+                    event.consume();
+                } else {
+                    scrollUpDown(InputSorting.sortInputs(event));
+                }
             }
         } else {
             event.consume();
@@ -1515,7 +1567,52 @@ public class ControllerMain {
 
     public void addNewManga() {
         if (selectedMangaTotalChapNumTEMP == selectedMangaLastChapDownloadedTEMP) {
-            MangaValues.addAndRemove(toList(), collectedMangaList, parentListIndexNumberTEMP, true);
+            selectedMangaLastChapReadNumTEMP = 0;
+            selectedMangaCurrentPageNumTEMP = 0;
+            toList().get(parentListIndexNumberTEMP).setLastChapterRead(0);
+            toList().get(parentListIndexNumberTEMP).setCurrentPage(0);
+
+            MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_READING.getValue() + " (" +
+                    "title_id, " +
+                    "title, " +
+                    "authors, " +
+                    "status, " +
+                    "summary, " +
+                    "web_address, " +
+                    "genre_tags, " +
+                    "total_chapters, " +
+                    "current_page, " +
+                    "last_chapter_read, " +
+                    "last_chapter_downloaded, " +
+                    "new_chapters, " +
+                    "favorite) VALUES " + "(" +
+                    "'" + selectedMangaIdentNumberTEMP + "', " +
+                    "'" + selectedMangaTitleTEMP + "', " +
+                    "'" + selectedMangaAuthorsTEMP + "', " +
+                    "'" + selectedMangaStatusTEMP + "', " +
+                    "'" + selectedMangaSummaryTEMP + "', " +
+                    "'" + selectedMangaWebAddressTEMP + "', " +
+                    "'" + selectedMangaGenresTEMP + "', " +
+                    "'" + selectedMangaTotalChapNumTEMP + "', " +
+                    "'" + selectedMangaCurrentPageNumTEMP + "', " +
+                    "'" + selectedMangaLastChapReadNumTEMP + "', " +
+                    "'" + selectedMangaLastChapDownloadedTEMP + "', " +
+                    "'" + selectedMangaNewChapNumTEMP + "', " +
+                    "'" + selectedMangaIsFavoriteTEMP + "')");
+
+            MangaValues.addToQueue("DELETE FROM " + sourceDatabase() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+            collectedMangaList.add(toList().get(parentListIndexNumberTEMP));
+            toList().remove(parentListIndexNumberTEMP);
+
+
+
+
+//            1mRemove(toList(), collectedMangaList, parentListIndexNumberTEMP, true);
+
+
+
+
+
             MangaValues.executeChanges();
             popupClose();
             searchStringBuilder();
@@ -1560,8 +1657,46 @@ public class ControllerMain {
     public void ignoreManga() {
         //todo
         // hardcode database changes i guess..
-            MangaValues.addAndRemove(toList(), rejectedMangaList, parentListIndexNumberTEMP, true);
-            MangaValues.executeChanges();
+
+//     MangaValues.addAndRemove(toList(), rejectedMangaList, parentListIndexNumberTEMP, true);
+
+
+
+
+        MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_NOT_INTERESTED.getValue() + " (" +
+                "title_id, " +
+                "title, " +
+                "authors, " +
+                "status, " +
+                "summary, " +
+                "web_address, " +
+                "genre_tags, " +
+                "total_chapters, " +
+                "current_page, " +
+                "last_chapter_read, " +
+                "last_chapter_downloaded, " +
+                "new_chapters, " +
+                "favorite) VALUES " + "(" +
+                "'" + selectedMangaIdentNumberTEMP + "', " +
+                "'" + selectedMangaTitleTEMP + "', " +
+                "'" + selectedMangaAuthorsTEMP + "', " +
+                "'" + selectedMangaStatusTEMP + "', " +
+                "'" + selectedMangaSummaryTEMP + "', " +
+                "'" + selectedMangaWebAddressTEMP + "', " +
+                "'" + selectedMangaGenresTEMP + "', " +
+                "'" + selectedMangaTotalChapNumTEMP + "', " +
+                "'" + selectedMangaCurrentPageNumTEMP + "', " +
+                "'" + selectedMangaLastChapReadNumTEMP + "', " +
+                "'" + selectedMangaLastChapDownloadedTEMP + "', " +
+                "'" + selectedMangaNewChapNumTEMP + "', " +
+                "'" + selectedMangaIsFavoriteTEMP + "')");
+
+        MangaValues.addToQueue("DELETE FROM " + sourceDatabase() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+        rejectedMangaList.add(toList().get(parentListIndexNumberTEMP));
+        toList().remove(parentListIndexNumberTEMP);
+
+
+        MangaValues.executeChanges();
         popupClose();
         searchStringBuilder();
     }

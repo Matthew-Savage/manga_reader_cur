@@ -131,150 +131,175 @@
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/okay.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #update_okay:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/okay_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #update_no {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/no.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #update_no:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/no_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #update_yes {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/yes.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #update_yes:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/update_button/yes_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #ascendDescend {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ascend_decend.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #ascendDescend:selected {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/decend_ascend.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #ascendDescend:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ascend_decend_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #ascendDescend:selected:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/decend_ascend_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #resetButton {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reset_results.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #resetButton:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reset_results_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #errorButton {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/error_button.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #errorButton:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/error_button_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #fetchAgain {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/refetch.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #fetchAgain:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/refetch_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveRead {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/already_read.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveRead:selected {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/already_read_selected.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveRead:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/already_read_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveRead:selected:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/already_read_selected_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveNotRead {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/never_read.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveNotRead:selected {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/never_read_selected.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveNotRead:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/never_read_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #haveNotRead:selected:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/never_read_selected_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 
 
 .choice-box {
     -fx-background-image: url("../../assets/choicebox.png");
+    -fx-background-repeat: no-repeat;
     -fx-background-radius: 0 0 0 0, 0, 0, 0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-alignment: CENTER;
@@ -350,120 +375,140 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #1:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #1:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_not_collected_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #2 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #2:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #2:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_collected_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #3 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #3:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #3:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_completed_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #4 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #4:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #4:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_favorites_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #5 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_undecided_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #5:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_undecided.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #5:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_undecided_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #6 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected_50.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #6:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #6:hover {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/tab_rejected_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #searchTitle, #searchAuthor, #searchSummary {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/checkbox.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #searchTitle:selected, #searchAuthor:selected, #searchSummary:selected {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/checkbox_checked.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #lastChapterRead {
@@ -479,20 +524,24 @@
 
 #startReading {
     -fx-background-image: url("../../assets/add_manga.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #startReading:pressed {
     -fx-background-image: url("../../assets/add_manga_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #repairError {
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/repair.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #repairError:pressed {
     -fx-border-color: transparent;
     -fx-background-image: url("../../assets/repair_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #textSize42 {
@@ -701,42 +750,49 @@
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/minimize.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #minimize:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/minimize_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #historyToggle {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reading_history.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #historyToggle:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reading_history_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #statsToggle {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/statistics.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #statsToggle:pressed {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/statistics_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 #bookmarkToggle {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/bookmark.png");
+    -fx-background-repeat: no-repeat;
 }
 
 
@@ -744,6 +800,7 @@
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/bookmark_pressed.png");
+    -fx-background-repeat: no-repeat;
 }
 
 
@@ -751,276 +808,308 @@
     -fx-background-image: url("../../assets/goto_last.png");
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #gotoLast:hover {
     -fx-background-image: url("../../assets/goto_last.png");
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #historyRead0, #historyRead1, #historyRead2, #historyRead3, #historyRead4, #historyRead5, #historyRead6, #historyRead7, #historyRead8, #historyRead9 {
     -fx-background-image: url("../../assets/read_supersmall.png");
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #historyRead0:pressed, #historyRead1:pressed, #historyRead2:pressed, #historyRead3:pressed, #historyRead4:pressed, #historyRead5:pressed, #historyRead6:pressed, #historyRead7:pressed, #historyRead8:pressed, #historyRead9:pressed {
     -fx-background-image: url("../../assets/read_supersmall_pressed.png");
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-}
-
-#myCollection {
-    -fx-background-image: url("../../assets/my_collection.png");
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-#availableTitles {
-    -fx-background-image: url("../../assets/available_titles.png");
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #getInnerPopup {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/add.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #getInnerPopup:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/add_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #unignore {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/unignore.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #unignore:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/unignore_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #ignoreManga {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ignore.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #ignoreManga:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ignore_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #issue {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/issue.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #issue:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/issue_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleAddShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/collection_add_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleAddShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/collection_add_pressed_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleReadShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/read_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleReadShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/read_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavAddShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_add_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavAddShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_add_pressed_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavRemoveShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_remove_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavRemoveShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_remove_pressed_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #undecidedShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/undecided_add_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #undecidedShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/undecided_add_pressed_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rejectShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/reject_add_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rejectShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/reject_add_pressed_x4.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleAddLong {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/collection_add_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleAddLong:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/collection_add_pressed_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavAddLong {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_add_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavAddLong:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_add_pressed_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavRemoveLong {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_remove_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #titleFavRemoveLong:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/favorite_remove_pressed_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #undecidedLong {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/undecided_add_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #undecidedLong:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/undecided_add_pressed_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rejectLong {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/reject_add_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rejectLong:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/buttons_popup/reject_add_pressed_x3.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #readManga {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/read.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #readManga:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/read_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rereadManga {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reread.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #rereadManga:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/reread_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #favorite {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/favorite.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #favorite:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/favorite_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #unfavorite {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/unfavorite.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #unfavorite:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/unfavorite_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #ignoreMangaShort {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ignore_short.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #ignoreMangaShort:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/ignore_short_clicked.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 
@@ -1028,156 +1117,182 @@
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/close.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #close:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/close_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #miniClose {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/close_small.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #miniClose:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/close_small_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageFirst {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/first.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageFirst:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/first_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pagePrevious {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/prev.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pagePrevious:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/prev_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageNext {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/next.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageNext:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/next_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageLast {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/last.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #pageLast:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/last_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_favorite {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_favorite.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_favorite:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_favorite_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_unfavorite {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_favorite_true.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_unfavorite:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_favorite_true_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_size_decrease {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_size_decrease.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_size_decrease:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_size_decrease_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_size_increase {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_size_increase.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_size_increase:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_size_increase_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_goback {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_goback.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_goback:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/sidebar_goback_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_scrollSpeed_decrease {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_decrease.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_scrollSpeed_decrease:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_decrease_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_scrollSpeed_increase {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_increase.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #sidebarPane_scrollSpeed_increase:pressed {
     -fx-background-color: transparent;
     -fx-background-image: url("../../assets/scroll_increase_pressed.png");
     -fx-border-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #thumb0Pane {
@@ -1198,1762 +1313,2057 @@
     -fx-background-image: url("../../assets/genres/action_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/action_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:selected {
     -fx-background-image: url("../../assets/genres/action_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:selected:pressed {
     -fx-background-image: url("../../assets/genres/action_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0 {
     -fx-background-image: url("../../assets/genres/action_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:pressed {
     -fx-background-image: url("../../assets/genres/action_exclude_pressed.png");
+    -fx-background-repeat: no-repeat;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:indeterminate {
     -fx-background-image: url("../../assets/genres/adult_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/adult_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:selected {
     -fx-background-image: url("../../assets/genres/adult_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:selected:pressed {
     -fx-background-image: url("../../assets/genres/adult_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1 {
     -fx-background-image: url("../../assets/genres/adult_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:pressed {
     -fx-background-image: url("../../assets/genres/adult_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:indeterminate {
     -fx-background-image: url("../../assets/genres/adventure_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/adventure_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:selected {
     -fx-background-image: url("../../assets/genres/adventure_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:selected:pressed {
     -fx-background-image: url("../../assets/genres/adventure_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2 {
     -fx-background-image: url("../../assets/genres/adventure_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:pressed {
     -fx-background-image: url("../../assets/genres/adventure_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:indeterminate {
     -fx-background-image: url("../../assets/genres/comedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/comedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:selected {
     -fx-background-image: url("../../assets/genres/comedy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:selected:pressed {
     -fx-background-image: url("../../assets/genres/comedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3 {
     -fx-background-image: url("../../assets/genres/comedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:pressed {
     -fx-background-image: url("../../assets/genres/comedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:indeterminate {
     -fx-background-image: url("../../assets/genres/cooking_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/cooking_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:selected {
     -fx-background-image: url("../../assets/genres/cooking_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:selected:pressed {
     -fx-background-image: url("../../assets/genres/cooking_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4 {
     -fx-background-image: url("../../assets/genres/cooking_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:pressed {
     -fx-background-image: url("../../assets/genres/cooking_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:indeterminate {
     -fx-background-image: url("../../assets/genres/doujin_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/doujin_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:selected {
     -fx-background-image: url("../../assets/genres/doujin_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:selected:pressed {
     -fx-background-image: url("../../assets/genres/doujin_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5 {
     -fx-background-image: url("../../assets/genres/doujin_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:pressed {
     -fx-background-image: url("../../assets/genres/doujin_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:indeterminate {
     -fx-background-image: url("../../assets/genres/drama_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/drama_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:selected {
     -fx-background-image: url("../../assets/genres/drama_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:selected:pressed {
     -fx-background-image: url("../../assets/genres/drama_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6 {
     -fx-background-image: url("../../assets/genres/drama_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:pressed {
     -fx-background-image: url("../../assets/genres/drama_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:indeterminate {
     -fx-background-image: url("../../assets/genres/ecchi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:selected {
     -fx-background-image: url("../../assets/genres/ecchi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:selected:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7 {
     -fx-background-image: url("../../assets/genres/ecchi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:indeterminate {
     -fx-background-image: url("../../assets/genres/fantasy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:selected {
     -fx-background-image: url("../../assets/genres/fantasy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:selected:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8 {
     -fx-background-image: url("../../assets/genres/fantasy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:indeterminate {
     -fx-background-image: url("../../assets/genres/gb_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/gb_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:selected {
     -fx-background-image: url("../../assets/genres/gb_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:selected:pressed {
     -fx-background-image: url("../../assets/genres/gb_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9 {
     -fx-background-image: url("../../assets/genres/gb_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:pressed {
     -fx-background-image: url("../../assets/genres/gb_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:indeterminate {
     -fx-background-image: url("../../assets/genres/action_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/action_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:selected {
     -fx-background-image: url("../../assets/genres/action_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:selected:pressed {
     -fx-background-image: url("../../assets/genres/action_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0 {
     -fx-background-image: url("../../assets/genres/action_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre0:pressed {
     -fx-background-image: url("../../assets/genres/action_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:indeterminate {
     -fx-background-image: url("../../assets/genres/adult_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/adult_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:selected {
     -fx-background-image: url("../../assets/genres/adult_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:selected:pressed {
     -fx-background-image: url("../../assets/genres/adult_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1 {
     -fx-background-image: url("../../assets/genres/adult_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre1:pressed {
     -fx-background-image: url("../../assets/genres/adult_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:indeterminate {
     -fx-background-image: url("../../assets/genres/adventure_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/adventure_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:selected {
     -fx-background-image: url("../../assets/genres/adventure_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:selected:pressed {
     -fx-background-image: url("../../assets/genres/adventure_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2 {
     -fx-background-image: url("../../assets/genres/adventure_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre2:pressed {
     -fx-background-image: url("../../assets/genres/adventure_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:indeterminate {
     -fx-background-image: url("../../assets/genres/comedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/comedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:selected {
     -fx-background-image: url("../../assets/genres/comedy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:selected:pressed {
     -fx-background-image: url("../../assets/genres/comedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3 {
     -fx-background-image: url("../../assets/genres/comedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre3:pressed {
     -fx-background-image: url("../../assets/genres/comedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:indeterminate {
     -fx-background-image: url("../../assets/genres/cooking_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/cooking_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:selected {
     -fx-background-image: url("../../assets/genres/cooking_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:selected:pressed {
     -fx-background-image: url("../../assets/genres/cooking_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4 {
     -fx-background-image: url("../../assets/genres/cooking_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre4:pressed {
     -fx-background-image: url("../../assets/genres/cooking_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:indeterminate {
     -fx-background-image: url("../../assets/genres/doujin_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/doujin_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:selected {
     -fx-background-image: url("../../assets/genres/doujin_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:selected:pressed {
     -fx-background-image: url("../../assets/genres/doujin_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5 {
     -fx-background-image: url("../../assets/genres/doujin_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre5:pressed {
     -fx-background-image: url("../../assets/genres/doujin_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:indeterminate {
     -fx-background-image: url("../../assets/genres/drama_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/drama_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:selected {
     -fx-background-image: url("../../assets/genres/drama_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:selected:pressed {
     -fx-background-image: url("../../assets/genres/drama_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6 {
     -fx-background-image: url("../../assets/genres/drama_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre6:pressed {
     -fx-background-image: url("../../assets/genres/drama_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:indeterminate {
     -fx-background-image: url("../../assets/genres/ecchi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:selected {
     -fx-background-image: url("../../assets/genres/ecchi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:selected:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7 {
     -fx-background-image: url("../../assets/genres/ecchi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre7:pressed {
     -fx-background-image: url("../../assets/genres/ecchi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:indeterminate {
     -fx-background-image: url("../../assets/genres/fantasy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:selected {
     -fx-background-image: url("../../assets/genres/fantasy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:selected:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8 {
     -fx-background-image: url("../../assets/genres/fantasy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre8:pressed {
     -fx-background-image: url("../../assets/genres/fantasy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:indeterminate {
     -fx-background-image: url("../../assets/genres/gb_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/gb_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:selected {
     -fx-background-image: url("../../assets/genres/gb_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:selected:pressed {
     -fx-background-image: url("../../assets/genres/gb_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9 {
     -fx-background-image: url("../../assets/genres/gb_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre9:pressed {
     -fx-background-image: url("../../assets/genres/gb_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10:indeterminate {
     -fx-background-image: url("../../assets/genres/harem_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/harem_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10:selected {
     -fx-background-image: url("../../assets/genres/harem_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10:selected:pressed {
     -fx-background-image: url("../../assets/genres/harem_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10 {
     -fx-background-image: url("../../assets/genres/harem_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre10:pressed {
     -fx-background-image: url("../../assets/genres/harem_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11:indeterminate {
     -fx-background-image: url("../../assets/genres/historical_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/historica_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11:selected {
     -fx-background-image: url("../../assets/genres/historica_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11:selected:pressed {
     -fx-background-image: url("../../assets/genres/historica_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11 {
     -fx-background-image: url("../../assets/genres/historica_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre11:pressed {
     -fx-background-image: url("../../assets/genres/historica_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12:indeterminate {
     -fx-background-image: url("../../assets/genres/horror_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/horror_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12:selected {
     -fx-background-image: url("../../assets/genres/horror_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12:selected:pressed {
     -fx-background-image: url("../../assets/genres/horror_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12 {
     -fx-background-image: url("../../assets/genres/horror_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre12:pressed {
     -fx-background-image: url("../../assets/genres/horror_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13:indeterminate {
     -fx-background-image: url("../../assets/genres/josei_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/josei_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13:selected {
     -fx-background-image: url("../../assets/genres/josei_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13:selected:pressed {
     -fx-background-image: url("../../assets/genres/josei_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13 {
     -fx-background-image: url("../../assets/genres/josei_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre13:pressed {
     -fx-background-image: url("../../assets/genres/josei_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14:indeterminate {
     -fx-background-image: url("../../assets/genres/manhua_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/manhua_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14:selected {
     -fx-background-image: url("../../assets/genres/manhua_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14:selected:pressed {
     -fx-background-image: url("../../assets/genres/manhua_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14 {
     -fx-background-image: url("../../assets/genres/manhua_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre14:pressed {
     -fx-background-image: url("../../assets/genres/manhua_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15:indeterminate {
     -fx-background-image: url("../../assets/genres/manhwa_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/manhwa_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15:selected {
     -fx-background-image: url("../../assets/genres/manhwa_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15:selected:pressed {
     -fx-background-image: url("../../assets/genres/manhwa_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15 {
     -fx-background-image: url("../../assets/genres/manhwa_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre15:pressed {
     -fx-background-image: url("../../assets/genres/manhwa_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16:indeterminate {
     -fx-background-image: url("../../assets/genres/ma_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/ma_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16:selected {
     -fx-background-image: url("../../assets/genres/ma_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16:selected:pressed {
     -fx-background-image: url("../../assets/genres/ma_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16 {
     -fx-background-image: url("../../assets/genres/ma_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre16:pressed {
     -fx-background-image: url("../../assets/genres/ma_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17:indeterminate {
     -fx-background-image: url("../../assets/genres/mature_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/mature_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17:selected {
     -fx-background-image: url("../../assets/genres/mature_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17:selected:pressed {
     -fx-background-image: url("../../assets/genres/mature_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17 {
     -fx-background-image: url("../../assets/genres/mature_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre17:pressed {
     -fx-background-image: url("../../assets/genres/maturet_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18:indeterminate {
     -fx-background-image: url("../../assets/genres/mecha_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/mecha_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18:selected {
     -fx-background-image: url("../../assets/genres/mecha_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18:selected:pressed {
     -fx-background-image: url("../../assets/genres/mecha_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18 {
     -fx-background-image: url("../../assets/genres/mecha_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre18:pressed {
     -fx-background-image: url("../../assets/genres/mecha_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19:indeterminate {
     -fx-background-image: url("../../assets/genres/medical_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/medical_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19:selected {
     -fx-background-image: url("../../assets/genres/medical_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19:selected:pressed {
     -fx-background-image: url("../../assets/genres/medical_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19 {
     -fx-background-image: url("../../assets/genres/medical_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre19:pressed {
     -fx-background-image: url("../../assets/genres/medical_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20:indeterminate {
     -fx-background-image: url("../../assets/genres/mystery_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/mystery_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20:selected {
     -fx-background-image: url("../../assets/genres/mystery_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20:selected:pressed {
     -fx-background-image: url("../../assets/genres/mystery_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20 {
     -fx-background-image: url("../../assets/genres/mystery_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre20:pressed {
     -fx-background-image: url("../../assets/genres/mystery_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21:indeterminate {
     -fx-background-image: url("../../assets/genres/oneshot_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/oneshot_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21:selected {
     -fx-background-image: url("../../assets/genres/oneshot_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21:selected:pressed {
     -fx-background-image: url("../../assets/genres/oneshot_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21 {
     -fx-background-image: url("../../assets/genres/oneshot_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre21:pressed {
     -fx-background-image: url("../../assets/genres/oneshot_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22:indeterminate {
     -fx-background-image: url("../../assets/genres/psy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/psy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22:selected {
     -fx-background-image: url("../../assets/genres/psy_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22:selected:pressed {
     -fx-background-image: url("../../assets/genres/psy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22 {
     -fx-background-image: url("../../assets/genres/psy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre22:pressed {
     -fx-background-image: url("../../assets/genres/psy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23:indeterminate {
     -fx-background-image: url("../../assets/genres/romance_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/romance_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23:selected {
     -fx-background-image: url("../../assets/genres/romance_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23:selected:pressed {
     -fx-background-image: url("../../assets/genres/romance_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23 {
     -fx-background-image: url("../../assets/genres/romance_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre23:pressed {
     -fx-background-image: url("../../assets/genres/romance_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24:indeterminate {
     -fx-background-image: url("../../assets/genres/sl_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/sl_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24:selected {
     -fx-background-image: url("../../assets/genres/sl_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24:selected:pressed {
     -fx-background-image: url("../../assets/genres/sl_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24 {
     -fx-background-image: url("../../assets/genres/sl_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre24:pressed {
     -fx-background-image: url("../../assets/genres/sl_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25:indeterminate {
     -fx-background-image: url("../../assets/genres/scifi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/scifi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25:selected {
     -fx-background-image: url("../../assets/genres/scifi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25:selected:pressed {
     -fx-background-image: url("../../assets/genres/scifi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25 {
     -fx-background-image: url("../../assets/genres/scifi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre25:pressed {
     -fx-background-image: url("../../assets/genres/scifi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26:indeterminate {
     -fx-background-image: url("../../assets/genres/seinen_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/seinen_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26:selected {
     -fx-background-image: url("../../assets/genres/seinen_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26:selected:pressed {
     -fx-background-image: url("../../assets/genres/seinen_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26 {
     -fx-background-image: url("../../assets/genres/seinen_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre26:pressed {
     -fx-background-image: url("../../assets/genres/seinen_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27:indeterminate {
     -fx-background-image: url("../../assets/genres/shoujo_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/shoujo_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27:selected {
     -fx-background-image: url("../../assets/genres/shoujo_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27:selected:pressed {
     -fx-background-image: url("../../assets/genres/shoujo_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27 {
     -fx-background-image: url("../../assets/genres/shoujo_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre27:pressed {
     -fx-background-image: url("../../assets/genres/shoujo_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28:indeterminate {
     -fx-background-image: url("../../assets/genres/shoujoai_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/shoujoai_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28:selected {
     -fx-background-image: url("../../assets/genres/shoujoai_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28:selected:pressed {
     -fx-background-image: url("../../assets/genres/shoujoai_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28 {
     -fx-background-image: url("../../assets/genres/shoujoai_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre28:pressed {
     -fx-background-image: url("../../assets/genres/shoujoai_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29:indeterminate {
     -fx-background-image: url("../../assets/genres/shounen_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/shounen_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29:selected {
     -fx-background-image: url("../../assets/genres/shounen_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29:selected:pressed {
     -fx-background-image: url("../../assets/genres/shounen_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29 {
     -fx-background-image: url("../../assets/genres/shounen_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre29:pressed {
     -fx-background-image: url("../../assets/genres/shounen_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30:indeterminate {
     -fx-background-image: url("../../assets/genres/sa_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/sa_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30:selected {
     -fx-background-image: url("../../assets/genres/sa_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30:selected:pressed {
     -fx-background-image: url("../../assets/genres/sa_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30 {
     -fx-background-image: url("../../assets/genres/sa_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre30:pressed {
     -fx-background-image: url("../../assets/genres/sa_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31:indeterminate {
     -fx-background-image: url("../../assets/genres/sol_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/sol_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31:selected {
     -fx-background-image: url("../../assets/genres/sol_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31:selected:pressed {
     -fx-background-image: url("../../assets/genres/sol_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31 {
     -fx-background-image: url("../../assets/genres/sol_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre31:pressed {
     -fx-background-image: url("../../assets/genres/sol_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32:indeterminate {
     -fx-background-image: url("../../assets/genres/smut_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/smut_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32:selected {
     -fx-background-image: url("../../assets/genres/smut_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32:selected:pressed {
     -fx-background-image: url("../../assets/genres/smut_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32 {
     -fx-background-image: url("../../assets/genres/smut_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre32:pressed {
     -fx-background-image: url("../../assets/genres/smut_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33:indeterminate {
     -fx-background-image: url("../../assets/genres/sports_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/sports_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33:selected {
     -fx-background-image: url("../../assets/genres/sports_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33:selected:pressed {
     -fx-background-image: url("../../assets/genres/sports_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33 {
     -fx-background-image: url("../../assets/genres/sports_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre33:pressed {
     -fx-background-image: url("../../assets/genres/sports_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34:indeterminate {
     -fx-background-image: url("../../assets/genres/sn_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/sn_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34:selected {
     -fx-background-image: url("../../assets/genres/sn_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34:selected:pressed {
     -fx-background-image: url("../../assets/genres/sn_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34 {
     -fx-background-image: url("../../assets/genres/sn_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre34:pressed {
     -fx-background-image: url("../../assets/genres/sn_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35:indeterminate {
     -fx-background-image: url("../../assets/genres/trragedy_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/tragedy_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35:selected {
     -fx-background-image: url("../../assets/genres/wt_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35:selected:pressed {
     -fx-background-image: url("../../assets/genres/tragedy_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35 {
     -fx-background-image: url("../../assets/genres/tragedy_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre35:pressed {
     -fx-background-image: url("../../assets/genres/tragedy_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36:indeterminate {
     -fx-background-image: url("../../assets/genres/wt_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/wt_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36:selected {
     -fx-background-image: url("../../assets/genres/webtoons_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36:selected:pressed {
     -fx-background-image: url("../../assets/genres/wt_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36 {
     -fx-background-image: url("../../assets/genres/wt_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre36:pressed {
     -fx-background-image: url("../../assets/genres/wtt_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37:indeterminate {
     -fx-background-image: url("../../assets/genres/yaoi_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/yaoi_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37:selected {
     -fx-background-image: url("../../assets/genres/yaoi_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37:selected:pressed {
     -fx-background-image: url("../../assets/genres/yaoi_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37 {
     -fx-background-image: url("../../assets/genres/yaoi_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre37:pressed {
     -fx-background-image: url("../../assets/genres/yaoi_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38:indeterminate {
     -fx-background-image: url("../../assets/genres/yuri_neutral.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38:indeterminate:pressed {
     -fx-background-image: url("../../assets/genres/yuri_neutral_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38:selected {
     -fx-background-image: url("../../assets/genres/yuri_include.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38:selected:pressed {
     -fx-background-image: url("../../assets/genres/yuri_include_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38 {
     -fx-background-image: url("../../assets/genres/yuri_exclude.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
 
 #genre38:pressed {
     -fx-background-image: url("../../assets/genres/yuri_exclude_pressed.png");
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
 }
