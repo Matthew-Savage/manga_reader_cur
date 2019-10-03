@@ -64,8 +64,52 @@ public class MangaPageTurning {
     }
 
     private static void changeMangaStatus() {
-        MangaValues.addAndRemove(collectedMangaList, completedMangaList, parentListIndexNumberTEMP, true);
-        MangaValues.justRemove(history, ControllerMain.fetchOriginalIndexNumber(history, selectedMangaIdentNumberTEMP));
+//        MangaValues.addAndRemove(collectedMangaList, completedMangaList, parentListIndexNumberTEMP, true);
+
+
+
+
+
+        MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_COMPLETED.getValue() + " (" +
+                "title_id, " +
+                "title, " +
+                "authors, " +
+                "status, " +
+                "summary, " +
+                "web_address, " +
+                "genre_tags, " +
+                "total_chapters, " +
+                "current_page, " +
+                "last_chapter_read, " +
+                "last_chapter_downloaded, " +
+                "new_chapters, " +
+                "favorite) VALUES " + "(" +
+                "'" + selectedMangaIdentNumberTEMP + "', " +
+                "'" + selectedMangaTitleTEMP + "', " +
+                "'" + selectedMangaAuthorsTEMP + "', " +
+                "'" + selectedMangaStatusTEMP + "', " +
+                "'" + selectedMangaSummaryTEMP + "', " +
+                "'" + selectedMangaWebAddressTEMP + "', " +
+                "'" + selectedMangaGenresTEMP + "', " +
+                "'" + selectedMangaTotalChapNumTEMP + "', " +
+                "'" + selectedMangaCurrentPageNumTEMP + "', " +
+                "'" + selectedMangaLastChapReadNumTEMP + "', " +
+                "'" + selectedMangaLastChapDownloadedTEMP + "', " +
+                "'" + selectedMangaNewChapNumTEMP + "', " +
+                "'" + selectedMangaIsFavoriteTEMP + "')");
+
+        MangaValues.addToQueue("DELETE FROM " + StaticStrings.DB_TABLE_READING.getValue() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+        completedMangaList.add(collectedMangaList.get(parentListIndexNumberTEMP));
+        collectedMangaList.remove(parentListIndexNumberTEMP);
+
+
+
+
+
+
+
+
+//        MangaValues.justRemove(history, ControllerMain.fetchOriginalIndexNumber(history, selectedMangaIdentNumberTEMP));
 //        MangaValues.deleteAll(bookmark); // this is the problem right here. this just doesnt work for some reason.
         MangaValues.addToQueue("DELETE FROM bookmark");
         bookmark.clear();

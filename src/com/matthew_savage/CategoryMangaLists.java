@@ -25,6 +25,7 @@ public class CategoryMangaLists {
     public static ArrayList<File> mangaPageImageFiles = new ArrayList<>();
 
     public static int parentListIndexNumberTEMP;
+    public static int historyListIndexNumber;
 //    public static int currentContentListIndexNumberTEMP;
 
     public static Double currentVersionNumber;

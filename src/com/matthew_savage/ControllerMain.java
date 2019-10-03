@@ -16,9 +16,9 @@ package com.matthew_savage;
 // specific to the title, and another general one just on the main screen for general non-title specific shit. if it already existed
 // id have a trouble ticket for the korean manga thing
 // find out what the deal is with the super high resolution korean shit. clearly we need a max resolution for the imgview
-// moving to ignore and shit is putting manga in complete queue, that old bug
 // favorite tab needs a lot of work, user needs to be able to read, ignore, update, all that from this tab which adds a lot of logistical problems that a new database column would fix
-// when completing a manga (possibly only when its been moved from completed), a random manga appears in history. finishing the reading of a manga should not affect history at all.
+// when completing a manga (possibly only when its been moved from completed), a random manga appears in history.
+// make sure autorepair is UNCOMMENTED!!
 
 import com.matthew_savage.GUI.*;
 import javafx.animation.KeyFrame;
@@ -973,14 +973,25 @@ public class ControllerMain {
 
     public void getMangaIdFromButtonPressed(ActionEvent buttonPressed) {
         Button button = (Button) buttonPressed.getSource();
-        selectedMangaIdentNumberTEMP = history.get(Integer.parseInt(button.getId().substring(11))).getTitleId();
-        getSelectedMangaValues(collectedMangaList);
+        historyListIndexNumber = Integer.parseInt(button.getId().substring(11));
+        selectedMangaIdentNumberTEMP = history.get(historyListIndexNumber).getTitleId();
 
-        // if we put completed back in we have to close the pane BEOFRE we do any of the compltedtoreading shit
+        if (fetchOriginalIndexNumber(completedMangaList, selectedMangaIdentNumberTEMP) == -1) {
+            getSelectedMangaValues(collectedMangaList);
+        } else {
+            getSelectedMangaValues(completedMangaList);
+        }
 
         closeHistoryPane();
         preReadingTasks();
 
+//        if (history.get(historyListIndexNumber).getLastChapterRead() == history.get(historyListIndexNumber).getTotalChapters()) {
+//            getSelectedMangaValues(completedMangaList);
+//        } else {
+//            getSelectedMangaValues(collectedMangaList);
+//        }
+//        closeHistoryPane();
+//        preReadingTasks();
     }
 
     public void getMangaIdFromImageClicked(MouseEvent imageClicked) {
@@ -994,6 +1005,7 @@ public class ControllerMain {
     }
 
     private void getSelectedMangaValues(ArrayList<Manga> parentList) {
+        historyListIndexNumber = fetchOriginalIndexNumber(history, selectedMangaIdentNumberTEMP);
         parentListIndexNumberTEMP = fetchOriginalIndexNumber(parentList, selectedMangaIdentNumberTEMP);
         selectedMangaIdentNumberTEMP = parentList.get(parentListIndexNumberTEMP).getTitleId();
         selectedMangaTitleTEMP = parentList.get(parentListIndexNumberTEMP).getTitle();
@@ -1078,7 +1090,17 @@ public class ControllerMain {
         }
     }
 
+    private void wipeHistory() {
+        for (int i = 0; i < 10; i++) {
+            historyThumbViews.get(i).setImage(null);
+            historyTitleFields.get(i).clear();
+            historySummaryFields.get(i).clear();
+            historyReadButtons.get(i).setVisible(false);
+        }
+    }
+
     private void populateHistory() {
+        wipeHistory();
         int loopcount = 10;
         if (history.size() < 10) {
             loopcount = history.size();
@@ -1138,7 +1160,8 @@ public class ControllerMain {
 
 //        MangaValues.addAndRemove(completedMangaList, collectedMangaList, parentListIndexNumberTEMP, true);
 
-
+        completedMangaList.get(parentListIndexNumberTEMP).setLastChapterRead(0);
+        completedMangaList.get(parentListIndexNumberTEMP).setCurrentPage(0);
 
         MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_READING.getValue() + " (" +
                 "title_id, " +
@@ -1169,8 +1192,8 @@ public class ControllerMain {
                 "'" + selectedMangaIsFavoriteTEMP + "')");
 
         MangaValues.addToQueue("DELETE FROM " + sourceDatabase() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
-        collectedMangaList.add(toList().get(parentListIndexNumberTEMP));
-        toList().remove(parentListIndexNumberTEMP);
+        collectedMangaList.add(completedMangaList.get(parentListIndexNumberTEMP));
+        completedMangaList.remove(parentListIndexNumberTEMP);
 
 
 
@@ -1182,10 +1205,14 @@ public class ControllerMain {
     }
 
     public void preReadingTasks() {
-        if (tabCompleted.isSelected()) {
+        if (selectedMangaTotalChapNumTEMP == selectedMangaLastChapReadNumTEMP && selectedMangaLastChapReadNumTEMP > 0) {
             changeCompletedToReading();
         }
         if (HistoryPane.storeHistory()) {
+            //todo
+            // this needs to happen in the database as well kek
+            removeFromHistory();
+            HistoryPane.storeHistory();
         }
 //        removeNewChapFlagIfPresent();
 
@@ -1654,14 +1681,20 @@ public class ControllerMain {
         searchStringBuilder();
     }
 
+    private void removeFromHistory() {
+        if (historyListIndexNumber >= 0) {
+            MangaValues.addToQueue("DELETE FROM " + StaticStrings.DB_TABLE_HISTORY.getValue() + " WHERE title_id = '" + selectedMangaIdentNumberTEMP + "'");
+            history.remove(historyListIndexNumber);
+        }
+    }
+
     public void ignoreManga() {
         //todo
         // hardcode database changes i guess..
 
 //     MangaValues.addAndRemove(toList(), rejectedMangaList, parentListIndexNumberTEMP, true);
 
-
-
+        removeFromHistory();
 
         MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_NOT_INTERESTED.getValue() + " (" +
                 "title_id, " +
@@ -1707,6 +1740,7 @@ public class ControllerMain {
         // update: this should be good, test it and if so, apply to ignore and honestly anywhere
         // still using the old method. something about it just doesnt work. sick of fighting with it.
 
+        removeFromHistory();
 
         MangaValues.addToQueue("INSERT INTO " + StaticStrings.DB_TABLE_UNDECIDED.getValue() + " (" +
                 "title_id, " +

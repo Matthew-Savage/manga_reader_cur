@@ -74,8 +74,8 @@ public enum StaticStrings {
     DB_ATTACHED_READING("main.currently_reading"),
     DB_ATTACHED_DOWNLOADING("downloadDb.downloading"),
 //    DIR_ROOT (GetApplicationPath.getPath()),  //live dir
-    DIR_ROOT("C:\\Users\\Misery Inc\\Documents\\Cupcaked Reader\\environment"),  //development dir
-//        DIR_ROOT  ("C:\\Users\\Apple\\Cupcaked Manga Reader"),  //development dir
+//    DIR_ROOT("C:\\Users\\Misery Inc\\Documents\\Cupcaked Reader\\environment"),  //development dir
+        DIR_ROOT  ("C:\\Users\\Apple Laptop\\Documents\\reader"),  //development dir
     DIR_MANGA("manga"),
     DIR_DB("data"),
     DIR_THUMBS("thumbs"),
